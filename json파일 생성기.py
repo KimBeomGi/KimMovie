@@ -51,6 +51,17 @@ while True:
 
     if 'results' in data:
         for movie_data in data['results']:
+            ####
+            # youtube 영상을 들고오기 위한 key 꺼내기
+            url = f"https://api.themoviedb.org/3/movie/{movie_data['id']}/videos?language=ko-KR"
+            headers = {
+                "accept": "application/json",
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMWJiNTk4ZDU4ZDkzOGUzYTA5NzBkOTg5YjQ1ZTBlNyIsInN1YiI6IjYzZDMxNzg4Y2I3MWI4MDA4OTZjZTJjOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.S516WsCg3sp0Tcu-cVg8KZ-x4DoOktLMia0mx0cZODU"
+            }
+            response = requests.get(url, headers=headers)
+            video_data = response.json()
+            video_key = video_data['results'][0]['key'] if 'results' in video_data and len(video_data['results']) > 0 else None
+            ####
             movie = {
                 'model': 'movies.movie',
                 'fields': {
@@ -64,6 +75,7 @@ while True:
                     'poster_path': movie_data['poster_path'],
                     'backdrop_path': movie_data['backdrop_path'],
                     'genres': movie_data['genre_ids'],
+                    'key': video_key
                     # 'like_users': [] 
                 }
             }
@@ -76,5 +88,5 @@ while True:
     page += 1
 
 # 수집된 데이터를 JSON 파일로 저장
-with open('movies.json', 'w', encoding='utf-8') as file:
+with open('movies_test.json', 'w', encoding='utf-8') as file:
     json.dump(all_movies, file, ensure_ascii=False, indent=4)
