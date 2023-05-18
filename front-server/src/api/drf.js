@@ -27,7 +27,8 @@ export default {
   },
   articles: {
     // /articles/
-    articles: () => BASE_HOST + COMMUNITY,
+    // articles: () => BASE_HOST + COMMUNITY,
+    articles: () => HOST,
     // /articles/1/
     article: articlePk => BASE_HOST + COMMUNITY + `${articlePk}/`,
     likeArticle: articlePk => BASE_HOST + COMMUNITY + `${articlePk}/` + 'like/',

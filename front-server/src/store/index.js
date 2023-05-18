@@ -57,7 +57,7 @@ export default new Vuex.Store({
     getArticles(context) {
       axios({
         method: 'get',
-        url: `${API_URL}/api/v1/articles/`,
+        url: `${API_URL}/api/v1/`,
         headers:{
           Authorization : `Token ${context.state.token}`
         }
@@ -93,6 +93,7 @@ export default new Vuex.Store({
           context.commit('SAVE_TOKEN', res.data.key)
         })
         .catch((err) => {
+          console.log('회원가입 안됨')
         console.log(err)
       })
     },

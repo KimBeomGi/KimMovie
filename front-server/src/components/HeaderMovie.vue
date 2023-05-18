@@ -28,7 +28,21 @@
 
 <script>
 export default {
-    name : 'HeaderMovie'
+    name : 'HeaderMovie',
+    data(){
+      return{
+        articles : this.$store.state.articles
+      }
+    },
+    created() {
+      this.gogo()
+    },
+    methods : {
+      gogo(){
+        this.$store.dispatch('fetchArticles')
+        console.log('ㅎㅇ')
+      }
+    }
 }
 </script>
 
