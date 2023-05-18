@@ -34,7 +34,7 @@ from django.contrib.auth import get_user_model
 
 # @login_required # 로그인 성공후에 redirect >> GET 요청
 @api_view(['POST'])
-@authentication_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def follow(request, user_pk):
     # 현재 로그인한 사용자가 user_pk 사용자를 follow/unfollow 하기
     if request.user.is_authenticated:
@@ -42,11 +42,10 @@ def follow(request, user_pk):
         if request.user != person:
             if request.user in person.followers.all():
                 person.followers.remove(request.user)
-                # return Response({'status': 'success', 'message': 'Unfollowed successfully.'})
             else:
                 person.followers.add(request.user)
-                # return Response({'status': 'success', 'message': 'Followed successfully.'})
-            return Response(status=status.HTTP_200_OK)
+            # return Response({'followersCnt' : person.followers.count()}, status=status.HTTP_200_OK,)
+            return Response(status=status.HTTP_200_OK,)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
     else:
