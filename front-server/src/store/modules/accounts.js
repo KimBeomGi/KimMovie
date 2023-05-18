@@ -22,58 +22,58 @@ export default {
     // localStorage에서 token이라는 key의 value를 가져온다. 없다면 ''를 가져온다.
     token: localStorage.getItem('token') || '' ,
     // drf.accounts.currentUserInfo()에서 받아온 현재 유저의 정보를 저장한다.
-    // currentUser: {},
+    currentUser: {},
     // 로그인 후 받은 정보를 받아 저장하고, 수정될 때마다 여기 정보가 저장된다.
-    // profile: {},
+    profile: {},
     // 에러메시지를 저장한다.
     authError: null,
     // 모달 토글 변수. 영화 디테일 창을 띄울 때 True로 바뀐다.
-    // dialogDetail: false,
+    dialogDetail: false,
     // 모달 토글 변수. 댓글 생성 창을 띄울 때 True로 바뀐다.
-    // dialogComment: false, 
-    // 현재 영화를 저장한다.
-    // movie: null,
+    dialogComment: false, 
+    // 현재 영화를 저장한다. 딕셔너리 형식이고 review 등의 key가 있다.
+    movie: null,
     // 내가 팔로우한 사람들을 저장한다.
-    // follow: {},
+    follow: {},
     // 내가 찜한 영화들을 저장한다.
-    // followMovies: {},
+    followMovies: {},
     // 프로필을 업데이트 한 후 데이터를 저장한다.
-    // profileEdit: {},
+    profileEdit: {},
     // 영화 트레일러의 키를 저장한다.
-    // movieTrailer: null,
+    movieTrailer: null,
     // username을 입력해 프로필을 불러오면 이를 저장한다.
-    // nowUserProfile: {},
+    nowUserProfile: {},
   },
 
   getters: {
     // 토큰이 있으면 True를, 없으면 False를 반환한다.
     isLoggedIn: state => !!state.token,
     // state에 있는 현재 유저 정보를 반환한다. (인증 유저)
-    // currentUser: state => state.currentUser,
+    currentUser: state => state.currentUser,
     // 내 프로필 정보를 저장한다.
-    // profile: state => state.profile,
+    profile: state => state.profile,
     // 에러메세지를 반환한다.
     authError: state => state.authError,
     // 토큰 인증 양식을 반환한다.
     authHeader: state => ({ Authorization: `Token ${state.token}`}),
     // 상세영화 모달 토글 변수를 반환한다.
-    // dialogDetail: state => state.dialogDetail,
+    dialogDetail: state => state.dialogDetail,
     // 선택한 영화를 반환한다.
-    // movie: state => state.movie,
+    movie: state => state.movie,
     // 내가 팔로우한 사람들을 반환한다.
-    // follow: state => state.follow,
+    follow: state => state.follow,
     // 내가 찜한 영화들을 반환한다.
-    // followMovies: state => state.followMovies,
+    followMovies: state => state.followMovies,
     // 삭제 예정
-    // currentReview: state => state.currentReview,
+    currentReview: state => state.currentReview,
     // 업데이트된 프로필 정보를 반환한다.
-    // profileEdit: state => state.profileEdit,
+    profileEdit: state => state.profileEdit,
     // 유튜브 트레일러 주소를 반환한다.
-    // videoUrl: state => VIDEO_URL + state.movieTrailer,
+    videoUrl: state => VIDEO_URL + state.movieTrailer,
     // 영화 트레일러의 키가 있으면 True를 반환한다.
-    // isVideo: state => (state.movieTrailer != null),
+    isVideo: state => (state.movieTrailer != null),
     // 방금 불러온 프로필을 반환한다.
-    // nowUserProfile: state => state.nowUserProfile,
+    nowUserProfile: state => state.nowUserProfile,
   },
 
   mutations: {
@@ -257,12 +257,14 @@ export default {
     },
 
     movieSelect({commit}, movie){
-      // 
+      // movie를 인자로 받아 state.movie에 저장한다.
       commit('SET_MOVIE', movie)
     },
 
     followProfile({ commit, getters }, userPk) {
-      
+      // userPk를 인자로 받아 drf.accounts.follow(userPk)에 post요청을 한다.
+      // drf.accounts.follow(userPk)의 응답으로 내 프로필의 팔로워에 그사람을 등록하고
+      // drf.accounts.follow(userPk)의 응답으로 내 프로필을 업데이트한다.
       axios({
         url: drf.accounts.follow(userPk),
         method: 'post',
@@ -276,6 +278,9 @@ export default {
     },
 
     followMovies({ commit, getters }, moviePk) {
+      // moviePk 인자로 받아 drf.accounts.followMovies(moviePk)에 post요청을 한다.
+      // drf.accounts.followMovies(moviePk)의 응답으로 내 프로필의 팔로워에 그사람을 등록하고
+      // drf.accounts.followMovies(moviePk)의 응답으로 내 프로필을 업데이트한다.
       axios({
         url: drf.accounts.followMovies(moviePk),
         method: 'post',
@@ -290,7 +295,11 @@ export default {
     
 
     updateProfile({ commit, getters }, { currentUsername, username, genre_likes, email, profile_img }) {
-      
+      // 현재유저이름, 유저이름, 좋아하는장르, 이메일, 프로필이미지를 인자로받는다.
+      // 바꾼 값들을 데이터로 입력한다.
+      // state.profileEdit에 drf.accounts.profile(currentUsername)로부터 응답받은 값을 넣는다.
+      // state.profile에 drf.accounts.profile(currentUsername)로부터 응답받은 값을 넣는다.
+      // profile 페이지로 이동한다. 이때 인자로는 username을 전달한다.
       axios({
         url: drf.accounts.profile(currentUsername),
         method: 'put',
@@ -309,6 +318,11 @@ export default {
     },
 
     createReview({ commit, getters}, { moviePk, content }) {
+      // 영화 리뷰를 쓴다.
+      // 영화 고유값과 리뷰를 인자로 받아온다.
+      // drf.accounts.reviews(moviePk)에 영화 고유값을 인자로 넣고
+      // post로 content를 전달해 응답을 받는다.
+      // state.movie에 있는 review키의 value에 그 응답을 저장한다.
       const review = {content}
       axios({
         url: drf.accounts.reviews(moviePk),
@@ -321,8 +335,12 @@ export default {
         })
         .catch(err => console.error(err.response))
     },
-
     likeReview({ commit, getters}, { moviePk, reviewPk }) {
+      // 해당 리뷰에 좋아요 버튼을 누른다.
+      // 영화 고유값과 리뷰 고유값을 인자로 받아온다.
+      // drf.accounts.likeReview(moviePk, reviewPk)에 인자로 전달한다.
+      // state.movie에 있는 review키의 value에
+      // drf.accounts.likeReview(moviePk, reviewPk)로부터 받은 응답을 저장한다.
       axios({
         url: drf.accounts.likeReview(moviePk, reviewPk),
         method: 'post',
@@ -336,6 +354,12 @@ export default {
     },
 
     deleteReview({ commit, getters }, { moviePk, reviewPk }) {
+      // 해당 리뷰를 삭제한다.
+      // 메소드는 delete로 한다.
+      // 영화 고유값과 리뷰 고유값을 인자로 받아온다.
+      // drf.accounts.review(moviePk, reviewPk)에 인자로 전달한다.
+      // state.movie에 있는 review키의 value에
+      // drf.accounts.review(moviePk, reviewPk)로부터 받은 응답을 저장한다.
       if (confirm('정말 댓글을 삭제하시겠습니까?')){
         axios({
           url: drf.accounts.review(moviePk, reviewPk),
@@ -350,6 +374,9 @@ export default {
     },
 
     getMovieTrailer({ commit }, MoviePk) {
+      // MoviePk를 인자로 받아
+      // BASE_URL + String(MoviePk) + VIDEO_API + API_KEY로부터 응답을 받는다.
+      // state.movieTrailer에 그 응답을 저장한다.
       axios({
         url: BASE_URL + String(MoviePk) + VIDEO_API + API_KEY
       })

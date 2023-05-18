@@ -20,9 +20,9 @@ export default {
     profile: (username) => HOST + ACCOUNTS + 'profile/' + username +'/',
     follow: userPk => HOST + ACCOUNTS + userPk +'/' + 'follow/',
     followMovies: moviePk => BASE_HOST + MOVIES + moviePk + '/' + 'moviefollow/',
-    reviews: moviePk => BASE_HOST + MOVIES + moviePk + '/' + 'reviews/', // create 리뷰
-    review: (moviePk, reviewPk) => BASE_HOST + MOVIES + moviePk + '/' + 'reviews/'+reviewPk + '/', // delete 리뷰
-    likeReview: (moviePk, reviewPk) => BASE_HOST + MOVIES + moviePk + '/' + 'reviews/'+reviewPk + '/'+'like/', // review 좋아요
+    reviews: moviePk => BASE_HOST + MOVIES + moviePk + '/' + 'reviews/', // 전체 게시글 목록 조회, 게시글 create
+    review: (moviePk, reviewPk) => BASE_HOST + MOVIES + moviePk + '/' + 'reviews/'+reviewPk + '/', // 게시글 상세 조회, 게시글 삭제, 게시글 수정 
+    likeReview: (moviePk, reviewPk) => BASE_HOST + MOVIES + moviePk + '/' + 'reviews/'+reviewPk + '/'+'like/', // 게시글 좋아요
 
   },
   articles: {
