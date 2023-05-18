@@ -8,5 +8,6 @@ urlpatterns = [
     # path('api/v1/', include('movies.urls')),
     path('', views.movie_list),
     path('<int:movie_pk>/', views.movie_detail),
+    path('genre/', views.get_genre),
     
 ]

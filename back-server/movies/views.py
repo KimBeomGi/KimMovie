@@ -31,5 +31,28 @@ def movie_detail(request, review_pk):
 
     if request.method == 'GET':
         serializer = MovieSerializer(movie)
-        print(serializer.data)
+        # print(serializer.data)
         return Response(serializer.data)
+
+# 장르 데이터
+@api_view(['GET'])
+def get_genre(request):
+    if request.method == 'GET':
+        # genre = Genre.objects.get(pk=request.GET.get('genre'))
+        # genres = get_list_or_404(Genre)
+        genres = Genre.objects.all()
+        serializer = GenreSerializer(genres, many=True)
+        return Response(serializer.data)
+
+# 좋아요 기능
+def movie_like(request):
+    movie = get_object_or_404(Movie, pk=request.POST.get('movie_pk'))
+    is_liked = movie.like_users.filter(id = request.user.id).exists()
+
+    if is_liked :
+        movie.like_users.remove(request.user)
+    else:
+        movie.like_users.add(request.user)
+    
+    # return Response({'status': 'success', 'message': 'Liked status toggled successfully.'})
+    return Response(status=status.HTTP_201_CREATED)
