@@ -28,8 +28,12 @@ def review_list(request):
     elif request.method == 'POST':
         serializer = ReviewSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            # serializer.save()
-            serializer.save(user=request.user)
+            # 게시글 생성으로 사용자의 exp를 100 증가 시키기
+            user = request.user
+            user.exp += 100
+            user.save()
+            print('경험치 100 증가!')
+            serializer.save(user=request.user)            
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -93,8 +97,17 @@ def comment_create(request, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
     serializer = CommentSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
-        serializer.save(review=review)
+        # 댓글 생성으로 사용자의 exp를 100 증가 시키기
+        user = request.user
+        user.exp += 100
+        user.save()
+        print('경험치 100 증가!')
+        serializer.save(review=review, user=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+    
+def review_like(request, review_pk):
+    pass
 
 
 ####################################################################################
@@ -112,8 +125,8 @@ def anonyarticle_list(request):
     elif request.method == 'POST':
         serializer = AnonyarticleSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            # serializer.save()
-            serializer.save(user=request.user)
+            serializer.save()
+            # serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -177,9 +190,12 @@ def anonycomment_detail(request, anonycomment_pk):
 
 @api_view(['POST'])
 def anonycomment_create(request, anonyarticle_pk):
-    # article = Article.objects.get(pk=article_pk)
+    # article = Article.objects.get(pk=article_pk)    
     anonyarticle = get_object_or_404(Anonyarticle, pk=anonyarticle_pk)
-    serializer = AnonycommentSerializer(data=request.data)
-    if serializer.is_valid(raise_exception=True):
-        serializer.save(anonyarticle=anonyarticle)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    if request.method == 'POST':
+        serializer = AnonycommentSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(anonyarticle=anonyarticle)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(status=status.HTTP_400_BAD_REQUEST)

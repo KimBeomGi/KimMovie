@@ -25,4 +25,5 @@ urlpatterns = [
     # accounts 넘겨주기
     path('accounts/', include('dj_rest_auth.urls')),
     path('accounts/signup/', include('dj_rest_auth.registration.urls')),
+    path('accounts/api/v1/', include('accounts.urls'))
 ]

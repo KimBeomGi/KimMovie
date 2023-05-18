@@ -55,4 +55,4 @@ def movie_like(request):
         movie.like_users.add(request.user)
     
     # return Response({'status': 'success', 'message': 'Liked status toggled successfully.'})
-    return Response(status=status.HTTP_201_CREATED)
+    return Response(status=status.HTTP_200_OK)
