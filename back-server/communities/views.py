@@ -104,12 +104,50 @@ def comment_create(request, review_pk):
         print('경험치 100 증가!')
         serializer.save(review=review, user=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    
-    
+
+# review 게시글 좋아요 하기
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def review_like(request, review_pk):
-    pass
-
-
+    review = get_object_or_404(Review, pk=review_pk)
+    user = request.user
+    if review.like_users.filter(pk=user.pk).exists():
+        review.like_users.remove(user)
+        # is_liked = False
+    else:
+        review.like_users.add(user)
+        # is_liked = True
+    
+    review.like_users.count()
+    
+    return Response(status=status.HTTP_200_OK)
+    # review_liked_counts = review.like_users.count()
+    # ###
+    # # 수정해야할 부분
+    # context = {
+    #     'is_liked': is_liked,
+    #     'review_liked_counts' : review_liked_counts
+    # }
+    # return Response(context)
+    # ####
+# #######################
+# # review 게시글의 댓글 좋아요 하기
+# @api_view(['POST'])
+# @permission_classes([IsAuthenticated])
+# def comment_like(request, comment_pk):
+#     comment = get_object_or_404(Comment, pk=comment_pk)
+#     user = request.user
+#     if comment.like_users.filter(pk=user.pk).exists():
+#         comment.like_users.remove(user)
+#         # is_liked = False
+#     else:
+#         comment.like_users.add(user)
+#         # is_liked = True
+    
+#     comment.like_users.count()
+    
+#     return Response(status=status.HTTP_200_OK)
+# ########################
 ####################################################################################
 # 익명 게시글 및 리뷰
 

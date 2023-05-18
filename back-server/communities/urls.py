@@ -12,6 +12,7 @@ urlpatterns = [
     path('comments/<int:comment_pk>/', views.comment_detail),
     path('<int:review_pk>/comments/', views.comment_create),
     path('<int:review_pk>/like/', views.review_like),
+    # path('comments/<int:comment_pk>/like/', views.comment_like),
     
     # 익명 게시판
     path('anonymous/', views.anonyarticle_list),
