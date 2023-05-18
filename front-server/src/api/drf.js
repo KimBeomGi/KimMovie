@@ -10,9 +10,9 @@ export default {
   accounts: {
     // 장고 내장 url들
     // 로그인, 로그아웃, 회원가입, 유저정보불러오기
-    login: () => HOST + ACCOUNTS + 'login/',
+    login: () => BASE_HOST + ACCOUNTS + 'login/',
     logout: () => HOST + ACCOUNTS + 'logout/',
-    signup: () => HOST + ACCOUNTS + 'signup/',
+    signup: () => BASE_HOST + ACCOUNTS + 'signup/',
     // Token 으로 현재 user 판단
     // currentUserInfo: () => HOST + ACCOUNTS + 'user/',
     currentUserInfo: () => HOST + ACCOUNTS + 'user/',
@@ -28,7 +28,7 @@ export default {
   articles: {
     // /articles/
     // articles: () => BASE_HOST + COMMUNITY,
-    articles: () => HOST,
+    articles: () => HOST + 'articles/',
     // /articles/1/
     article: articlePk => BASE_HOST + COMMUNITY + `${articlePk}/`,
     likeArticle: articlePk => BASE_HOST + COMMUNITY + `${articlePk}/` + 'like/',

@@ -1,11 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import drf from '@/api/drf'
 import axios from 'axios'
 import createPersistedState from 'vuex-persistedstate'
 import router from '../router'
-
-const API_URL = 'http://127.0.0.1:8000'
 
 Vue.use(Vuex)
 
@@ -25,7 +23,8 @@ export default new Vuex.Store({
     isLogin(state) {
       return state.token ? true : false
       // return state.token = true
-    }
+    },
+    authHeader: state => ({ Authorization: `Token ${state.token}`}),
   },
   mutations: {
     // 액션의 getArticles()에서 왔다.
@@ -57,7 +56,7 @@ export default new Vuex.Store({
     getArticles(context) {
       axios({
         method: 'get',
-        url: `${API_URL}/api/v1/`,
+        url: drf.articles.articles(),
         headers:{
           Authorization : `Token ${context.state.token}`
         }
@@ -82,18 +81,18 @@ export default new Vuex.Store({
 
       axios({
         method: 'post',
-        url: `${API_URL}/accounts/signup/`,
+        url: drf.accounts.signup(),
         data: {
           username, password1, password2
         }
       })
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           // context.commit('SIGN_UP', res.data.key)
           context.commit('SAVE_TOKEN', res.data.key)
         })
         .catch((err) => {
-          console.log('회원가입 안됨')
+          // console.log('회원가입 안됨')
         console.log(err)
       })
     },
@@ -108,7 +107,7 @@ export default new Vuex.Store({
 
       axios({
         method: 'post',
-        url: `${API_URL}/accounts/login/`,
+        url: drf.accounts.login(),
         data: {
           username, password
         }
@@ -143,6 +142,5 @@ export default new Vuex.Store({
       })
     },
   },
-  modules: {
-  }
+
 })
