@@ -11,6 +11,7 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404, get_list_or_404
 from .serializers import MovieListSerializer, MovieSerializer, GenreSerializer
 from .models import Genre, Movie
+from random import *
 
 # Create your views here.
 
@@ -25,9 +26,9 @@ def movie_list(request):
 
 # 영화 상세 데이터
 @api_view(['GET'])
-def movie_detail(request, review_pk):
+def movie_detail(request, movie_pk):
     # article = Article.objects.get(pk=article_pk)
-    movie = get_object_or_404(Movie, pk=review_pk)
+    movie = get_object_or_404(Movie, pk=movie_pk)
 
     if request.method == 'GET':
         serializer = MovieSerializer(movie)
@@ -39,12 +40,14 @@ def movie_detail(request, review_pk):
 def get_genre(request):
     if request.method == 'GET':
         # genre = Genre.objects.get(pk=request.GET.get('genre'))
-        # genres = get_list_or_404(Genre)
-        genres = Genre.objects.all()
+        genres = get_list_or_404(Genre)
+        # genres = Genre.objects.all()
         serializer = GenreSerializer(genres, many=True)
         return Response(serializer.data)
 
 # 좋아요 기능
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def movie_like(request):
     movie = get_object_or_404(Movie, pk=request.POST.get('movie_pk'))
     is_liked = movie.like_users.filter(id = request.user.id).exists()
@@ -56,3 +59,14 @@ def movie_like(request):
     
     # return Response({'status': 'success', 'message': 'Liked status toggled successfully.'})
     return Response(status=status.HTTP_200_OK)
+
+# 영화 추천 기능
+@api_view(['GET'])
+def recommend(request):
+    if request.method == 'GET':
+        movies = get_list_or_404(Movie)
+        # movies = list(Movie.objects.all())
+        movies_recommend = sample(movies, 50)
+        serializer = MovieListSerializer(movies_recommend, many=True)
+        
+        return Response(serializer.data)
