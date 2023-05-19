@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class= "d-flex flex-wrap justify-content-center">
+    <div class= "d-flex flex-wrap justify-content-center" >
       <PopularMovieCardItem
       v-for="moviecard in cards" :key="moviecard.id" 
       :moviecard="moviecard"

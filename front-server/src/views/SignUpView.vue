@@ -1,27 +1,22 @@
-<!--회원가입 페이지이다.-->
-<!-- 회원가입 폼에 정보를 작성하고 제출하면 signUp 함수를 실행한다. -->
-<!-- 이때 새로고침을 하지 않기 위해 prevent를 사용한다. -->
 <template>
-  <div>
+  <div class="login-container">
     <h1>회원가입</h1>
-    <form @submit.prevent="signUp">
-      <label for="username">username : </label>
+    <form @submit.prevent="signUp" class="login-form">
+      <label for="username">아이디 :</label>
       <input type="text" id="username" v-model="username"><br>
 
-      <label for="password1"> password : </label>
+      <label for="password1">비밀번호 :</label>
       <input type="password" id="password1" v-model="password1"><br>
 
-      <label for="password2"> password confirmation : </label>
+      <label for="password2">비밀번호 확인 :</label>
       <input type="password" id="password2" v-model="password2">
       
-      <input type="submit" value="SignUp">
+      <button type="submit" class="signup-button">회원가입</button>
     </form>
   </div>
 </template>
 
 <script>
-// 회원가입폼을 제출해서 signUp 함수를 실행하면 payload에 아이디와 패스워드를 담는다.
-// payload를 인자로 갖고 actions의 signUp 메서드를 실행한다.
 export default {
   name: 'SignUpView',
   data() {
@@ -33,7 +28,6 @@ export default {
   },
   methods: {
     signUp() {
-      // console.log('signup')
       const username = this.username
       const password1 = this.password1
       const password2 = this.password2
@@ -43,9 +37,52 @@ export default {
       }
 
       this.$store.dispatch('signUp', payload)
-
     }
   }
 }
 </script>
 
+<style>
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-form label {
+  margin-bottom: 10px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  width: 200px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.signup-button {
+  background-color: #2196f3;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 150px;
+  height: 40px;
+}
+
+.signup-button:hover {
+  background-color: #0d8bf7;
+}
+</style>

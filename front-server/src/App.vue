@@ -1,9 +1,9 @@
 <template>
-  <div id="app">
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-    <div class="container-fluid">
+  <div id="app" >
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
+      <div class="container-fluid" >
       <!-- logo 버튼 -->
-      <a class="navbar-brand" href=""><img @click.prevent="Home" style="width: 100px; height: 100px;" src="@/assets/ssafy_logo.png" alt=""></a>
+      <a class="navbar-brand" href=""><img @click.prevent="Home" style="width: 60px; height: 60px;" src="@/assets/Kim Movie.png" alt=""></a>
       <button class="navbar-toggler border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon "></span>
       </button>
@@ -37,7 +37,7 @@
       </div>
     </div>
   </nav>
-    <router-view/>
+    <router-view style="margin-top: 60px;"/>
   </div>
 </template>
 
@@ -75,12 +75,14 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  /* color: #ffffff; */
+  
 }
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #ffffff;
+  
 }
 
 nav a.router-link-exact-active {
@@ -106,5 +108,18 @@ button:hover{
 	background: rgba(0,79,255,0.9);
 	cursor: pointer;
 	box-shadow: 0 2px 4px rgba(0,79,255,0.6);
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  transition: top 0.3s;
+  height: 60px;
+}
+
+.navbar.scrolled {
+  top: -100px;
 }
 </style>

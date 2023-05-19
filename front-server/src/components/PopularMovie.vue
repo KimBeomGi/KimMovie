@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="background-color: black;">
       <PopularMovieCard/>
     </div>
 </template>

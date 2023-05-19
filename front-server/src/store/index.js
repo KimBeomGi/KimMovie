@@ -173,9 +173,9 @@ export default new Vuex.Store({
     getArticles(context) {
       axios({
         method: 'get',
-        // url: drf.articles.articles(),
-        url: 'http://localhost:8000/api/v1/articles/',
-        headers: context.getters.authHeader,
+        url: drf.articles.articles(),
+        // url: 'http://localhost:8000/api/v1/articles/',
+        // headers: context.getters.authHeader,
       })
         .then((res) => {
         // console.log(res, context)
@@ -190,10 +190,11 @@ export default new Vuex.Store({
     getCards(context) {
       axios({
         method: 'get',
-        url: 'https://api.themoviedb.org/3/movie/top_rated?api_key=2b46fb99f88138f86fc6c767ebe959ec&language=ko-KR&page=1',
+        url: 'http://localhost:8000/api/v1/recommend/',
       })
         .then((res) => {
-          context.commit('GET_CARDS', res.data.results)
+          // console.log(res.data)
+          context.commit('GET_CARDS', res.data)
         })
         .catch((err) => {
         console.log(err)

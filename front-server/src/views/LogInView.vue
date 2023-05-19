@@ -1,24 +1,19 @@
-<!-- 로그인페이지다. 폼을 제출 할 시 새로고침되지 않도록 prevent를 사용한다. -->
-<!-- 폼을 제출할 시 login() 메서드를 실행한다.-->
 <template>
-  <div>
-    <h1>LogIn Page</h1>
-    <form @submit.prevent="login">
-      <label for="username">username : </label>
+  <div class="login-container">
+    <h1>로그인</h1>
+    <form @submit.prevent="login" class="login-form">
+      <label for="username">아이디 :</label>
       <input type="text" id="username" v-model="username"><br>
 
-      <label for="password"> password : </label>
+      <label for="password">비밀번호 :</label>
       <input type="password" id="password" v-model="password"><br>
 
-      <input type="submit" value="logIn">
+      <button type="submit" class="login-button">로그인</button>
     </form>
   </div>
 </template>
 
 <script>
-// 데이터는 username과 password가 있다.
-// 폼을 제출하여 login() 메서드가 실행되면 payloda라는 변수에 데이터들을 담고
-// action의 login 메서드로 이동한다.
 export default {
   name: 'LogInView',
   data() {
@@ -27,18 +22,62 @@ export default {
       password: null,
     }
   },
-  created(){
-  },
   methods: {
     login() {
       const username = this.username
       const password = this.password
 
       const payload = {
-        username, password
+        username,
+        password
       }
       this.$store.dispatch('login', payload)
     },
   }
 }
 </script>
+
+<style>
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-form label {
+  margin-bottom: 10px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  width: 200px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.login-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px; /* 버튼 폰트 크기 */
+  width: 150px; /* 버튼 너비 */
+  height: 40px; /* 버튼 높이 */
+}
+
+.login-button:hover {
+  background-color: #45a049;
+}
+</style>

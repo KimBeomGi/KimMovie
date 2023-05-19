@@ -6,6 +6,11 @@
     <p>내용 : {{ article?.content }}</p>
     <p>작성시간 : {{ article?.created_at }}</p>
     <p>수정시간 : {{ article?.updated_at }}</p>
+    <p>영화_id : {{ article?.movie }}</p>
+    <router-link :to="{
+      name: 'CommunityView'}">
+      [뒤로가기]
+    </router-link>
   </div>
 </template>
 
@@ -35,7 +40,7 @@ export default {
     getArticleDetail() {
       axios({
         method: 'get',
-        url: `http://localhost:8000/api/v1/articles/${ this.$route.params.id }/`,
+        url: `http://localhost:8000/communities/${ this.$route.params.id }/`,
         headers: this.$store.getters.authHeader,
       })
       .then((res) => {

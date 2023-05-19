@@ -9,6 +9,8 @@
       <input type="text" id="title" v-model.trim="title"><br>
       <label for="content">내용 : </label>
       <textarea id="content" cols="30" rows="10" v-model="content"></textarea><br>
+      <label for="movie_id">movie_id : </label>
+      <input type="text" id="movie_id" v-model.trim="movie"><br>
       <input type="submit" id="submit">
     </form>
   </div>
@@ -31,12 +33,14 @@ export default {
     return {
       title: null,
       content: null,
+      movie: null,
     }
   },
   methods: {
     createArticle() {
       const title = this.title
       const content = this.content
+      const movie = this.movie
 
       if (!title) {
         alert('제목 입력해주세요')
@@ -47,8 +51,8 @@ export default {
       }
       axios({
         method: 'post',
-        url: `${API_URL}/api/v1/articles/`,
-        data: { title, content},
+        url: `${API_URL}/communities/`,
+        data: { title, content,movie},
         headers: {
           Authorization: `Token ${this.$store.state.token}`
         }

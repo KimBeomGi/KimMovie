@@ -17,10 +17,9 @@ export default {
   components : {
     HeaderMovie,
     PopularMovie
-  }
+  },
 }
 </script>
 
 <style>
-
 </style>

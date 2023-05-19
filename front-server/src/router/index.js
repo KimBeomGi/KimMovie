@@ -4,7 +4,6 @@ import HomeView from '@/views/HomeView'
 import CommunityView from '@/views/CommunityView'
 import ArticleDetailView from '@/views/ArticleDetailView'
 import CreateView from '@/views/CreateView'
-import DetailView from '@/views/DetailView'
 import SignUpView from '@/views/SignUpView'
 import LogInView from '@/views/LogInView'
 import LogOutView from '@/views/LogOutView'
@@ -53,11 +52,6 @@ const routes = [
     component: HomeView
   },
 
-  {
-    path: '/:id',
-    name: 'DetailView',
-    component: DetailView,
-  },
 
 ]
 
