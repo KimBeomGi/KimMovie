@@ -17,7 +17,9 @@ export default new Vuex.Store({
     ],
     token: null,
     cards: [],
-    cards_highscore:[]
+    cards_highscore:[],
+    currentUser: {},
+    profile: {},
   },
   getters: {
     isLogin(state) {
@@ -25,6 +27,7 @@ export default new Vuex.Store({
       // return state.token = true
     },
     authHeader: state => ({ Authorization: `Token ${state.token}`}),
+    currentUser: state => state.currentUser,
   },
   mutations: {
     // 액션의 getArticles()에서 왔다.
@@ -40,35 +43,20 @@ export default new Vuex.Store({
       state.token = token
       router.push({name : 'ArticleView'}) // store/index.js $router 접근 불가 -> import를 해야함
     },
+    REMOVE_TOKEN(state) {
+      state.token = null
+      router.push({name : 'LogInView'})
+    },
     GET_CARDS(state,cards){
       state.cards = cards
     },
     GET_CARDS_HIGHSCORE(state,cards_highscore){
       state.cards_highscore = cards_highscore
     },
+    SET_CURRENT_USER: (state, user) => state.currentUser = user,
+    SET_PROFILE: (state, profile) => state.profile = profile,
   },
   actions: {
-    // ArticleView의 getArticles() 메서드에서 왔다.
-    // get을 사용하여 데이터를 받아온다.
-    // 백 서버에의 http://127.0.0.1:8000/api/v1/articles/ 주소에서 받아온다.
-    // state에서 토큰을 받아온다. 형태는 Token {토큰번호}
-    // 토큰을 받으면 백 서버로부터 데이터를 받고 전체 게시글 정보를 가지고 GET_ARICLES 뮤테이션을 실행한다.
-    getArticles(context) {
-      axios({
-        method: 'get',
-        url: drf.articles.articles(),
-        headers:{
-          Authorization : `Token ${context.state.token}`
-        }
-      })
-        .then((res) => {
-        // console.log(res, context)
-          context.commit('GET_ARTICLES', res.data)
-        })
-        .catch((err) => {
-        console.log(err)
-      })
-    },
     // 회원가입 페이지인 SignUpView의 signUp()메서드를 실행하고 여기로 온다.
     // post 메서드형태의 axios를 실행한다.
     // url은 백엔드 주소를 사용한다.
@@ -90,6 +78,8 @@ export default new Vuex.Store({
           // console.log(res)
           // context.commit('SIGN_UP', res.data.key)
           context.commit('SAVE_TOKEN', res.data.key)
+          alert('회원가입에 성공하였습니다! 메인화면으로 이동합니다.')
+          router.push({ name: 'HomeView' })
         })
         .catch((err) => {
           // console.log('회원가입 안됨')
@@ -113,9 +103,87 @@ export default new Vuex.Store({
         }
       })
         .then((res) => {
-        context.commit('SAVE_TOKEN', res.data.key)
+          context.commit('SAVE_TOKEN', res.data.key)
+          router.push({ name: 'HomeView' })
+          context.commit('SET_PROFILE', res.data)
+          console.log(res.data)
         })
       .catch((err) => console.log(err))
+    },
+    logout(context) {
+      /* 
+      POST: token을 logout URL로 보내기
+        성공하면
+          토큰 삭제
+          사용자 알람
+          LoginView로 이동
+        실패하면
+          에러 메시지 표시
+      */
+      axios({
+        url: drf.accounts.logout(),
+        method: 'post',
+        // data: {},
+        headers: context.getters.authHeader,
+      })
+        .then(() => {
+          context.commit('REMOVE_TOKEN')
+          router.push({ name: 'LogInView' })
+          alert('성공적으로 logout!')
+          // context.commit('SET_PROFILE', res.data)
+        })
+        .catch(() => {
+          router.push({ name: 'LogInView' })
+          alert('로그인이 필요합니다.')
+        })
+    },
+    fetchCurrentUser(context) {
+      /*
+      GET: 사용자가 로그인 했다면(토큰이 있다면)
+        currentUserInfo URL로 요청보내기
+          성공하면
+            state.cuurentUser에 저장
+          실패하면(토큰이 잘못되었다면)
+            기존 토큰 삭제
+            LoginView로 이동
+      */
+      if (context.getters.isLoggedIn) {
+        axios({
+          url: drf.accounts.currentUserInfo(),
+          method: 'get',
+          headers: context.getters.authHeader,
+        })
+          .then(res => {
+            context.commit('SET_CURRENT_USER', res.data)
+            localStorage.setItem('currentUser', JSON.stringify(res.data))
+            alert(res.data)
+          })
+          .catch(err => {
+            if (err.response.status === 401) {
+              context.dispatch('removeToken')
+              router.push({ name: 'login' })
+            }
+          })
+      }
+    },
+    // ArticleView의 getArticles() 메서드에서 왔다.
+    // get을 사용하여 데이터를 받아온다.
+    // 백 서버에의 http://127.0.0.1:8000/api/v1/articles/ 주소에서 받아온다.
+    // state에서 토큰을 받아온다. 형태는 Token {토큰번호}
+    // 토큰을 받으면 백 서버로부터 데이터를 받고 전체 게시글 정보를 가지고 GET_ARICLES 뮤테이션을 실행한다.
+    getArticles(context) {
+      axios({
+        method: 'get',
+        url: drf.articles.articles(),
+        headers: context.getters.authHeader,
+      })
+        .then((res) => {
+        // console.log(res, context)
+          context.commit('GET_ARTICLES', res.data)
+        })
+        .catch(() => {
+          alert('게시글을 가져오지 못함. 장고url과 토큰 확인할 것')
+        })
     },
     getCards(context) {
       axios({
