@@ -10,7 +10,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from django.shortcuts import get_object_or_404, get_list_or_404
 from .serializers import MovieListSerializer, MovieSerializer, GenreSerializer
+# from .serializers import IdealMovieSerializer, WinIdealMovieSerializer
 from .models import Genre, Movie
+# from .models import Ideal
 from random import *
 
 # Create your views here.
@@ -48,8 +50,9 @@ def get_genre(request):
 # 좋아요 기능
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def movie_like(request):
-    movie = get_object_or_404(Movie, pk=request.POST.get('movie_pk'))
+def movie_like(request, movie_pk):
+    # movie = get_object_or_404(Movie, pk=request.POST.get('movie_pk'))
+    movie = get_object_or_404(Movie, pk=movie_pk)
     is_liked = movie.like_users.filter(id = request.user.id).exists()
 
     if is_liked :
@@ -69,10 +72,29 @@ def recommend(request):
         movies_recommend = sample(movies, 50)
         serializer = MovieListSerializer(movies_recommend, many=True)
         
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
     
+######################
+# 영화 이상형 월드컵 기능
 
-# # 영화 이상형 월드컵 기능
-
+# 64개의 데이터를 던져줌.
+# @api_view(['GET'])
 # def ideal_movie(request):
-#     pass
+
+#     if request.method == 'GET':
+#         movies = get_list_or_404(Movie)
+#         # movies = list(Movie.objects.all())
+#         ideal_movies = sample(movies, 64)
+#         serializer = IdealMovieSerializer(ideal_movies, many=True)
+#         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    
+# # 최종 승리 데이터 vue에서 받아옴. 마치 like 구현과 같음.
+# @api_view(['POST'])
+# def win_ideal_movie(request):
+#     if request.method == 'POST':
+#         serializer = IdealMovieSerializer(data=request.data)
+#         if serializer.is_valid(raise_exception=True):
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
