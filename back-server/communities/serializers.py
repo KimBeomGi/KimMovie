@@ -32,6 +32,7 @@ class ReviewSerializer(serializers.ModelSerializer):
         read_only_fields = ('user', )
 
 
+##################################################################
 
 # 익명 게시판
 # 익명게시글 목록
@@ -40,8 +41,8 @@ class AnonyarticleListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Anonyarticle
-        fields = ('id', 'title', 'content',)
-        # fields = ('id', 'title', 'content', 'user', 'username')
+        # fields = ('id', 'title', 'content',)
+        fields = '__all__'
 
 # 익명게시글의 댓글
 class AnonycommentSerializer(serializers.ModelSerializer):
