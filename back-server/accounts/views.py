@@ -9,7 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from rest_framework import status
 from django.shortcuts import get_object_or_404, get_list_or_404
-# from .serializers import MovieListSerializer, MovieSerializer, GenreSerializer
+from .serializers import FollowSerializer
 # from .models import User
 from django.contrib.auth import get_user_model
 
@@ -44,9 +44,27 @@ def follow(request, user_pk):
                 person.followers.remove(request.user)
             else:
                 person.followers.add(request.user)
-            # return Response({'followersCnt' : person.followers.count()}, status=status.HTTP_200_OK,)
-            return Response(status=status.HTTP_200_OK,)
+            serializer = FollowSerializer(person)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
     else:
         return Response(status=status.HTTP_401_UNAUTHORIZED)
+    
+    
+
+
+# ##### 참고용임
+# def anonyarticle_list(request):
+#     if request.method == 'GET':
+#         # articles = Article.objects.all()
+#         anonyarticle = get_list_or_404(Anonyarticle)
+#         serializer = AnonyarticleListSerializer(anonyarticle, many=True)
+#         return Response(serializer.data)
+
+#     elif request.method == 'POST':
+#         serializer = AnonyarticleSerializer(data=request.data)
+#         if serializer.is_valid(raise_exception=True):
+#             serializer.save()
+#             # serializer.save(user=request.user)
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
