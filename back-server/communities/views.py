@@ -17,7 +17,7 @@ from .models import Review, Comment, Anonyarticle, Anonycomment
 # 영화 리뷰 게시글 및 댓글
 
 @api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def review_list(request):
     if request.method == 'GET':
         # articles = Article.objects.all()
@@ -26,15 +26,18 @@ def review_list(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        serializer = ReviewSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            # 게시글 생성으로 사용자의 exp를 100 증가 시키기
-            user = request.user
-            user.exp += 200
-            user.save()
-            print('경험치 200 증가!')
-            serializer.save(user=request.user)            
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        if request.user.is_authenticated:
+            serializer = ReviewSerializer(data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                # 게시글 생성으로 사용자의 exp를 100 증가 시키기
+                user = request.user
+                user.exp += 200
+                user.save()
+                print('경험치 200 증가!')
+                serializer.save(user=request.user)            
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
 @api_view(['GET', 'DELETE', 'PUT'])
@@ -121,15 +124,7 @@ def review_like(request, review_pk):
     review.like_users.count()
     
     return Response(status=status.HTTP_200_OK)
-    # review_liked_counts = review.like_users.count()
-    # ###
-    # # 수정해야할 부분
-    # context = {
-    #     'is_liked': is_liked,
-    #     'review_liked_counts' : review_liked_counts
-    # }
-    # return Response(context)
-    # ####
+
 # #######################
 # # review 게시글의 댓글 좋아요 하기
 # @api_view(['POST'])

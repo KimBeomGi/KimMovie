@@ -21,7 +21,7 @@ urlpatterns = [
     # movies 넘겨주기
     path('api/v1/', include('movies.urls')),
     # communities 넘겨주기
-    path('communities/api/v1/', include('communities.urls')),
+    path('communities/', include('communities.urls')),
     # accounts 넘겨주기
     path('accounts/', include('dj_rest_auth.urls')),
     path('accounts/signup/', include('dj_rest_auth.registration.urls')),

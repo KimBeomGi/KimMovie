@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
     # 영화 리뷰 게시판
-    # path('communities/api/v1/', include('communities.urls')),
+    # path('communities/', include('communities.urls')),
     path('', views.review_list),
     path('<int:review_pk>/', views.review_detail),
     path('comments/', views.comment_list),

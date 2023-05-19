@@ -70,3 +70,9 @@ def recommend(request):
         serializer = MovieListSerializer(movies_recommend, many=True)
         
         return Response(serializer.data)
+    
+
+# # 영화 이상형 월드컵 기능
+
+# def ideal_movie(request):
+#     pass
