@@ -4,6 +4,9 @@ from django.conf import settings
 # Create your models here.
 # 영화 데이터
 
+# class Ideal(models.Model):
+#     movie_id = models.CharField(max_length=50)
+
 class Genre(models.Model):
     name = models.CharField(max_length=50)
     
