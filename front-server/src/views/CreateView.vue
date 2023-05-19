@@ -21,7 +21,7 @@
 // 제목과 내용이 유효하면 post형태의 axios를 실행한다.
 // axios의 url은 백엔드의 http://127.0.0.1:8000/api/v1/articles/ 주소에 해당한다.
 // 입력할 데이터는 title과 content이다.
-// 데이터를 전송하는데 성공했으면 게시글 목록 페이지인 ArticleView로 이동한다.
+// 데이터를 전송하는데 성공했으면 게시글 목록 페이지인 CommunityView로 이동한다.
 import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
 
@@ -55,7 +55,7 @@ export default {
       })
       .then(() => {
         // console.log(res)
-        this.$router.push({name: 'ArticleView'})
+        this.$router.push({name: 'CommunityView'})
       })
       .catch((err) => {
         console.log(err)

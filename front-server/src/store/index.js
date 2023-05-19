@@ -38,10 +38,10 @@ export default new Vuex.Store({
     // signup & login -> 완료하면 토큰 발급
     // actions의 login() 메서드에서 토큰을 가지고 온다.
     // 토큰은 state의 token변수에 넣는다.
-    // 이후 전체 게시글 목록 페이지인 ArticleView로 이동한다.
+    // 이후 전체 게시글 목록 페이지인 CommunityView로 이동한다.
     SAVE_TOKEN(state, token) {
       state.token = token
-      router.push({name : 'ArticleView'}) // store/index.js $router 접근 불가 -> import를 해야함
+      router.push({name : 'CommunityView'}) // store/index.js $router 접근 불가 -> import를 해야함
     },
     REMOVE_TOKEN(state) {
       state.token = null
@@ -165,7 +165,7 @@ export default new Vuex.Store({
           })
       }
     },
-    // ArticleView의 getArticles() 메서드에서 왔다.
+    // CommunityView의 getArticles() 메서드에서 왔다.
     // get을 사용하여 데이터를 받아온다.
     // 백 서버에의 http://127.0.0.1:8000/api/v1/articles/ 주소에서 받아온다.
     // state에서 토큰을 받아온다. 형태는 Token {토큰번호}
@@ -174,14 +174,15 @@ export default new Vuex.Store({
       axios({
         method: 'get',
         url: drf.articles.articles(),
-        headers: context.getters.authHeader,
+        // headers: context.getters.authHeader,
       })
         .then((res) => {
         // console.log(res, context)
           context.commit('GET_ARTICLES', res.data)
-          alert('게시글가져옴')
+          // alert('영화 리뷰들을 확인해보세요!')
         })
         .catch(() => {
+          console.log(context.getters.authHeader)
           alert('게시글을 가져오지 못함. 장고url과 토큰 확인할 것')
         })
     },

@@ -4,7 +4,7 @@ const BASE_HOST = 'http://localhost:8000/'
 
 const ACCOUNTS = 'accounts/'
 const COMMENTS = 'comments/'
-const COMMUNITY = 'community/'
+const COMMUNITY = 'communities/'
 const MOVIES = 'movies/'
 export default {
   accounts: {
@@ -28,7 +28,7 @@ export default {
   articles: {
     // /articles/
     // articles: () => BASE_HOST + COMMUNITY,
-    articles: () => HOST,
+    articles: () => BASE_HOST + COMMUNITY,
     // /articles/1/
     article: articlePk => BASE_HOST + COMMUNITY + `${articlePk}/`,
     likeArticle: articlePk => BASE_HOST + COMMUNITY + `${articlePk}/` + 'like/',

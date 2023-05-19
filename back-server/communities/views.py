@@ -17,7 +17,7 @@ from .models import Review, Comment, Anonyarticle, Anonycomment
 # 영화 리뷰 게시글 및 댓글
 
 @api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def review_list(request):
     if request.method == 'GET':
         # articles = Article.objects.all()

@@ -49,8 +49,8 @@ export default {
       this.$router.push({ name: 'HomeView' }); //  홈 라우터링크로 이동
     }},
     Community() {
-      if (this.$route.name !== 'ArticleView') {
-      this.$router.push({ name: 'ArticleView' }); // 커뮤니티라우터링크로 이동
+      if (this.$route.name !== 'CommunityView') {
+      this.$router.push({ name: 'CommunityView' }); // 커뮤니티라우터링크로 이동
     }},
     login() {
       if (this.$route.name !== 'LogInView') {
