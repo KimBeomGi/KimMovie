@@ -27,6 +27,8 @@ export default {
       password: null,
     }
   },
+  created(){
+  },
   methods: {
     login() {
       const username = this.username
@@ -35,10 +37,8 @@ export default {
       const payload = {
         username, password
       }
-
       this.$store.dispatch('login', payload)
-
-    }
+    },
   }
 }
 </script>

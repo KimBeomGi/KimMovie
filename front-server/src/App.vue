@@ -18,6 +18,7 @@
           <a class="nav-link" href="">Community <span class="sr-only"></span></a>
         </li>           
         <!-- Login 버튼 -->
+        
         <li @click.prevent="login" class="nav-item active">
           <a class="nav-link" href="">Login <span class="sr-only"></span></a>
         </li>   

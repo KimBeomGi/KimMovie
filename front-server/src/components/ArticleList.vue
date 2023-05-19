@@ -1,6 +1,5 @@
 <template>
   <div class="article-list">
-    <h3>게시글 목록</h3>
     <!-- ArticleListItem 컴포넌트를 아래에 보여준다.-->
     <!-- 전체 게시글을 각각의 게시글로 출력한다. 각 게시글은 article이라는 이름으로 ArticleListItem 컴포넌트로 보내준다. -->
     <ArticleListItem 
