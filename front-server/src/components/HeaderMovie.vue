@@ -35,13 +35,9 @@ export default {
       }
     },
     created() {
-      this.gogo()
     },
     methods : {
-      gogo(){
-        this.$store.dispatch('fetchArticles')
-        console.log('ㅎㅇ')
-      }
+
     }
 }
 </script>

@@ -6,6 +6,7 @@ import CreateView from '@/views/CreateView'
 import DetailView from '@/views/DetailView'
 import SignUpView from '@/views/SignUpView'
 import LogInView from '@/views/LogInView'
+import LogOutView from '@/views/LogOutView'
 
 
 Vue.use(VueRouter)
@@ -33,6 +34,11 @@ const routes = [
     path: '/login',
     name: 'LogInView',
     component: LogInView
+  },
+  {
+    path: '/logout',
+    name: 'LogOutView',
+    component: LogOutView
   },
   {
     path: '/',
