@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '@/views/HomeView'
-import ArticleView from '@/views/ArticleView'
+import CommunityView from '@/views/CommunityView'
+import ArticleDetailView from '@/views/ArticleDetailView'
 import CreateView from '@/views/CreateView'
 import DetailView from '@/views/DetailView'
 import SignUpView from '@/views/SignUpView'
@@ -14,8 +15,14 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/Article',
-    name: 'ArticleView',
-    component: ArticleView
+    name: 'CommunityView',
+    component: CommunityView
+  },
+  {
+    // path: '/articles/:article_pk',
+    path: '/articles/:articlePk',
+    name: 'ArticleDetailView',
+    component: ArticleDetailView
   },
  
   {
@@ -65,7 +72,7 @@ router.beforeEach((to, from, next) => {
   const isLoggedIn = store.getters.isLogin // 로그인 됨
   // const isLoggedIn = false // 로그인 안됨
   // 로그인이 필요한 페이지 지정
-  const authPages = ['ArticleView', 'LogOutView']
+  const authPages = ['LogOutView']
   // 비로그인이 필요한 페이지 지정
   const notauthPages = ['LogInView', 'SignUpView']
   // const allowAuthPages = ['login']
@@ -77,10 +84,8 @@ router.beforeEach((to, from, next) => {
 
   if (isAuthRequired && !isLoggedIn) {
     alert('로그인이 필요합니다.')
-    next(from)
   }else if(notisAuthRequired && isLoggedIn){
     alert('이미 로그인되어 있습니다.')
-    next(from)
   }else {
     next()
   }

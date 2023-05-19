@@ -4,19 +4,24 @@
     <!-- 게시글을 생성하는 뷰인 CreateView로 이동하는 링크 생성-->
     <router-link :to="{ name: 'CreateView' }">[글 작성]</router-link>
     <!-- ArticleList 컴포넌트를 보여준다.-->
-    <ArticleList />
+    <ArticleList/>
+    <!-- <div v-for="article in articles.slice((page - 1)*15,(page*15))" :key="article.pk">
+        <article-view :article="article"></article-view>
+      </div> -->
   </div>
 </template>
 
 <script>
 // ArticleList를 불러와서
+// import ArticleView from '@/components/ArticleView.vue'
 import ArticleList from '@/components/ArticleList.vue'
 
 export default {
-  name: 'ArticleView',
+  name: 'CommunityView',
   components: {
     // 등록한다.
-    ArticleList,
+    // ArticleView,
+    ArticleList
   },
   computed:{
     isLogin() {

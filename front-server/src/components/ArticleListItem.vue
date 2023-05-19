@@ -1,5 +1,7 @@
 <template>
   <div>
+    <div @click="$router.push({ name:'ArticleDetailView', 
+    params: {articlePk: article.id}})">
     <!-- 하나의 게시글의 id를 출력한다. -->
     <h5>{{ article.id }}</h5>
     <!-- 하나의 게시글의 username를 출력한다. -->
@@ -13,6 +15,7 @@
       params: {id: article.id }}">
       [상세보기]
     </router-link>
+  </div>
     <hr>
   </div>
 </template>
