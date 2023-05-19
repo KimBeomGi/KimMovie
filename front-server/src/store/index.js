@@ -81,9 +81,9 @@ export default new Vuex.Store({
           alert('회원가입에 성공하였습니다! 메인화면으로 이동합니다.')
           router.push({ name: 'HomeView' })
         })
-        .catch((err) => {
+        .catch(() => {
           // console.log('회원가입 안됨')
-        console.log(err)
+        alert('이미 있는 아이디거나 비밀번호 양식이 올바르지 않습니다.')
       })
     },
     // 로그인페이지에서 아이디와 비밀번호를 payload에 담아 여기로 온다.
@@ -94,7 +94,6 @@ export default new Vuex.Store({
     login(context, payload) {
       const username = payload.username
       const password = payload.password
-
       axios({
         method: 'post',
         url: drf.accounts.login(),
@@ -108,7 +107,8 @@ export default new Vuex.Store({
           context.commit('SET_PROFILE', res.data)
           console.log(res.data)
         })
-      .catch((err) => console.log(err))
+      .catch(() => alert('아이디 또는 비밀번호가 틀립니다.'))
+      
     },
     logout(context) {
       /* 
@@ -128,13 +128,12 @@ export default new Vuex.Store({
       })
         .then(() => {
           context.commit('REMOVE_TOKEN')
-          router.push({ name: 'LogInView' })
-          alert('성공적으로 logout!')
+          alert('로그아웃이 완료되었습니다! 메인화면으로 이동합니다.')
+          router.push({ name: 'HomeView' })
           // context.commit('SET_PROFILE', res.data)
         })
         .catch(() => {
-          router.push({ name: 'LogInView' })
-          alert('로그인이 필요합니다.')
+          alert('잘못된 접근')
         })
     },
     fetchCurrentUser(context) {
@@ -180,6 +179,7 @@ export default new Vuex.Store({
         .then((res) => {
         // console.log(res, context)
           context.commit('GET_ARTICLES', res.data)
+          alert('게시글가져옴')
         })
         .catch(() => {
           alert('게시글을 가져오지 못함. 장고url과 토큰 확인할 것')

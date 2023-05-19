@@ -1,11 +1,10 @@
 <template>
   <div>
-    <h1>Article Page</h1>
+    <h1>게시글 목록</h1>
     <!-- 게시글을 생성하는 뷰인 CreateView로 이동하는 링크 생성-->
-    <router-link :to="{ name: 'CreateView' }">[CREATE]</router-link>
+    <router-link :to="{ name: 'CreateView' }">[글 작성]</router-link>
     <!-- ArticleList 컴포넌트를 보여준다.-->
     <ArticleList />
-    <hr>
   </div>
 </template>
 
@@ -26,19 +25,9 @@ export default {
   },
   created() {
     // 화면이 켜지면 getArticles 메서드를 실행한다.
-    this.getArticles()
+    this.$store.dispatch('getArticles')
   },
   methods: {
-    // 로그인이 되어있다면 getArticles 액션을 실행한다.
-    // 로그인아 안되어 있다면 LogInView로 이동한다.
-    getArticles() {
-      if (this.isLogin) {
-        this.$store.dispatch('getArticles')
-      } else {
-        alert('로그인이 필요합니다.')
-        this.$router.push({ name: 'LogInView' })
-      }
-    }
   }
 }
 </script>
