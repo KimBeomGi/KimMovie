@@ -7,5 +7,6 @@ urlpatterns = [
     # follow 주소
     # path('accounts/api/v1/', include('accounts.urls'))
     path('follow/<int:user_pk>/', views.follow),
+    path('unregister/', views.unregister),
     
 ]

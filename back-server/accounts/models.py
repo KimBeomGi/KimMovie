@@ -6,6 +6,7 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     exp = models.IntegerField(default=0)
     followings = models.ManyToManyField("self", symmetrical=False, related_name='followers')
+    # profile_img = models.CharField(max_length=256, default="")
     
     # superuser는 기본으로 50000 exp 가짐
     def save(self, *args, **kwargs):

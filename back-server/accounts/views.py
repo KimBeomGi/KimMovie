@@ -51,20 +51,21 @@ def follow(request, user_pk):
     else:
         return Response(status=status.HTTP_401_UNAUTHORIZED)
     
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def unregister(request):
+# 현재 로그인한 사용자만 회원 탈퇴 할 수 있음.
+    if request.user.is_authenticated:
+        persons = get_user_model().objects.all() 
+        person = get_user_model().objects.get(pk=request.user.pk)
+        if request.user == person:
+            if person in persons:
+                person.delete()
+            return Response(status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
     
-
-
-# ##### 참고용임
-# def anonyarticle_list(request):
-#     if request.method == 'GET':
-#         # articles = Article.objects.all()
-#         anonyarticle = get_list_or_404(Anonyarticle)
-#         serializer = AnonyarticleListSerializer(anonyarticle, many=True)
-#         return Response(serializer.data)
-
-#     elif request.method == 'POST':
-#         serializer = AnonyarticleSerializer(data=request.data)
-#         if serializer.is_valid(raise_exception=True):
-#             serializer.save()
-#             # serializer.save(user=request.user)
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
