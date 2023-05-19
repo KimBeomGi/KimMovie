@@ -173,8 +173,9 @@ export default new Vuex.Store({
     getArticles(context) {
       axios({
         method: 'get',
-        url: drf.articles.articles(),
-        // headers: context.getters.authHeader,
+        // url: drf.articles.articles(),
+        url: 'http://localhost:8000/api/v1/articles/',
+        headers: context.getters.authHeader,
       })
         .then((res) => {
         // console.log(res, context)

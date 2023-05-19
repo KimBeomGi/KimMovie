@@ -20,7 +20,7 @@ const routes = [
   },
   {
     // path: '/articles/:article_pk',
-    path: '/articles/:articlePk',
+    path: '/articles/:id',
     name: 'ArticleDetailView',
     component: ArticleDetailView
   },

@@ -29,22 +29,22 @@ export default {
   },
   created() {
     this.getArticleDetail()
-    console.log(this.$route.params.id)
+    // console.log(this.$route.params.id)
   },
   methods: {
     getArticleDetail() {
       axios({
         method: 'get',
-        url: `http://localhost:8000/communities/2/`,
+        url: `http://localhost:8000/api/v1/articles/${ this.$route.params.id }/`,
         headers: this.$store.getters.authHeader,
       })
       .then((res) => {
-        alert('성공')
-        console.log(res)
+        // alert('성공')
+        // console.log(res)
         this.article = res.data
       })
       .catch((err) => {
-        alert('에러')
+        // alert('에러')
         console.log(err)
       })
     }
