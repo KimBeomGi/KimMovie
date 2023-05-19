@@ -9,7 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from rest_framework import status
 from django.shortcuts import get_object_or_404, get_list_or_404
-from .serializers import FollowSerializer
+from .serializers import FollowSerializer, CustomUserSerializer
 # from .models import User
 from django.contrib.auth import get_user_model
 
@@ -68,4 +68,14 @@ def unregister(request):
             return Response(status=status.HTTP_400_BAD_REQUEST)
     else:
         return Response(status=status.HTTP_401_UNAUTHORIZED)
-    
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def profile(request, user_pk):
+    if request.user.is_authenticated:
+        # person = get_user_model().objects.get(pk=user_pk)
+        person = get_object_or_404(get_user_model(), pk=user_pk)
+        serializer = CustomUserSerializer(person)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    else:
+        return Response(status=status.HTTP_401_UNAUTHORIZED)

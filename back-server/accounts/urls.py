@@ -8,5 +8,6 @@ urlpatterns = [
     # path('accounts/api/v1/', include('accounts.urls'))
     path('follow/<int:user_pk>/', views.follow),
     path('unregister/', views.unregister),
+    path('profile/<int:user_pk>/', views.profile),
     
 ]

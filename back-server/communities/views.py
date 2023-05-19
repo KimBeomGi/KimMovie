@@ -30,9 +30,9 @@ def review_list(request):
         if serializer.is_valid(raise_exception=True):
             # 게시글 생성으로 사용자의 exp를 100 증가 시키기
             user = request.user
-            user.exp += 100
+            user.exp += 200
             user.save()
-            print('경험치 100 증가!')
+            print('경험치 200 증가!')
             serializer.save(user=request.user)            
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
@@ -99,9 +99,9 @@ def comment_create(request, review_pk):
     if serializer.is_valid(raise_exception=True):
         # 댓글 생성으로 사용자의 exp를 100 증가 시키기
         user = request.user
-        user.exp += 100
+        user.exp += 50
         user.save()
-        print('경험치 100 증가!')
+        print('경험치 50 증가!')
         serializer.save(review=review, user=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
