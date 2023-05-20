@@ -120,11 +120,11 @@ while True:
                 all_movies.append(movie)
 
     # if page >= data['total_pages']:
-    if page >= 100:
+    if page >= 500:
         break
 
     page += 1
 
 # 수집된 데이터를 JSON 파일로 저장
-with open('movies_popular2.json', 'w', encoding='utf-8') as file:
+with open('movies_popular_500p.json', 'w', encoding='utf-8') as file:
     json.dump(all_movies, file, ensure_ascii=False, indent=4)
