@@ -1,32 +1,56 @@
 <template>
-  <div>
-    <p>글 번호 : {{ article?.id }}</p>
-    <p>제목 : {{ article?.title }}</p>
-    <p>작성자 : {{ article?.username }}</p>
-    <p>내용 : {{ article?.content }}</p>
-    <p>작성시간 : {{ article?.created_at }}</p>
-    <p>수정시간 : {{ article?.updated_at }}</p>
-    <p>영화_id : {{ article?.movie }}</p>
-    <router-link :to="{
-      name: 'CommunityView'}">
+  <div class="article-detail">
+    <p class="article-info">글 번호: {{ article?.id }}</p>
+    <h2 class="article-title">{{ article?.title }}</h2>
+    <p class="article-info">작성자: {{ article?.username }}</p>
+    <div class="article-content">
+      <p>{{ article?.content }}</p>
+    </div>
+    <p class="article-info">작성시간: {{ article?.created_at }}</p>
+    <p class="article-info">수정시간: {{ article?.updated_at }}</p>
+    <p class="article-info">영화 ID: {{ article?.movie }}</p>
+    <router-link :to="{ name: 'CommunityView' }">
       [뒤로가기]
     </router-link>
   </div>
 </template>
 
+<style scoped>
+.article-detail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  color: #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.article-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.article-info {
+  margin-bottom: 5px;
+}
+
+.article-content {
+  margin-bottom: 15px;
+}
+</style>
+
 <script>
-// 이 게시글 상세 페이지가 실행되면 created로 getArticleDetail() 메서드를 실행한다.
-// 이 메서드는 axios를 실행하는데 get 메서드로 불러오는 역할을 한다.
-// url은 백 서버의 http://127.0.0.1:8000/api/v1/articles/{ArticleListItem에서 id값} 이다.
-// 백서버에서 해당 id에 해당하는 게시글을 불러와서 article 변수에 저장한다.
-// ?는 값이 null일 때는 데이터를 가져오지 않는다는 뜻이다.
-// 백서버에서 데이터를 가져오는데 성공하면 템플릿으로 출력한다.
 import axios from 'axios'
 
 export default {
   name: 'ArticleDetailView',
-  components: {
-  },
   data() {
     return {
       article: null
@@ -34,24 +58,20 @@ export default {
   },
   created() {
     this.getArticleDetail()
-    // console.log(this.$route.params.id)
   },
   methods: {
     getArticleDetail() {
       axios({
         method: 'get',
-        url: `http://localhost:8000/communities/${ this.$route.params.id }/`,
+        url: `http://localhost:8000/communities/${this.$route.params.id}/`,
         headers: this.$store.getters.authHeader,
       })
-      .then((res) => {
-        // alert('성공')
-        // console.log(res)
-        this.article = res.data
-      })
-      .catch((err) => {
-        // alert('에러')
-        console.log(err)
-      })
+        .then((res) => {
+          this.article = res.data
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
 }

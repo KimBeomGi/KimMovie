@@ -1,5 +1,6 @@
 <template>
     <div style="background-color: black;">
+      <h1 style="text-align: start;">지금 뜨는 콘텐츠</h1>
       <PopularMovieCard/>
     </div>
 </template>

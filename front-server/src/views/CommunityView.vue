@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background-color: #ffffff; color: #000000;">
     <h1>게시글 목록</h1>
     <!-- 게시글을 생성하는 뷰인 CreateView로 이동하는 링크 생성-->
     <router-link :to="{ name: 'CreateView' }">[글 작성]</router-link>

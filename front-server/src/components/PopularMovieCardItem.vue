@@ -1,8 +1,7 @@
 <template>
   <div>
     <div class="card space" style="width: 18rem; background-color: black;">
-      <img :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
-      <!-- <img src=""  alt=""> -->
+      <img @click="GoMovieDetailView()" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
       <div class="card-body ">
       </div>
     </div> 
@@ -13,6 +12,12 @@
 export default {
   props:{
     moviecard: Object,
+  },
+  methods:{
+    GoMovieDetailView(){
+      this.$router.push({ name:'MovieDetailView', 
+      params: {id: this.moviecard.id}})
+    }
   }
 }
 </script>
