@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Movie, Genre
 # from .models import Ideal
+from accounts.models import User
 
 # 영화 리뷰 게시판
 # 영화 리뷰 목록
@@ -35,8 +36,15 @@ class IdealMovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
         fields = ('id', 'title', 'poster_path',)
-        
+
+
+## 아래 내용 확인해보니 필요없어짐
 # class WinIdealMovieSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = Ideal
 #         fields = '__all__'
+
+# class WinIdealMovieSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ('id', 'idealmovie',)

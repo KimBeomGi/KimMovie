@@ -38,5 +38,5 @@ class CustomUserSerializer(serializers.ModelSerializer):
                   'username', 'first_name', 'last_name', 'email', 
                   'is_staff', 'is_active', 'date_joined', 'exp', 
                   'groups', 'user_permissions', 'followings', 'followers',
-                  'followings_count', 'followers_count')
+                  'followings_count', 'followers_count', 'idealmovie',)     # 'idealmovie', 추가함
         

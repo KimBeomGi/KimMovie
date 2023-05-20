@@ -10,10 +10,12 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from django.shortcuts import get_object_or_404, get_list_or_404
 from .serializers import MovieListSerializer, MovieSerializer, GenreSerializer
-# from .serializers import IdealMovieSerializer, WinIdealMovieSerializer
+from .serializers import IdealMovieSerializer
 from .models import Genre, Movie
 # from .models import Ideal
 from random import *
+
+from django.contrib.auth import get_user_model
 
 # Create your views here.
 
@@ -77,24 +79,38 @@ def recommend(request):
 ######################
 # 영화 이상형 월드컵 기능
 
-# 64개의 데이터를 던져줌.
-# @api_view(['GET'])
-# def ideal_movie(request):
 
-#     if request.method == 'GET':
-#         movies = get_list_or_404(Movie)
-#         # movies = list(Movie.objects.all())
-#         ideal_movies = sample(movies, 64)
-#         serializer = IdealMovieSerializer(ideal_movies, many=True)
-#         return Response(serializer.data, status=status.HTTP_200_OK)
+# @api_view(['GET'])
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
+def ideal_movie(request):
+    if request.user.is_authenticated:
+        # 최초 게임을 위한 64개의 데이터를 던져줌.
+        if request.method == 'GET':
+            movies = get_list_or_404(Movie)
+            # movies = list(Movie.objects.all())
+            ideal_movies = sample(movies, 64)
+            serializer = IdealMovieSerializer(ideal_movies, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        # 최종 승리 영화 DB에 입력받기
+        # 참고: 이건 되는지 확인 못함......
+        elif request.method == 'POST':
+            movie_pk = request.POST.get('movie_id')
+            person = get_user_model().objects.get(pk=request.user.pk)
+            person.idealmovie.add(movie_pk)
+            return Response({'message': f'Movie ID: {movie_pk}'}, status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    return Response(status=status.HTTP_401_UNAUTHORIZED)
 
     
-# # 최종 승리 데이터 vue에서 받아옴. 마치 like 구현과 같음.
+# 최종 승리 데이터 vue에서 받아옴. 마치 like 구현과 같음.
+# 작동 잘 됨 확인 완료
+# 해당 주소로 연결 시에 작동 함path('ideal_movie/<int:movie_pk>/', views.win_ideal_movie),
 # @api_view(['POST'])
-# def win_ideal_movie(request):
+# @permission_classes([IsAuthenticated])
+# def win_ideal_movie(request, movie_pk):
 #     if request.method == 'POST':
-#         serializer = IdealMovieSerializer(data=request.data)
-#         if serializer.is_valid(raise_exception=True):
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#         person = get_user_model().objects.get(pk=request.user.pk)
+#         person.idealmovie.add(movie_pk)
+#         return Response(status=status.HTTP_201_CREATED)
+#     return Response(status=status.HTTP_400_BAD_REQUEST)
