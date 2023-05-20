@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div @click="GoArticleDetailView">
+    <div @click="GoArticleDetailView()">
     <!-- 하나의 게시글의 id를 출력한다. -->
     <h5>{{ article.id }}</h5>
     <!-- 하나의 게시글의 username를 출력한다. -->
@@ -9,11 +9,11 @@
     <p>{{ article.title }}</p>
     <!-- DetailView로 가는 라우터링크를 만든다. 인자로 그 게시글의 id 를 첨가한다. -->
     <!-- 버튼이름은 [DETAIL]로 한다. -->
-    <router-link :to="{
+    <!-- <router-link :to="{
       name: 'ArticleDetailView',
       params: {id: article.id }}">
       [상세보기]
-    </router-link>
+    </router-link> -->
   </div>
     <hr>
   </div>
