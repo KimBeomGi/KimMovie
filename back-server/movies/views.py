@@ -5,7 +5,7 @@ from rest_framework.decorators import authentication_classes
 
 # permission Decorators
 from rest_framework.decorators import permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from rest_framework import status
 from django.shortcuts import get_object_or_404, get_list_or_404
@@ -13,20 +13,31 @@ from .serializers import MovieListSerializer, MovieSerializer, GenreSerializer
 from .serializers import IdealMovieSerializer
 from .models import Genre, Movie
 # from .models import Ideal
-from random import *
+import random
 
 from django.contrib.auth import get_user_model
 
 # Create your views here.
 
-# 영화 전체 데이터
+# 영화 전체 데이터, 검색기능 구현 완료.
 @api_view(['GET'])
 def movie_list(request):
     if request.method == 'GET':
-        # articles = Article.objects.all()
-        movies = get_list_or_404(Movie)
+        # 브라우저에서 검색한 값을 들고옴
+        # http://127.0.0.1:8000/api/v1/?query={검색내용}
+        search_query = request.GET.get('query')
+        # 검색값이 있으면 filter로 걸러냄
+        if search_query:
+            movies = list(Movie.objects.filter(title__icontains=search_query))
+        # query문 자체가 없으면 전체 데이터 불러오기
+        # http://127.0.0.1:8000/api/v1/
+        else:
+            movies = get_list_or_404(Movie)
+            random.shuffle(movies)
         serializer = MovieListSerializer(movies, many=True)
         return Response(serializer.data)
+
+    return Response(status=status.HTTP_400_BAD_REQUEST)
 
 # 영화 상세 데이터
 @api_view(['GET'])
@@ -71,7 +82,7 @@ def recommend(request):
     if request.method == 'GET':
         movies = get_list_or_404(Movie)
         # movies = list(Movie.objects.all())
-        movies_recommend = sample(movies, 50)
+        movies_recommend = random.sample(movies, 50)
         serializer = MovieListSerializer(movies_recommend, many=True)
         
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -89,7 +100,7 @@ def ideal_movie(request):
         if request.method == 'GET':
             movies = get_list_or_404(Movie)
             # movies = list(Movie.objects.all())
-            ideal_movies = sample(movies, 64)
+            ideal_movies = random.sample(movies, 64)
             serializer = IdealMovieSerializer(ideal_movies, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         # 최종 승리 영화 DB에 입력받기
@@ -114,3 +125,6 @@ def ideal_movie(request):
 #         person.idealmovie.add(movie_pk)
 #         return Response(status=status.HTTP_201_CREATED)
 #     return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+########################
