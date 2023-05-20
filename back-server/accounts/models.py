@@ -1,11 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from movies.models import Movie
 
 
 # Create your models here.
 class User(AbstractUser):
     exp = models.IntegerField(default=0)
     followings = models.ManyToManyField("self", symmetrical=False, related_name='followers')
+    idealmovie = models.ManyToManyField(Movie, related_name='choiceidealuser',null=True, blank=True)
     # profile_img = models.CharField(max_length=256, default="")
     
     # superuser는 기본으로 50000 exp 가짐
