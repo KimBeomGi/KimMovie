@@ -15,6 +15,15 @@ class MovieListSerializer(serializers.ModelSerializer):
         # fields = ('id', 'title', 'content', 'user', 'username')
 
 class MovieSerializer(serializers.ModelSerializer):
+    # genres = serializers.SerializerMethodField()
+    genres_name = serializers.SerializerMethodField()
+
+    # def get_genres(self, movie):
+    #     return [genre.id for genre in movie.genres.all()]
+
+    def get_genres_name(self, movie):
+        return [genre.name for genre in movie.genres.all()]
+    
     class Meta:
         model = Movie
         fields = '__all__'
