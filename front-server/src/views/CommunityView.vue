@@ -1,8 +1,7 @@
 <template>
   <div style="background-color: #ffffff; color: #000000;">
     <h1>게시글 목록</h1>
-    <!-- 게시글을 생성하는 뷰인 CreateView로 이동하는 링크 생성-->
-    <router-link :to="{ name: 'CreateView' }">[글 작성]</router-link>
+    
     <!-- ArticleList 컴포넌트를 보여준다.-->
     <ArticleList/>
     <!-- <div v-for="article in articles.slice((page - 1)*15,(page*15))" :key="article.pk">

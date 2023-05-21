@@ -6,7 +6,7 @@
         :moviecard="moviecard"
       />
     </div>
-  </template>
+</template>
   
 <script>
   import SearchedMovieCardItem from '@/components/SearchedMovieCardItem'
