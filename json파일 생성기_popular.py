@@ -81,24 +81,6 @@ while True:
             video_key = video_data['results'][0]['key'] if 'results' in video_data and len(video_data['results']) > 0 else None
 
             ####
-            # movie = {
-            #     'model': 'movies.movie',
-            #     'fields': {
-            #         'id': movie_data.get('id'),
-            #         'title': movie_data.get('title', ''),
-            #         'release_date': movie_data.get('release_date'),
-            #         'popularity': movie_data.get('popularity'),
-            #         'vote_count': movie_data.get('vote_count'),
-            #         'vote_average': movie_data.get('vote_average'),
-            #         'overview': movie_data.get('overview'),
-            #         'poster_path': movie_data.get('poster_path'),
-            #         'backdrop_path': movie_data.get('backdrop_path'),
-            #         'genres': movie_data.get('genre_ids'),
-            #         'key': video_key
-            #         # 'like_users': [] 
-            #     }
-            # }
-            # all_movies.append(movie)
             if video_key is not None:
                 movie = {
                     'model': 'movies.movie',
