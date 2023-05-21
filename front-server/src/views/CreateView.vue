@@ -33,13 +33,24 @@ export default {
     return {
       title: null,
       content: null,
+      
     }
   },
+  computed:{
+    movieTitle(){
+      console.log(this.$route.params.movieTitle)
+      return this.$route.params.movieTitle
+      
+    }
+    
+  },
+  
   methods: {
     createArticle() {
       const title = this.title
       const content = this.content
       const movie = this.$route.params.movie
+      
 
       if (!title) {
         alert('제목 입력해주세요')
@@ -48,6 +59,7 @@ export default {
         alert('내용 입력해주세요')
         return
       }
+      //const movieTitle = this.$route.params.movieTitle
       axios({
         method: 'post',
         url: `${API_URL}/communities/`,
@@ -58,6 +70,7 @@ export default {
       })
       .then(() => {
         // console.log(res)
+        console.log(this.movieTitle)
         this.$router.push({ name:'MovieDetailView', 
         params: {id: movie}})
       })

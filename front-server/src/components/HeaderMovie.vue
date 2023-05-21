@@ -12,7 +12,7 @@
           containment: 'self',
           loop: true,
           autoPlay: true,
-          stopMovieOnBlur: false, 
+          stopMovieOnBlur: true, 
           startAt: 0,
           opacity: 1
         }"

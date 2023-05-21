@@ -28,7 +28,7 @@ const routes = [
   },
  
   {
-    path: '/create/:movie',
+    path: '/create/:movie/:movieTitle',
     name: 'CreateView',
     component: CreateView
   },
