@@ -22,3 +22,25 @@ class Movie(models.Model):
     backdrop_path = models.CharField(null=True, max_length=200)
     key = models.CharField(null=True, max_length=200)
     genres = models.ManyToManyField(Genre)
+
+
+
+# class Quiz1(models.Model):
+#     question = models.CharField(max_length=255)
+#     options = models.CharField(max_length=255)
+#     answer = models.CharField(max_length=255)
+
+class Quiz1(models.Model):
+    question = models.CharField(max_length=255)
+    options = models.JSONField()
+    answer = models.CharField(max_length=255)
+
+# class Quiz2(models.Model):
+#     question = models.CharField(max_length=255)
+#     options = models.CharField(max_length=255)
+#     answer = models.CharField(max_length=255)
+
+class Quiz2(models.Model):
+    question = models.CharField(max_length=255)
+    options = models.JSONField()
+    answer = models.CharField(max_length=255)

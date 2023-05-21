@@ -13,5 +13,7 @@ urlpatterns = [
     path('recommend/', views.recommend),
     path('ideal_movie/', views.ideal_movie),
     # path('ideal_movie/<int:movie_pk>/', views.win_ideal_movie),
+    path('quiz1/', views.quiz1),
+    path('quiz2/', views.quiz2),
     
 ]

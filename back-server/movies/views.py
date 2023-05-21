@@ -10,8 +10,8 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import status
 from django.shortcuts import get_object_or_404, get_list_or_404
 from .serializers import MovieListSerializer, MovieSerializer, GenreSerializer
-from .serializers import IdealMovieSerializer
-from .models import Genre, Movie
+from .serializers import IdealMovieSerializer, Quiz1Serializer, Quiz2Serializer
+from .models import Genre, Movie, Quiz1, Quiz2
 # from .models import Ideal
 import random
 
@@ -128,3 +128,85 @@ def ideal_movie(request):
 
 
 ########################
+# 영화 퀴즈(3지선다)
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
+def quiz1(request):
+    if request.user.is_authenticated:
+        user = request.user
+        # user 포인트 확인
+        if user.point < 50:
+            context = {
+                "question" : "포인트가 충분하지 않습니다."
+            }
+            return Response(context)
+        if request.method == 'GET':
+            quizzes = get_list_or_404(Quiz1)
+            quiz = random.sample(quizzes, 1)[0]
+            options = quiz.options
+            random.shuffle(options)
+            serializer = Quiz1Serializer(quiz)
+            # user포인트 차감
+            user.point -= 50
+            user.save()
+            print('포인트 50 감소!')
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        
+        ##### 아래 POST 부분은 손볼 필요성 있음 ####
+        elif request.method == 'POST':
+            solve = request.data.get('solve')
+            quiz_id = request.data.get('quiz_id')       # post로 받아오게될 quiz1의 id를 받아냄
+            
+            quiz = get_object_or_404(Quiz1, pk=quiz_id)
+            print(quiz.answer)
+            # if solve == serializer.data["answer"]:
+            if solve == quiz.answer:
+                # user경험치 및 포인트 증가
+                user.exp += 100
+                user.point += 100
+                user.save()
+                return Response({"message": "정답입니다. 100포인트를 얻습니다!"},status=status.HTTP_200_OK)
+            else:
+                return Response({"message": "오답입니다!"},status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+# 영화 퀴즈(OX)
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
+def quiz2(request):
+    if request.user.is_authenticated:
+        user = request.user
+        if user.point < 50:
+            context = {
+                "question" : "포인트가 충분하지 않습니다."
+            }
+            return Response(context)
+        if request.method == 'GET':
+            quizzes = get_list_or_404(Quiz2)
+            quiz = random.sample(quizzes, 1)
+            serializer = Quiz2Serializer(quiz, many=True)
+            # user포인트 차감
+            user.point -= 50
+            user.save()
+            print('포인트 50 감소!')
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        
+        ##### 아래 POST 부분은 손볼 필요성 있음 ####
+        elif request.method == 'POST':
+            solve = request.data.get('solve')
+            quiz_id = request.data.get('quiz_id')       # post로 받아오게될 quiz2의 id를 받아냄
+            
+            quiz = get_object_or_404(Quiz2, pk=quiz_id)
+
+            # if solve == serializer.data["answer"]:
+            if solve == quiz.answer:
+                # user경험치 및 포인트 증가
+                user.exp += 100
+                user.point += 100
+                user.save()
+                return Response({"message": "정답입니다. 100포인트를 얻습니다!"},status=status.HTTP_200_OK)
+            else:
+                return Response({"message": "오답입니다!"},status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    return Response(status=status.HTTP_401_UNAUTHORIZED)

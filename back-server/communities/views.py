@@ -29,9 +29,10 @@ def review_list(request):
         if request.user.is_authenticated:
             serializer = ReviewSerializer(data=request.data)
             if serializer.is_valid(raise_exception=True):
-                # 게시글 생성으로 사용자의 exp를 100 증가 시키기
+                # 게시글 생성으로 사용자의 exp 및 point 를 200 증가 시키기
                 user = request.user
                 user.exp += 200
+                user.point += 200
                 user.save()
                 print('경험치 200 증가!')
                 serializer.save(user=request.user)            
@@ -100,9 +101,10 @@ def comment_create(request, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
     serializer = CommentSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
-        # 댓글 생성으로 사용자의 exp를 100 증가 시키기
+        # 댓글 생성으로 사용자의 exp 및 point를 50 증가 시키기
         user = request.user
         user.exp += 50
+        user.point += 50
         user.save()
         print('경험치 50 증가!')
         serializer.save(review=review, user=request.user)
@@ -160,6 +162,13 @@ def anonyarticle_list(request):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             # serializer.save(user=request.user)
+            if request.user.is_authenticated:
+                # 게시글 생성으로 사용자의 exp 및 point 를 50 증가 시키기
+                user = request.user
+                user.exp += 50
+                user.point += 50
+                user.save()
+                print('경험치 50 증가!')
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -230,5 +239,12 @@ def anonycomment_create(request, anonyarticle_pk):
         serializer = AnonycommentSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save(anonyarticle=anonyarticle)
+            if request.user.is_authenticated:
+                # 게시글 생성으로 사용자의 exp 및 point 를 10 증가 시키기
+                user = request.user
+                user.exp += 10
+                user.point += 10
+                user.save()
+                print('경험치 10 증가!')
             return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(status=status.HTTP_400_BAD_REQUEST)
