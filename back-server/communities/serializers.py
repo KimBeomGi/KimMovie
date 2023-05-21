@@ -18,7 +18,7 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         # fields = '__all__'
         fields = ('content','review','user','created_at')
-        read_only_fields = ('review',)
+        read_only_fields = ('review','user')
 
 # 영화 리뷰 상세
 class ReviewSerializer(serializers.ModelSerializer):

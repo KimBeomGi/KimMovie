@@ -1,25 +1,28 @@
 <template>
-  <div class="article-detail">
+  <div class="article-detail" style="text-align: start;">
     <h1 class="article-title">{{ article?.movie }}</h1>
     <hr>
-    <p class="article-info">{{ article?.title }}</p>
+    <p class="article-title2">{{ article?.title }}</p>
     <span class="article-info">{{ article?.username }} | </span>
     <span class="article-info">{{ formatDateTime(article?.created_at) }}</span>
     <div class="article-content">
       <p>{{ article?.content }}</p>
     </div>
+    <CommentCreate :articleID="article?.id"/>
     <CommentView :articleID="article?.id" />
   </div>
 </template>
 
 <script>
 import CommentView from '@/components/CommentView'
+import CommentCreate from '@/components/CommentCreate'
 import axios from 'axios'
 
 export default {
   name: 'ArticleDetailView',
   components:{
-    CommentView
+    CommentView,
+    CommentCreate
   },
   data() {
     return {
@@ -66,6 +69,12 @@ export default {
 }
 
 .article-title {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.article-title2 {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;

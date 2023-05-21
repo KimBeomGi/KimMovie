@@ -26,7 +26,7 @@
         <p>참여인원: {{ moviedetail?.vote_count }}명</p>
         <p>출시일자: {{ moviedetail?.release_date }}</p>
         <router-link :to="{ name: 'HomeView' }" class="back-link">
-          [뒤로가기]
+          [메인으로]
         </router-link>
       </div>
     </div>
