@@ -32,7 +32,7 @@
     </div>
     <!-- 게시글을 생성하는 뷰인 CreateView로 이동하는 링크 생성-->
     <div class="action-buttons">
-      <router-link :to="{ name: 'CreateView', params: { movie: movieId }}" class="create-link">글 작성</router-link>
+      <router-link :to="{ name: 'CreateView', params: { movie: movieId, movieTitle: movieTitle }}" class="create-link">글 작성</router-link>
     </div>
     <DetailArticleList :movie_id="moviedetail?.id"/>
   </div>
@@ -65,6 +65,9 @@ export default {
     },
     movieId(){
       return this.moviedetail?.id
+    },
+    movieTitle(){
+      return this.moviedetail?.title
     }
   },
   created() {
