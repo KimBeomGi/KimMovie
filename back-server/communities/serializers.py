@@ -5,11 +5,12 @@ from .models import Review, Comment, Anonyarticle, Anonycomment
 # 영화 리뷰 목록
 class ReviewListSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username', read_only=True)
+    movie_title = serializers.CharField(source='movie.title', read_only=True)
 
     class Meta:
         model = Review
         # fields = ('id', 'title', 'content')
-        fields = ('id', 'title', 'content', 'user', 'username','movie')
+        fields = ('id', 'title', 'content', 'user', 'username','movie', 'movie_title',)
 
 # 영화 리뷰의 댓글
 class CommentSerializer(serializers.ModelSerializer):
@@ -25,6 +26,7 @@ class ReviewSerializer(serializers.ModelSerializer):
     comment_set = CommentSerializer(many=True, read_only=True)
     comment_count = serializers.IntegerField(source='comment_set.count', read_only=True)
     username = serializers.CharField(source='user.username', read_only=True)
+    movie_title = serializers.CharField(source='movie.title', read_only=True)
 
     class Meta:
         model = Review
