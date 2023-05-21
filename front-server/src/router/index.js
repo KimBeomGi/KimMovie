@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '@/views/HomeView'
+import SearchMoviesView from '@/views/SearchMoviesView'
 import MovieDetailView from '@/views/MovieDetailView'
 import CommunityView from '@/views/CommunityView'
 import ArticleDetailView from '@/views/ArticleDetailView'
@@ -8,6 +9,7 @@ import CreateView from '@/views/CreateView'
 import SignUpView from '@/views/SignUpView'
 import LogInView from '@/views/LogInView'
 import LogOutView from '@/views/LogOutView'
+import NoneView from '@/views/NoneView'
 import store from '@/store'
 
 Vue.use(VueRouter)
@@ -56,6 +58,16 @@ const routes = [
     path: '/moviedetail/:id',
     name: 'MovieDetailView',
     component: MovieDetailView
+  },
+  {
+    path: '/Search/:query',
+    name: 'SearchMoviesView',
+    component: SearchMoviesView
+  },
+  {
+    path: '/wait',
+    name: 'NoneView',
+    component: NoneView
   },
 
 

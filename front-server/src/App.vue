@@ -31,8 +31,10 @@
           <a class="nav-link" href="">signup <span class="sr-only"></span></a>
         </li>    
         <!-- 검색 버튼 -->
-        <!-- <input type="text" placeholder="제목 또는 내용">
-        <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">  -->
+        <li class="nav-item active">
+  <input type="text" placeholder="영화 제목 검색" @keydown.enter.prevent="searchMovies" 
+  v-model.trim="search"/>
+</li>
         </ul>
       </div>
     </div>
@@ -43,6 +45,11 @@
 
 <script>
 export default {
+  data(){
+    return{
+      search : ''
+    }
+  },
   methods: {
     Home() {
       if (this.$route.name !== 'HomeView') {
@@ -64,8 +71,14 @@ export default {
       if (this.$route.name !== 'SignUpView') {
       this.$router.push({ name: 'SignUpView' }); // 회원가입 라우터링크로 이동
     }},
-    
-  }
+    searchMovies(){
+      this.$router.push({ name: 'NoneView' })
+      this.$nextTick(() => {
+    this.$router.push({ name: 'SearchMoviesView', params: { query: this.search } })
+    this.search = ''
+  })
+    },
+  },
 }
 </script>
 

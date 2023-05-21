@@ -15,37 +15,6 @@
   </div>
 </template>
 
-<style scoped>
-.article-detail {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ffffff;
-  color: #000000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-.article-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.article-info {
-  margin-bottom: 5px;
-}
-
-.article-content {
-  margin-bottom: 15px;
-}
-</style>
-
 <script>
 import axios from 'axios'
 
@@ -76,3 +45,34 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.article-detail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  color: #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.article-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.article-info {
+  margin-bottom: 5px;
+}
+
+.article-content {
+  margin-bottom: 15px;
+}
+</style>

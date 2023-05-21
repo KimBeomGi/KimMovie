@@ -17,6 +17,7 @@ export default new Vuex.Store({
     ],
     token: null,
     cards: [],
+    searchcards: [],
     cards_highscore:[],
     currentUser: {},
     profile: {},
@@ -49,6 +50,9 @@ export default new Vuex.Store({
     },
     GET_CARDS(state,cards){
       state.cards = cards
+    },
+    GET_SEARCHCARDS(state,searchcards){
+      state.searchcards = searchcards
     },
     GET_CARDS_HIGHSCORE(state,cards_highscore){
       state.cards_highscore = cards_highscore
@@ -195,6 +199,18 @@ export default new Vuex.Store({
         .then((res) => {
           // console.log(res.data)
           context.commit('GET_CARDS', res.data)
+        })
+        .catch((err) => {
+        console.log(err)
+      })
+    },
+    getSearchCards(context,query) {
+      axios({
+        method: 'get',
+        url: `http://127.0.0.1:8000/api/v1/?query=${query}`,
+      })
+        .then((res) => {
+          context.commit('GET_SEARCHCARDS', res.data)
         })
         .catch((err) => {
         console.log(err)
