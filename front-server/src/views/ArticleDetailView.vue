@@ -1,28 +1,34 @@
 <template>
   <div class="article-detail">
-    <p class="article-info">글 번호: {{ article?.id }}</p>
-    <h2 class="article-title">{{ article?.title }}</h2>
-    <p class="article-info">작성자: {{ article?.username }}</p>
+    <h1 class="article-title">{{ article?.movie }}</h1>
+    <hr>
+    <p class="article-info">{{ article?.title }}</p>
+    <span class="article-info">{{ article?.username }} | </span>
+    <span class="article-info">{{ formatDateTime(article?.created_at) }}</span>
     <div class="article-content">
       <p>{{ article?.content }}</p>
     </div>
-    <p class="article-info">작성시간: {{ article?.created_at }}</p>
-    <p class="article-info">수정시간: {{ article?.updated_at }}</p>
-    <p class="article-info">영화 ID: {{ article?.movie }}</p>
-    <router-link :to="{ name: 'CommunityView' }">
-      [뒤로가기]
-    </router-link>
+    <CommentView :articleID="article?.id" />
   </div>
 </template>
 
 <script>
+import CommentView from '@/components/CommentView'
 import axios from 'axios'
 
 export default {
   name: 'ArticleDetailView',
+  components:{
+    CommentView
+  },
   data() {
     return {
-      article: null
+      article: null,
+    }
+  },  
+  computed:{
+    articleID(){
+      return this.article.id;
     }
   },
   created() {
@@ -41,38 +47,48 @@ export default {
         .catch((err) => {
           console.log(err)
         })
-    }
-  }
-}
+    },
+    formatDateTime(datetime) {
+      const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+      const formattedDateTime = new Date(datetime).toLocaleString('en-US', options);
+      return formattedDateTime.replace(',', '');
+    },
+}}
 </script>
 
 <style scoped>
 .article-detail {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   background-color: #ffffff;
   color: #000000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   padding: 20px;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
 }
 
 .article-title {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
 .article-info {
+  font-size: 14px;
+  color: #666666;
   margin-bottom: 5px;
 }
 
 .article-content {
+  font-size: 16px;
+  margin-top: 20px;
+  border-top: 1px solid #dddddd;
+  padding-top: 10px;
+}
+
+.article-content p {
   margin-bottom: 15px;
+}
+
+.article-content p:last-child {
+  margin-bottom: 0;
 }
 </style>

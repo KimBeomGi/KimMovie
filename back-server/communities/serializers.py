@@ -9,7 +9,7 @@ class ReviewListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         # fields = ('id', 'title', 'content')
-        fields = ('id', 'title', 'content', 'user', 'username')
+        fields = ('id', 'title', 'content', 'user', 'username','movie')
 
 # 영화 리뷰의 댓글
 class CommentSerializer(serializers.ModelSerializer):
@@ -17,7 +17,7 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         # fields = '__all__'
-        fields = ('content',)
+        fields = ('content','review','user','created_at')
         read_only_fields = ('review',)
 
 # 영화 리뷰 상세

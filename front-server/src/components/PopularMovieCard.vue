@@ -47,7 +47,7 @@ export default {
   methods: {
     moveRight() {
       const maxTranslate = this.containerWidth - this.cardWidth * this.cards.length
-      if (this.translateX > maxTranslate) {
+      if (this.translateX > maxTranslate + this.cardWidth * 11 ) {
         this.translateX -= this.cardWidth
       }
     },

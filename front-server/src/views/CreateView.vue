@@ -4,14 +4,14 @@
 <!-- 폼을 제출할 시 createArticle() 메서드를 실행한다.-->
 <template>
   <div>
-    <form @submit.prevent="createArticle">
-      <label for="title">제목 : </label>
-      <input type="text" id="title" v-model.trim="title"><br>
-      <label for="content">내용 : </label>
-      <textarea id="content" cols="30" rows="10" v-model="content"></textarea><br>
-      <label for="movie_id">movie_id : </label>
-      <input type="text" id="movie_id" v-model.trim="movie"><br>
-      <input type="submit" id="submit">
+    <form @submit.prevent="createArticle" class="create-form">
+      <label for="title" class="form-label">제목 :</label>
+      <input type="text" id="title" v-model.trim="title" class="form-input">
+      <br>
+      <label for="content" class="form-label">내용 :</label>
+      <textarea id="content" cols="30" rows="10" v-model="content" class="form-textarea"></textarea>
+      <br>
+      <input type="submit" id="submit" class="form-button" value="작성">
     </form>
   </div>
 </template>
@@ -33,14 +33,13 @@ export default {
     return {
       title: null,
       content: null,
-      movie: null,
     }
   },
   methods: {
     createArticle() {
       const title = this.title
       const content = this.content
-      const movie = this.movie
+      const movie = this.$route.params.movie
 
       if (!title) {
         alert('제목 입력해주세요')
@@ -59,7 +58,8 @@ export default {
       })
       .then(() => {
         // console.log(res)
-        this.$router.push({name: 'CommunityView'})
+        this.$router.push({ name:'MovieDetailView', 
+        params: {id: movie}})
       })
       .catch((err) => {
         console.log(err)
@@ -69,6 +69,41 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.create-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
 
+.form-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-input,
+.form-textarea {
+  width: 300px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.form-textarea {
+  resize: vertical;
+}
+
+.form-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-button:hover {
+  background-color: #45a049;
+}
 </style>
