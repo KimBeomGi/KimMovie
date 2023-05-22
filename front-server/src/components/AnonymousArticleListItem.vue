@@ -5,7 +5,7 @@
     <!-- <p>작성자 : {{ article.username }}</p> -->
     <!-- 하나의 게시글의 제목을 출력한다. -->
     <p>{{ article.title }}</p>
-    <p>작성자 : {{ article.username }}</p>
+    <p>작성자 : [익명]</p>
     <!-- DetailView로 가는 라우터링크를 만든다. 인자로 그 게시글의 id 를 첨가한다. -->
     <!-- 버튼이름은 [DETAIL]로 한다. -->
     <!-- <router-link :to="{

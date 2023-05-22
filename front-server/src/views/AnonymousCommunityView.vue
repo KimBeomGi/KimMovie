@@ -1,12 +1,10 @@
 <template>
   <div style="background-color: #ffffff; color: #000000;">
     <h1>익명 게시판</h1>
-    
-    <!-- ArticleList 컴포넌트를 보여준다.-->
+    <button @click="Go_AnonymousCreateView" class="write-button" >작성</button>
     <AnonymousArticleList/>
-    <!-- <div v-for="article in articles.slice((page - 1)*15,(page*15))" :key="article.pk">
-        <article-view :article="article"></article-view>
-      </div> -->
+    
+    
   </div>
 </template>
 
@@ -32,11 +30,34 @@ export default {
     this.$store.dispatch('getAnonymousArticles')
   },
   methods: {
+    Go_AnonymousCreateView(){
+    this.$router.push({
+      name: 'AnonymousCreateView',
+    });
+  }
   }
   }
 
 </script>
 
-<style>
+<style scoped>
+.write-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.write-button:hover {
+  background-color: #45a049;
+}
+
+
 
 </style>
