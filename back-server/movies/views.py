@@ -18,7 +18,8 @@ import random
 from django.contrib.auth import get_user_model
 
 # Create your views here.
-
+######################
+# Home에 쓰일 영화 데이터 제공
 # 영화 전체 데이터, 검색기능 구현 완료.
 @api_view(['GET'])
 def movie_list(request):
@@ -76,7 +77,8 @@ def movies_by_genre(request, genre_pk):
         return Response(serializer.data)
     return Response(status=status.HTTP_404_NOT_FOUND)
 
-
+######################
+# 영화 세부데이터로 쓰일 함수
 # 영화 상세 데이터
 @api_view(['GET'])
 def movie_detail(request, movie_pk):
@@ -98,6 +100,8 @@ def get_genre(request):
         serializer = GenreSerializer(genres, many=True)
         return Response(serializer.data)
 
+######################
+
 # 좋아요 기능
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -114,16 +118,46 @@ def movie_like(request, movie_pk):
     # return Response({'status': 'success', 'message': 'Liked status toggled successfully.'})
     return Response(status=status.HTTP_200_OK)
 
-# 영화 추천 기능
+########################
+# 영화 추천
+# 무작위 영화 추천 기능
 @api_view(['GET'])
 def recommend(request):
     if request.method == 'GET':
-        # 영화 전체 데이터에서 50개 뽑아서 줌
+        # 영화 전체 데이터에서 60개 뽑아서 줌
         movies = get_list_or_404(Movie)
         # movies = list(Movie.objects.all())
-        movies_recommend = random.sample(movies, 50)
+        movies_recommend = random.sample(movies, 60)
         serializer = MovieListSerializer(movies_recommend, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+# # user맞춤형 영화 추천 기능
+# @api_view(['GET'])
+# def recommend_custom(request):
+#     if request.method == 'GET':
+#         # 로그인 되어있으면 이상형 월드컵 승리한 거 이용해 볼 거임.
+#         if request.user.is_authenticated:
+#             # 이상영화가 있으면
+#             if request.user.idealmovie:
+#                 genres_all=[]
+#                 for movie_pk in request.user.idealmovie:
+#                     movie = get_object_or_404(Movie, pk=movie_pk)
+#                     category = movie.genres
+                    
+                    
+#                     pass
+#                 pass
+#             # 이상영화가 없으면
+#             else:
+#                 movies = get_list_or_404(Movie)
+#                 movies_recommend = random.sample(movies, 60)
+#         # 로그인 안되어있으면 그냥 아무거나 60개 추천
+#         else:
+#             movies = get_list_or_404(Movie)
+#             movies_recommend = random.sample(movies, 60)
+#             serializer = MovieListSerializer(movies_recommend, many=True)
+#         return Response(serializer.data, status=status.HTTP_200_OK)
+#     return Response(status=status.HTTP_400_BAD_REQUEST)
     
 ######################
 # 영화 이상형 월드컵 기능
@@ -166,6 +200,7 @@ def ideal_movie(request):
 
 
 ########################
+# 영화 퀴즈
 # 영화 퀴즈(3지선다)
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
@@ -248,3 +283,5 @@ def quiz2(request):
                 return Response({"message": "오답입니다!"},status=status.HTTP_200_OK)
         return Response(status=status.HTTP_400_BAD_REQUEST)
     return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+######################

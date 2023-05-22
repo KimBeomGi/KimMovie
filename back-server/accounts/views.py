@@ -45,7 +45,7 @@ def follow(request, user_pk):
             else:
                 person.followers.add(request.user)
             serializer = FollowSerializer(person)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
     else:

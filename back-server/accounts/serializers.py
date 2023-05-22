@@ -21,15 +21,8 @@ class FollowSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
-        # fields = ('followings_count', 'followers_count', 'followings', 'followers')
         fields = ('followings_count', 'followers_count', 'followings', 'followers', 'followings_name', 'followers_name')
         
-        
-# class CustomUserSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = User
-#         # fields = ('followings_count', 'followers_count', 'followings', 'followers')
-#         fields = '__all__'
 
 class CustomUserSerializer(serializers.ModelSerializer):
     followings_count = serializers.SerializerMethodField()
@@ -57,4 +50,3 @@ class CustomUserSerializer(serializers.ModelSerializer):
                   'groups', 'user_permissions', 'followings', 'followers',
                   'followings_name', 'followers_name',
                   'followings_count', 'followers_count', 'idealmovie',)     # 'idealmovie', 추가함
-        
