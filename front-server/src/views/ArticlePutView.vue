@@ -76,6 +76,8 @@ export default {
         alert('수정 완료하였습니다.')
       })
       .catch((err) => {
+        this.$router.go(-1);
+        alert('타인의 게시글은 수정할 수 없습니다.')
         console.log(err)
       })
     }

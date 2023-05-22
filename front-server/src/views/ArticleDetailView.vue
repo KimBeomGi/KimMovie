@@ -75,6 +75,7 @@ export default {
           alert('삭제 완료하였습니다.')
         })
         .catch((err) => {
+          alert('타인의 게시물은 삭제할 수 없습니다.')
           console.log(err)
         })
     },

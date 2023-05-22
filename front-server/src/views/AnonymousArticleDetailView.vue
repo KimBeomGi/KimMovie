@@ -97,6 +97,7 @@ export default {
         id: id,
         title: title,
         content: content,
+        password: this.password
       }
     });
     }

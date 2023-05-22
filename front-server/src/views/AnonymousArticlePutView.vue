@@ -5,9 +5,9 @@
 <template>
   <div>
     <form @submit.prevent="putArticle" class="create-form">
-      <label for="password" class="form-label">패스워드 :</label>
+      <!-- <label for="password" class="form-label">패스워드 :</label>
       <input type="text" id="password" v-model.trim="password" class="form-input">
-      <br>
+      <br> -->
       <label for="title" class="form-label">제목 :</label>
       <input type="text" id="title" v-model.trim="title" class="form-input">
       <br>
@@ -48,7 +48,7 @@ export default {
       const id = this.$route.params.id
       const title = this.title
       const content = this.content
-      const password = this.password
+      const password = this.$route.params.password
       
       
 
@@ -62,13 +62,14 @@ export default {
       //const movieTitle = this.$route.params.movieTitle
       axios({
         method: 'put',
-        url: `http://127.0.0.1:8000/communities/anonymous/anonycomments/${id}/`,
-        data: {password, title, content},
-        headers: {
-          // Authorization: `Token ${this.$store.state.token}`
-        }
+        url: `http://127.0.0.1:8000/communities/anonymous/${id}/`,
+        data: {title, content,password},
+        // headers: {
+        //   // Authorization: `Token ${this.$store.state.token}`
+        // }
       })
       .then(() => {
+        alert('수정 완료하였습니다.')
         console.log('성공')
         console.log(id)
         console.log(password)
@@ -78,6 +79,8 @@ export default {
         this.$router.go(-1);
       })
       .catch((err) => {
+        alert('비밀번호가 틀립니다.')
+        this.$router.go(-1);
         console.log(id)
         console.log(password)
         console.log(title)
