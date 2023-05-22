@@ -183,8 +183,11 @@ def anonyarticle_detail(request, anonyarticle_pk):
         return Response(serializer.data)
     
     elif request.method == 'DELETE':
-        anonyarticle.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        password = request.data.get('password')
+        if password and anonyarticle.password == password:
+            anonyarticle.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'PUT':
         # anonyarticle의 비밀번호가 입력하는 비밀번호와 같을때만 작동하게 하기!
@@ -216,8 +219,11 @@ def anonycomment_detail(request, anonycomment_pk):
         return Response(serializer.data)
 
     elif request.method == 'DELETE':
-        anonycomment.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        password = request.data.get('password')
+        if password and anonycomment.password == password:
+            anonycomment.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'PUT':
         # anonycomment의 비밀번호가 입력하는 비밀번호와 같을때만 작동하게 하기!
