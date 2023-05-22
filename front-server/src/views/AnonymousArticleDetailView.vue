@@ -80,10 +80,11 @@ export default {
       })
         .then((res) => {
           console.log(res.data)
-          this.article = res.data
-          this.$router.go(-1);
+          // this.article = res.data
+          this.$router.push({ name: 'AnonymousCommunityView' })
         })
         .catch((err) => {
+          alert('비밀번호가 틀립니다.')
           console.log(err)
         })
     },
