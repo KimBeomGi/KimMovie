@@ -159,7 +159,7 @@ def recommend_custom(request):
                         sample_movies = random.sample(list(movies_filtered), need_num)
                         random.shuffle(movies)
                         movies += sample_movies
-                    serializer = MovieSerializer(movies, many=True)
+                    serializer = MovieListSerializer(movies, many=True)
                                    
                     return Response(serializer.data)
         # 이상영화가 없거나, 로그인 안되어있으면 그냥 아무거나 60개 추천
