@@ -22,6 +22,7 @@ export default {
   props:{
       articleID: Number
   },
+
   methods: {
     submitComment() {
       const content = this.content
@@ -42,7 +43,7 @@ export default {
       .then(() => {
         // console.log(res)
         this.content = ''
-          this.$router.push({ name: 'NoneView' })
+          this.$router.push({ name: 'AnonymousCommunityView' })
 this.$nextTick(() => {
   this.$router.push({ name:'AnonymousArticleDetailView', 
     params: {id: this.articleID}})})

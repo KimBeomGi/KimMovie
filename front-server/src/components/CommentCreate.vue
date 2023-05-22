@@ -39,7 +39,7 @@ import axios from 'axios'
         .then(() => {
           // console.log(res)
           this.content = ''
-            this.$router.push({ name: 'NoneView' })
+            this.$router.push({ name: 'CommunityView' })
   this.$nextTick(() => {
     this.$router.push({ name:'ArticleDetailView', 
       params: {id: this.articleID}})})
