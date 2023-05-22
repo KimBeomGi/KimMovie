@@ -21,7 +21,6 @@ class Comment(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-
 # 익명 게시판
 class Anonyarticle(models.Model):
     # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

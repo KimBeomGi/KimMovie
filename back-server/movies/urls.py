@@ -7,7 +7,7 @@ urlpatterns = [
     # 영화 데이터 주소
     # path('api/v1/', include('movies.urls')),
     path('', views.movie_list),                     # 영화 전체 목록
-    path('<int:genre_pk>/', views.movies_by_genre), # 장르별 영화 목록 받기
+    path('genre/<int:genre_pk>/', views.movies_by_genre), # 장르별 영화 목록 받기
     path('<int:movie_pk>/', views.movie_detail),    # 영화 상세보기
     path('genre/', views.get_genre),                # 장르 전체 id-name
     path('like/<int:movie_pk>/', views.movie_like), # 영화 찜하기

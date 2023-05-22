@@ -15,7 +15,11 @@
         </li>
         <!-- Community 버튼 -->
         <li @click.prevent="Community" class="nav-item active">
-          <a class="nav-link" href="">Community <span class="sr-only"></span></a>
+          <a class="nav-link" href="">게시판 <span class="sr-only"></span></a>
+        </li>           
+        <!-- AnonymousCommunityView 버튼 -->
+        <li @click.prevent="AnonymousCommunityView" class="nav-item active">
+          <a class="nav-link" href="">익명게시판 <span class="sr-only"></span></a>
         </li>           
         <!-- Login 버튼 -->
         
@@ -58,6 +62,10 @@ export default {
     Community() {
       if (this.$route.name !== 'CommunityView') {
       this.$router.push({ name: 'CommunityView' }); // 커뮤니티라우터링크로 이동
+    }},
+    AnonymousCommunityView() {
+      if (this.$route.name !== 'AnonymousCommunityView') {
+      this.$router.push({ name: 'AnonymousCommunityView' }); // AnonymousCommunityView라우터링크로 이동
     }},
     login() {
       if (this.$route.name !== 'LogInView') {

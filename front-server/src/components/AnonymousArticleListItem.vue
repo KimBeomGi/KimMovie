@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div @click="GoArticleDetailView()">
+    <div @click="GoAnonymousArticleDetailView()">
     <!-- 하나의 게시글의 username를 출력한다. -->
     <!-- <p>작성자 : {{ article.username }}</p> -->
     <!-- 하나의 게시글의 제목을 출력한다. -->
@@ -20,14 +20,14 @@
 
 <script>
 export default {
-  name: 'ArticleListItem',
+  name: 'AnonymousArticleListItem',
   // Articlelist로부터 article을 Object형태 (리스트형태)로 받아온다.
   props: {
     article: Object,
   },
   methods : {
-    GoArticleDetailView(){
-      this.$router.push({ name:'ArticleDetailView', 
+    GoAnonymousArticleDetailView(){
+      this.$router.push({ name:'AnonymousArticleDetailView', 
       params: {id: this.article.id}})
     }
   }

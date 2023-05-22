@@ -28,14 +28,16 @@ export default {
   },
   data() {
     return {
-      cards: [],
+      // cards: [],
       translateX: 0,
       cardWidth: 200, // 카드의 가로 크기를 설정하세요
       containerWidth: 0,
     }
   },
-  created() {
-    this.cards = this.$store.state.cards
+  computed: {
+    cards(){
+      return this.$store.state.cards
+    } 
   },
   mounted() {
   this.$nextTick(() => {

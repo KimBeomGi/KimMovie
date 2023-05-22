@@ -8,6 +8,12 @@
     <div class="article-content">
       <p>{{ article?.content }}</p>
     </div>
+    <div style="display: flex;
+  flex-direction: row;
+  align-items: center;">
+    <button @click="putArticle" class="put-button">수정</button>
+    <button @click="deleteArticle" class="delete-button">삭제</button>
+    </div>
     <CommentCreate :articleID="article?.id"/>
     <CommentView :articleID="article?.id" />
   </div>
@@ -32,7 +38,7 @@ export default {
   computed:{
     articleID(){
       return this.article.id;
-    }
+    },
   },
   created() {
     this.getArticleDetail()
@@ -56,6 +62,33 @@ export default {
       const formattedDateTime = new Date(datetime).toLocaleString('en-US', options);
       return formattedDateTime.replace(',', '');
     },
+    deleteArticle(){
+      axios({
+        method: 'DELETE',
+        url: `http://localhost:8000/communities/${this.$route.params.id}/`,
+        headers: this.$store.getters.authHeader,
+      })
+        .then((res) => {
+          console.log(res.data)
+          this.article = res.data
+          this.$router.go(-1);
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    putArticle() {
+    const { id, movie, title, content } = this.article;
+    this.$router.push({
+      name: 'ArticlePutView',
+      params: {
+        id: id,
+        movie:movie,
+        title: title,
+        content: content,
+      }
+    });
+  },
 }}
 </script>
 
@@ -66,6 +99,7 @@ export default {
   padding: 20px;
   font-family: Arial, sans-serif;
   line-height: 1.5;
+  
 }
 
 .article-title {
@@ -100,4 +134,40 @@ export default {
 .article-content p:last-child {
   margin-bottom: 0;
 }
+
+.delete-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff5a5f;
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.delete-button:hover {
+  background-color: #ff4449;
+}
+.put-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: green;
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.put-button:hover {
+  background-color: green;
+}
+
 </style>
