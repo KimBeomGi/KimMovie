@@ -1,8 +1,8 @@
 <template>
     <div class="comment-view">
-      <div v-if="comments.length > 0">
+      <div v-if="visibleComments.length > 0">
         <ul class="comment-list">
-          <CommentViewItem v-for="comment in visibleComments" :key="comment.id" :comment="comment" />
+          <CommentViewItem v-for="comment in visibleComments" :key="comment.id" :comment="comment" :articleid="articleID" />
         </ul>
         <div class="pagination">
           <button v-for="pageNumber in pageCount" :key="pageNumber" @click="goToPage(pageNumber)">{{ pageNumber }}</button>
@@ -50,6 +50,7 @@
           this.comments.filter((comment) => comment.review === this.articleID).length / this.pageSize
         )
       },
+      
     },
     methods: {
       getComments() {

@@ -1,22 +1,26 @@
 <template>
   <div class="article-detail" style="text-align: start;">
-    <label for="title" class="form-label">비밀번호 :</label>
-      <input type="text" id="title" v-model.trim="password" class="form-input">
-
+    
     <!-- <h1 class="article-title">{{ article?.movie_title }}</h1> -->
-    <hr>
-    <p class="article-title2">{{ article?.title }}</p>
-    <!-- <span class="article-info">{{ article?.username }} | </span> -->
-    <span class="article-info">{{ formatDateTime(article?.created_at) }}</span>
-    <div class="article-content">
-      <p>{{ article?.content }}</p>
-    </div>
     <div style="display: flex;
   flex-direction: row;
   align-items: center;">
+  <div>
+    <label for="title" class="form-label"></label>
+    <input placeholder="비밀번호를 입력하세요." type="text" id="title" v-model.trim="password" class="form-input">
+      
+    </div>
     <button @click="putArticle" class="put-button">수정</button>
     <button @click="deleteArticle" class="delete-button">삭제</button>
     </div>
+    <hr>
+    <p class="article-title2">{{ article?.title }}</p>
+    <!-- <span class="article-info">{{ article?.username }} | </span> -->
+    <span class="article-info">[익명] | {{ formatDateTime(article?.created_at) }}</span>
+    <div class="article-content">
+      <p>{{ article?.content }}</p>
+    </div>
+    
     <!-- <p>{{ article?.password }}</p> -->
     <AnonymousCommentCreate :articleID="article?.id"/>
     <AnonymousCommentView :articleID="article?.id" />
