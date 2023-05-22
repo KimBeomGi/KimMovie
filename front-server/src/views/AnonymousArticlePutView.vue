@@ -4,10 +4,7 @@
 <!-- 폼을 제출할 시 createArticle() 메서드를 실행한다.-->
 <template>
   <div>
-    <form @submit.prevent="createArticle" class="create-form">
-      <label for="title" class="form-label">비밀번호 :</label>
-      <input type="text" id="title" v-model.trim="password" class="form-input">
-      <br>
+    <form @submit.prevent="putArticle" class="create-form">
       <label for="title" class="form-label">제목 :</label>
       <input type="text" id="title" v-model.trim="title" class="form-input">
       <br>
@@ -30,13 +27,13 @@
 import axios from 'axios'
 
 export default {
-  name: 'CreateView',
+  name: 'ArticlePutView',
   data() {
     return {
-      password: null,
-      title: null,
-      content: null,
-      
+      id : null,
+      title: this.$route.params.title,
+      content: this.$route.params.content,
+      movie : null
     }
   },
   computed:{
@@ -44,10 +41,13 @@ export default {
   },
   
   methods: {
-    createArticle() {
+    putArticle() {
+      const id = this.$route.params.id
       const title = this.title
       const content = this.content
-      const password = this.password
+      const movie = this.$route.params.movie
+      
+      
 
       if (!title) {
         alert('제목 입력해주세요')
@@ -58,17 +58,21 @@ export default {
       }
       //const movieTitle = this.$route.params.movieTitle
       axios({
-        method: 'post',
-        url: 'http://127.0.0.1:8000/communities/anonymous/',
-        data: {title, content, password},
+        method: 'put',
+        url: `http://127.0.0.1:8000/communities/${id}/`,
+        data: { movie, title, content},
         headers: {
-          // Authorization: `Token ${this.$store.state.token}`
+          Authorization: `Token ${this.$store.state.token}`
         }
       })
-      .then((res) => {
-      this.$router.push({ name:'AnonymousArticleDetailView', 
-      params: {id: res.data.id}})
-    
+      .then(() => {
+        console.log('성공')
+        console.log(id)
+        console.log(title)
+        console.log(movie)
+        console.log(content)
+        // console.log(res)
+        this.$router.go(-1);
       })
       .catch((err) => {
         console.log(err)
