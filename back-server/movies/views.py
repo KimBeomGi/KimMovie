@@ -39,6 +39,17 @@ def movie_list(request):
 
     return Response(status=status.HTTP_400_BAD_REQUEST)
 
+# 장르별 영화 데이터 구현.
+@api_view(['GET'])
+def movies_by_genre(request, genre_pk):
+    if request.method == 'GET':
+        genre = get_object_or_404(Genre, pk=genre_pk)
+        movies = list(genre.movie_set.all())
+        random.shuffle(movies)
+        serializer = MovieListSerializer(movies, many=True)
+        return Response(serializer.data)
+    return Response(status=status.HTTP_404_NOT_FOUND)
+
 # 영화 상세 데이터
 @api_view(['GET'])
 def movie_detail(request, movie_pk):
