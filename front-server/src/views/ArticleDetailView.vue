@@ -72,6 +72,7 @@ export default {
           console.log(res.data)
           this.article = res.data
           this.$router.go(-1);
+          alert('삭제 완료하였습니다.')
         })
         .catch((err) => {
           console.log(err)

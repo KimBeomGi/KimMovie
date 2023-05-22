@@ -5,6 +5,9 @@
 <template>
   <div>
     <form @submit.prevent="putArticle" class="create-form">
+      <label for="password" class="form-label">패스워드 :</label>
+      <input type="text" id="password" v-model.trim="password" class="form-input">
+      <br>
       <label for="title" class="form-label">제목 :</label>
       <input type="text" id="title" v-model.trim="title" class="form-input">
       <br>
@@ -33,7 +36,7 @@ export default {
       id : null,
       title: this.$route.params.title,
       content: this.$route.params.content,
-      movie : null
+      password : null
     }
   },
   computed:{
@@ -45,7 +48,7 @@ export default {
       const id = this.$route.params.id
       const title = this.title
       const content = this.content
-      const movie = this.$route.params.movie
+      const password = this.password
       
       
 
@@ -59,22 +62,26 @@ export default {
       //const movieTitle = this.$route.params.movieTitle
       axios({
         method: 'put',
-        url: `http://127.0.0.1:8000/communities/${id}/`,
-        data: { movie, title, content},
+        url: `http://127.0.0.1:8000/communities/anonymous/anonycomments/${id}/`,
+        data: {password, title, content},
         headers: {
-          Authorization: `Token ${this.$store.state.token}`
+          // Authorization: `Token ${this.$store.state.token}`
         }
       })
       .then(() => {
         console.log('성공')
         console.log(id)
+        console.log(password)
         console.log(title)
-        console.log(movie)
         console.log(content)
         // console.log(res)
         this.$router.go(-1);
       })
       .catch((err) => {
+        console.log(id)
+        console.log(password)
+        console.log(title)
+        console.log(content)
         console.log(err)
       })
     }

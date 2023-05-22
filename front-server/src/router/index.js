@@ -7,6 +7,7 @@ import CommunityView from '@/views/CommunityView'
 import AnonymousCommunityView from '@/views/AnonymousCommunityView'
 import AnonymousCreateView from '@/views/AnonymousCreateView'
 import AnonymousArticleDetailView from '@/views/AnonymousArticleDetailView'
+import AnonymousArticlePutView from '@/views/AnonymousArticlePutView'
 import ArticleDetailView from '@/views/ArticleDetailView'
 import ArticlePutView from '@/views/ArticlePutView'
 import CreateView from '@/views/CreateView'
@@ -38,6 +39,11 @@ const routes = [
     path: '/AnonymousArticleDetailView/:id',
     name: 'AnonymousArticleDetailView',
     component: AnonymousArticleDetailView
+  },
+  {
+    path: '/AnonymousArticlePutView/:id',
+    name: 'AnonymousArticlePutView',
+    component: AnonymousArticlePutView
   },
   {
     // path: '/articles/:article_pk',

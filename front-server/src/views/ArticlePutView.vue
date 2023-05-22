@@ -73,6 +73,7 @@ export default {
         console.log(content)
         // console.log(res)
         this.$router.go(-1);
+        alert('수정 완료하였습니다.')
       })
       .catch((err) => {
         console.log(err)

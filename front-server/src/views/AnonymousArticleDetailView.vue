@@ -82,6 +82,7 @@ export default {
           console.log(res.data)
           // this.article = res.data
           this.$router.push({ name: 'AnonymousCommunityView' })
+          alert('삭제 완료하였습니다.')
         })
         .catch((err) => {
           alert('비밀번호가 틀립니다.')
