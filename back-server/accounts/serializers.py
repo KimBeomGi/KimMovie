@@ -46,7 +46,8 @@ class CustomUserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'password', 'last_login', 'is_superuser', 
                   'username', 'first_name', 'last_name', 'email', 
-                  'is_staff', 'is_active', 'date_joined', 'exp', 'point',
-                  'groups', 'user_permissions', 'followings', 'followers',
-                  'followings_name', 'followers_name',
+                  'is_staff', 'is_active', 'date_joined', 
+                  'exp', 'point', 'grade',
+                  'groups', 'user_permissions',
+                  'followings', 'followers', 'followings_name', 'followers_name',
                   'followings_count', 'followers_count', 'idealmovie',)     # 'idealmovie', 추가함
