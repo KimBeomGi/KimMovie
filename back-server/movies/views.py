@@ -132,32 +132,39 @@ def recommend(request):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 # # user맞춤형 영화 추천 기능
-# @api_view(['GET'])
-# def recommend_custom(request):
-#     if request.method == 'GET':
-#         # 로그인 되어있으면 이상형 월드컵 승리한 거 이용해 볼 거임.
-#         if request.user.is_authenticated:
-#             # 이상영화가 있으면
-#             if request.user.idealmovie:
-#                 genres_all=[]
-#                 for movie_pk in request.user.idealmovie:
-#                     movie = get_object_or_404(Movie, pk=movie_pk)
-#                     category = movie.genres
-                    
-                    
-#                     pass
-#                 pass
-#             # 이상영화가 없으면
-#             else:
-#                 movies = get_list_or_404(Movie)
-#                 movies_recommend = random.sample(movies, 60)
-#         # 로그인 안되어있으면 그냥 아무거나 60개 추천
-#         else:
-#             movies = get_list_or_404(Movie)
-#             movies_recommend = random.sample(movies, 60)
-#             serializer = MovieListSerializer(movies_recommend, many=True)
-#         return Response(serializer.data, status=status.HTTP_200_OK)
-#     return Response(status=status.HTTP_400_BAD_REQUEST)
+@api_view(['GET'])
+def recommend_custom(request):
+    if request.method == 'GET':
+        if request.user.is_authenticated:
+            if request.user.idealmovie.exists():
+                genres_all = []
+                for movie in request.user.idealmovie.all():
+                    category = movie.genres.all()
+                    genres_all.extend(category)
+                from collections import Counter
+                genre_counts = Counter(genres_all)
+                if len(genre_counts) > 0:
+                    sorted_counts = sorted(genre_counts.items(), key=lambda x: x[1], reverse=True)
+                    result = {genre.id: count for genre, count in sorted_counts}
+                    max_genre_id = list(result.keys())[0]
+                    genre = Genre.objects.get(pk=max_genre_id)
+                    movies = genre.movie_set.all()
+                    movies = list(movies)
+                    if len(movies) > 60:
+                        movies = random.sample(movies, 60)
+                    serializer = MovieSerializer(movies, many=True)
+                    return Response(serializer.data)
+            # 이상영화가 없으면
+            else:
+                movies = get_list_or_404(Movie)
+                movies_recommend = random.sample(movies, 60)
+        # 로그인 안되어있으면 그냥 아무거나 60개 추천
+        else:
+            movies = get_list_or_404(Movie)
+            movies_recommend = random.sample(movies, 60)
+            serializer = MovieListSerializer(movies_recommend, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response(status=status.HTTP_400_BAD_REQUEST)
     
 ######################
 # 영화 이상형 월드컵 기능

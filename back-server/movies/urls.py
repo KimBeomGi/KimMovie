@@ -17,7 +17,7 @@ urlpatterns = [
     path('genre/', views.get_genre),                        # 장르 전체 id-name
     path('like/<int:movie_pk>/', views.movie_like),         # 영화 찜하기
     path('recommend/', views.recommend),                    # 영화 추천방식
-    # path('recommend_custom/', views.recommend_custom),      # 영화 추천방식
+    path('recommend_custom/', views.recommend_custom),      # 영화 추천방식
     path('ideal_movie/', views.ideal_movie),                # 이상영화 받기
     # path('ideal_movie/<int:movie_pk>/', views.win_ideal_movie),
     path('quiz1/', views.quiz1),                            # 퀴즈(3지선다형)
