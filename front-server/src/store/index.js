@@ -15,6 +15,8 @@ export default new Vuex.Store({
   state: {
     articles: [
     ],
+    anonymousarticles: [
+    ],
     token: null,
     cards: [],
     searchcards: [],
@@ -35,6 +37,9 @@ export default new Vuex.Store({
     // 전체 게시글 정보를 state에 있는 articles에 넣는다.
     GET_ARTICLES(state, articles) {
       state.articles = articles
+    },
+    GET_ANONYMOUSARTICLES(state, anonymousarticles) {
+      state.anonymousarticles = anonymousarticles
     },
     // signup & login -> 완료하면 토큰 발급
     // actions의 login() 메서드에서 토큰을 가지고 온다.
@@ -188,6 +193,23 @@ export default new Vuex.Store({
         })
         .catch(() => {
           console.log(context.getters.authHeader)
+          alert('게시글을 가져오지 못함. 장고url과 토큰 확인할 것')
+        })
+    },
+    getAnonymousArticles(context) {
+      axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/communities/anonymous/',
+        // url: 'http://localhost:8000/api/v1/articles/',
+        // headers: context.getters.authHeader,
+      })
+        .then((res) => {
+        // console.log(res, context)
+          context.commit('GET_ANONYMOUSARTICLES', res.data)
+          // alert('영화 리뷰들을 확인해보세요!')
+        })
+        .catch(() => {
+          // console.log(context.getters.authHeader)
           alert('게시글을 가져오지 못함. 장고url과 토큰 확인할 것')
         })
     },

@@ -13,6 +13,7 @@ urlpatterns = [
     path('release_date/', views.release_date_sort),         # 영화 개봉일 순 목록
     path('popularity/', views.popularity_sort),             # 영화 인기 순 목록
     #####
+
     path('<int:movie_pk>/', views.movie_detail),    # 영화 상세보기
     path('genre/', views.get_genre),                # 장르 전체 id-name
     path('like/<int:movie_pk>/', views.movie_like), # 영화 찜하기

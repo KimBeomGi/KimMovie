@@ -13,15 +13,15 @@
         <img :src="poster" alt="">
       </div>
       <div class="details">
-        <p>영화 번호: {{ moviedetail?.id }}</p>
-        <p>제목: {{ moviedetail?.title }}</p>
+        <h1>{{ moviedetail?.title }}</h1>
+        <hr>
         <p :class="{ 'overview-truncated': isOverviewTruncated }">
-          줄거리: {{ truncatedOverview }}
+          {{ truncatedOverview }}
           <button v-if="isOverviewTruncated" @click="showFullOverview = !showFullOverview">
             {{ showFullOverview ? '숨기기' : '전체' }}
           </button>
         </p>
-        <p>장르: {{ moviedetail?.genres }}</p>
+        <p>{{ moviedetail?.genres_name.join(' ') }}</p>
         <p>평점: {{ moviedetail?.vote_average }} / 10.0</p>
         <p>참여인원: {{ moviedetail?.vote_count }}명</p>
         <p>출시일자: {{ moviedetail?.release_date }}</p>

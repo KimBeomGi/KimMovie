@@ -1,6 +1,7 @@
 <template>
     <div class="comment-item">
-      <p class="comment-user">작성자: {{ comment.user }}</p>
+      <p class="comment-user">[익명]</p>
+      <!-- <p class="comment-user">작성자: {{ comment.user }}</p> -->
       <p class="comment-date">{{ formatDateTime(comment.created_at) }}</p>
       <p class="comment-content">{{ comment.content }}</p>
     </div>
