@@ -187,7 +187,7 @@ def anonyarticle_detail(request, anonyarticle_pk):
 
     if request.method == 'GET':
         serializer = AnonyarticleSerializer(anonyarticle)
-        print(serializer.data)
+        # print(serializer.data)
         return Response(serializer.data)
     
     elif request.method == 'DELETE':
