@@ -1,6 +1,6 @@
 <template>
   <div class="article-detail" style="text-align: start;">
-    <h1 class="article-title">{{ article?.movie }}</h1>
+    <h1 class="article-title">{{ article?.movie_title }}</h1>
     <hr>
     <p class="article-title2">{{ article?.title }}</p>
     <span class="article-info">{{ article?.username }} | </span>

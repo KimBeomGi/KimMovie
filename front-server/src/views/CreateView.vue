@@ -37,11 +37,6 @@ export default {
     }
   },
   computed:{
-    movieTitle(){
-      console.log(this.$route.params.movieTitle)
-      return this.$route.params.movieTitle
-      
-    }
     
   },
   
@@ -50,6 +45,8 @@ export default {
       const title = this.title
       const content = this.content
       const movie = this.$route.params.movie
+      const movieTitle = this.$route.params.movieTitle
+      
       
 
       if (!title) {
@@ -63,7 +60,7 @@ export default {
       axios({
         method: 'post',
         url: `${API_URL}/communities/`,
-        data: { title, content,movie},
+        data: { title, content,movie,movieTitle},
         headers: {
           Authorization: `Token ${this.$store.state.token}`
         }
