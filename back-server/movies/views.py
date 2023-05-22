@@ -21,23 +21,65 @@ from django.contrib.auth import get_user_model
 ######################
 # Home에 쓰일 영화 데이터 제공
 # 영화 전체 데이터, 검색기능 구현 완료.
+# @api_view(['GET'])
+# def movie_list(request):
+#     if request.method == 'GET':
+#         # 브라우저에서 검색한 값을 들고옴
+#         # http://127.0.0.1:8000/api/v1/?query={검색내용}
+#         search_query = request.GET.get('query')
+#         # 검색값이 있으면 filter로 걸러냄
+#         if search_query:
+#             movies = list(Movie.objects.filter(title__icontains=search_query))
+#         # query문 자체가 없으면 전체 데이터 불러오기
+#         # http://127.0.0.1:8000/api/v1/
+#         else:
+#             movies = get_list_or_404(Movie)
+#             random.shuffle(movies)
+#         serializer = MovieListSerializer(movies, many=True)
+#         return Response(serializer.data)
+#     return Response(status=status.HTTP_400_BAD_REQUEST)
+from django.db.models import Q
+
 @api_view(['GET'])
 def movie_list(request):
     if request.method == 'GET':
-        # 브라우저에서 검색한 값을 들고옴
-        # http://127.0.0.1:8000/api/v1/?query={검색내용}
         search_query = request.GET.get('query')
-        # 검색값이 있으면 filter로 걸러냄
+
         if search_query:
-            movies = list(Movie.objects.filter(title__icontains=search_query))
-        # query문 자체가 없으면 전체 데이터 불러오기
-        # http://127.0.0.1:8000/api/v1/
+            # 검색어를 공백으로 나누어 개별 단어로 분리합니다
+            keywords = search_query.split()
+
+            movies = Movie.objects.all()
+            filtered_movies = []
+
+            # 각 단어를 포함하는 제목을 검색합니다
+            for movie in movies:
+                title = movie.title.lower().replace(" ", "")
+                for keyword in keywords:
+                    if keyword.lower() in title:
+                        filtered_movies.append(movie)
+                        break
+
+            if not filtered_movies:
+                # 검색어의 일부만 포함된 제목으로 다시 검색합니다
+                for movie in movies:
+                    title = movie.title.lower().replace(" ", "")
+                    for keyword in keywords:
+                        if keyword.lower() in title:
+                            filtered_movies.append(movie)
+                            break
+
+            movies = filtered_movies
+
         else:
-            movies = get_list_or_404(Movie)
+            movies = list(Movie.objects.all())
             random.shuffle(movies)
+
         serializer = MovieListSerializer(movies, many=True)
         return Response(serializer.data)
+
     return Response(status=status.HTTP_400_BAD_REQUEST)
+
 
 # 영화 전체 데이터 평점 순 정렬
 @api_view(['GET'])
