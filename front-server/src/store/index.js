@@ -142,7 +142,7 @@ export default new Vuex.Store({
           // context.commit('SET_PROFILE', res.data)
         })
         .catch(() => {
-          alert('잘못된 접근')
+          alert('서버에 저장되어있지 않은 아이디입니다. 강제로 없애주세요.')
         })
     },
     fetchCurrentUser(context) {
@@ -193,7 +193,8 @@ export default new Vuex.Store({
         })
         .catch(() => {
           console.log(context.getters.authHeader)
-          alert('게시글을 가져오지 못함. 장고url과 토큰 확인할 것')
+          this.state.articles=[]
+          alert('게시글이 존재하지 않습니다.')
         })
     },
     getAnonymousArticles(context) {
@@ -205,12 +206,14 @@ export default new Vuex.Store({
       })
         .then((res) => {
         // console.log(res, context)
+          console.log(res.data)
           context.commit('GET_ANONYMOUSARTICLES', res.data)
           // alert('영화 리뷰들을 확인해보세요!')
         })
         .catch(() => {
           // console.log(context.getters.authHeader)
-          alert('게시글을 가져오지 못함. 장고url과 토큰 확인할 것')
+          this.state.anonymousarticles = []
+          alert('게시글이 존재하지 않습니다.')
         })
     },
     getCards(context) {

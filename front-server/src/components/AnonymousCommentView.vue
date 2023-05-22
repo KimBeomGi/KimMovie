@@ -3,7 +3,7 @@
     <!-- <p>{{ visibleComments }}</p> -->
     <div v-if="comments.length > 0">
       <ul class="comment-list">
-        <CommentViewItem v-for="comment in visibleComments" :key="comment.id" :comment="comment" />
+        <AnonymousCommentViewItem v-for="comment in visibleComments" :key="comment.id" :comment="comment" />
       </ul>
       <div class="pagination">
         <button v-for="pageNumber in pageCount" :key="pageNumber" @click="goToPage(pageNumber)">{{ pageNumber }}</button>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import CommentViewItem from '@/components/CommentViewItem'
+import AnonymousCommentViewItem from '@/components/AnonymousCommentViewItem'
 import axios from 'axios'
 
 export default {
@@ -32,7 +32,7 @@ export default {
     articleID: Number,
   },
   components: {
-    CommentViewItem,
+    AnonymousCommentViewItem,
   },
   created() {
     this.getComments()
