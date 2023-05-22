@@ -8,12 +8,18 @@
     <div class="article-content">
       <p>{{ article?.content }}</p>
     </div>
-    <div style="display: flex;
-  flex-direction: row;
-  align-items: center;">
+    <div style="display: flex; flex-direction: row; align-items: center;">
     <button @click="putArticle" class="put-button">수정</button>
     <button @click="deleteArticle" class="delete-button">삭제</button>
     </div>
+    <hr>
+    <div style="display: flex; flex-direction: row; align-items: center;">
+      <button @click="toggleLike" :class="{'liked': article?.liked}" class="like-button">
+        좋아요
+      </button>
+      <span class="like-count">{{ articleID }}</span>
+    </div>
+    <hr>
     <CommentCreate :articleID="article?.id"/>
     <CommentView :articleID="article?.id" />
   </div>
@@ -33,11 +39,12 @@ export default {
   data() {
     return {
       article: null,
+      likeCount: ''
     }
   },  
   computed:{
     articleID(){
-      return this.article.id;
+      return this.article?.like_users.length
     },
   },
   created() {
@@ -91,6 +98,20 @@ export default {
       }
     });
   },
+  toggleLike() {
+      axios({
+        method: 'post',
+        url: `http://localhost:8000/communities/${this.article.id}/like/`,
+        headers: this.$store.getters.authHeader,
+      })
+        .then(() => {
+          this.$router.push({name:'CommunityView'})
+          this.$router.go(-1)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
 }}
 </script>
 
@@ -172,4 +193,31 @@ export default {
   background-color: green;
 }
 
+/* 좋아요 버튼 스타일 */
+.like-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100px;
+}
+
+.like-button:hover {
+  background-color: #0056b3;
+}
+
+/* 좋아요 수 표시 스타일 */
+.like-count {
+  margin-left: 20px;
+  margin-top: 15px;
+  font-size: 30px;
+  font-weight: bold;
+}
 </style>
