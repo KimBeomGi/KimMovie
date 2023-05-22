@@ -4,7 +4,10 @@ import HomeView from '@/views/HomeView'
 import SearchMoviesView from '@/views/SearchMoviesView'
 import MovieDetailView from '@/views/MovieDetailView'
 import CommunityView from '@/views/CommunityView'
+import AnonymousCommunityView from '@/views/AnonymousCommunityView'
+import AnonymousArticleDetailView from '@/views/AnonymousArticleDetailView'
 import ArticleDetailView from '@/views/ArticleDetailView'
+import ArticlePutView from '@/views/ArticlePutView'
 import CreateView from '@/views/CreateView'
 import SignUpView from '@/views/SignUpView'
 import LogInView from '@/views/LogInView'
@@ -21,10 +24,26 @@ const routes = [
     component: CommunityView
   },
   {
+    path: '/AnonymousCommunityView',
+    name: 'AnonymousCommunityView',
+    component: AnonymousCommunityView
+  },
+  {
+    path: '/AnonymousArticleDetailView/:id',
+    name: 'AnonymousArticleDetailView',
+    component: AnonymousArticleDetailView
+  },
+  {
     // path: '/articles/:article_pk',
     path: '/articles/:id',
     name: 'ArticleDetailView',
     component: ArticleDetailView
+  },
+  {
+    // path: '/articles/:article_pk',
+    path: '/articles/:id/:movie/:title/:content',
+    name: 'ArticlePutView',
+    component: ArticlePutView
   },
  
   {

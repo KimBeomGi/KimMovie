@@ -15,7 +15,6 @@ class ReviewListSerializer(serializers.ModelSerializer):
 # 영화 리뷰의 댓글
 class CommentSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username', read_only=True)
-
     class Meta:
         model = Comment
         # fields = '__all__'
