@@ -36,9 +36,35 @@ def movie_list(request):
             random.shuffle(movies)
         serializer = MovieListSerializer(movies, many=True)
         return Response(serializer.data)
-
     return Response(status=status.HTTP_400_BAD_REQUEST)
 
+# 영화 전체 데이터 평점 순 정렬
+@api_view(['GET'])
+def vote_average_sort(request):
+    if request.method == 'GET':
+        movies = Movie.objects.order_by('-vote_average')  # 평점 순으로 정렬
+        serializer = MovieListSerializer(movies, many=True)
+        return Response(serializer.data)
+    return Response(status=status.HTTP_400_BAD_REQUEST)
+
+# 영화 전체 데이터 개봉일 순 정렬
+@api_view(['GET'])
+def release_date_sort(request):
+    if request.method == 'GET':
+        movies = Movie.objects.order_by('-release_date')  # 개봉일 순으로 정렬
+        serializer = MovieListSerializer(movies, many=True)
+        return Response(serializer.data)
+    return Response(status=status.HTTP_400_BAD_REQUEST)
+
+# 영화 전체 데이터 인기 순 정렬
+@api_view(['GET'])
+def popularity_sort(request):
+    if request.method == 'GET':
+        movies = Movie.objects.order_by('-popularity')  # 인기 순으로 정렬
+        serializer = MovieListSerializer(movies, many=True)
+        return Response(serializer.data)
+    return Response(status=status.HTTP_400_BAD_REQUEST)
+        
 # 장르별 영화 데이터 구현.
 @api_view(['GET'])
 def movies_by_genre(request, genre_pk):
@@ -49,6 +75,7 @@ def movies_by_genre(request, genre_pk):
         serializer = MovieListSerializer(movies, many=True)
         return Response(serializer.data)
     return Response(status=status.HTTP_404_NOT_FOUND)
+
 
 # 영화 상세 데이터
 @api_view(['GET'])
@@ -91,11 +118,11 @@ def movie_like(request, movie_pk):
 @api_view(['GET'])
 def recommend(request):
     if request.method == 'GET':
+        # 영화 전체 데이터에서 50개 뽑아서 줌
         movies = get_list_or_404(Movie)
         # movies = list(Movie.objects.all())
         movies_recommend = random.sample(movies, 50)
         serializer = MovieListSerializer(movies_recommend, many=True)
-        
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 ######################
