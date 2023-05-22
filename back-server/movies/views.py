@@ -38,47 +38,69 @@ from django.contrib.auth import get_user_model
 #         serializer = MovieListSerializer(movies, many=True)
 #         return Response(serializer.data)
 #     return Response(status=status.HTTP_400_BAD_REQUEST)
-from django.db.models import Q
+
+# @api_view(['GET'])
+# def movie_list(request):
+#     if request.method == 'GET':
+#         search_query = request.GET.get('query')
+#         if search_query:
+#             # 띄어쓰기로 구분해 검색어를 개별 단어로 분리
+#             keywords = search_query.split()
+#             movies = Movie.objects.all()
+#             filtered_movies = []
+#             # 각 단어를 포함하는 제목 검색
+#             for movie in movies:
+#                 title = movie.title.lower().replace(" ", "")
+#                 for keyword in keywords:
+#                     if keyword.lower() in title:
+#                         filtered_movies.append(movie)
+#                         break
+#             if not filtered_movies:
+#                 # 검색어의 일부만 포함된 제목으로 다시 검색합니다
+#                 for movie in movies:
+#                     title = movie.title.lower().replace(" ", "")
+#                     for keyword in keywords:
+#                         if keyword.lower() in title:
+#                             filtered_movies.append(movie)
+#                             break
+#             movies = filtered_movies
+#         else:
+#             movies = get_list_or_404(Movie)
+#             random.shuffle(movies)
+#         serializer = MovieListSerializer(movies, many=True)
+#         return Response(serializer.data)
+#     return Response(status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
 def movie_list(request):
     if request.method == 'GET':
         search_query = request.GET.get('query')
-
         if search_query:
-            # 검색어를 공백으로 나누어 개별 단어로 분리합니다
+            # 검색어에서 공백 제거
+            search_query = search_query.replace(" ", "")
             keywords = search_query.split()
-
             movies = Movie.objects.all()
+            # movies = get_list_or_404(Movie)
             filtered_movies = []
-
-            # 각 단어를 포함하는 제목을 검색합니다
             for movie in movies:
-                title = movie.title.lower().replace(" ", "")
+                title = movie.title.replace(" ", "")
+                matched = True
                 for keyword in keywords:
-                    if keyword.lower() in title:
-                        filtered_movies.append(movie)
+                    if keyword.lower() not in title.lower():
+                        matched = False
                         break
-
-            if not filtered_movies:
-                # 검색어의 일부만 포함된 제목으로 다시 검색합니다
-                for movie in movies:
-                    title = movie.title.lower().replace(" ", "")
-                    for keyword in keywords:
-                        if keyword.lower() in title:
-                            filtered_movies.append(movie)
-                            break
-
-            movies = filtered_movies
-
+                if matched:
+                    filtered_movies.append(movie)
+            serializer = MovieListSerializer(filtered_movies, many=True)
+            return Response(serializer.data)
         else:
-            movies = list(Movie.objects.all())
+            movies = get_list_or_404(Movie)
             random.shuffle(movies)
-
-        serializer = MovieListSerializer(movies, many=True)
-        return Response(serializer.data)
-
+            serializer = MovieListSerializer(movies, many=True)
+            return Response(serializer.data)
     return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
 
 
 # 영화 전체 데이터 평점 순 정렬
