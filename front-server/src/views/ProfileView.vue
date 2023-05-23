@@ -8,16 +8,16 @@
       
       <!-- <p>팔로워: {{ followers }}</p> -->
       <p>팔로워 : {{ followers_count }}명</p>
-      <p>{{ followers_name.join(' ') }}</p>
+      <p>{{ followers_name? followers_name.join(' ') : '' }}</p>
       <!-- <p>팔로잉: {{ followings }}</p> -->
       <p>팔로잉 : {{ followings_count }}명</p>
-      <p>{{ followings_name.join(' ') }}</p>
+      <p>{{ followings_name? followings_name.join(' ') : '' }}</p>
       <p>등급: {{ grade }}</p>
       
       <p>경험치: {{ exp }} EXP</p>
       <p>포인트: {{ point }} P</p>
       <p>그룹: {{ groups }}</p>
-      <button @click="followUser" class="follow-button">{{ isFollowing ? '언팔로우' : '팔로우' }}</button>
+      <button @click="followUser" class="follow-button">팔로우</button>
     </div>
   </div>
 </template>
@@ -33,7 +33,7 @@ export default {
       exp: '',
       followers: '',
       followers_count: '',
-      followers_name: '',
+      followers_name: null,
       followings: '',
       followings_count: '',
       followings_name: '',
@@ -91,8 +91,13 @@ export default {
         headers: this.$store.getters.authHeader,
       })
         .then((res) => {
-          if (res.data.followers)
-          alert('팔로우 하였습니다.');
+          console.log(res.data)
+          if (res.data.is_follow){
+            alert('팔로우 하였습니다.');
+          }else{
+            alert('언팔로우 하였습니다..');
+          }
+          
           this.followers = res.data.followers;
           this.followers_count = res.data.followers_count;
           this.followers_name = res.data.followers_name;
