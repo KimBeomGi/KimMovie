@@ -1,8 +1,8 @@
 <template>
   <div>
       <h1>프로필</h1>
-      <p>{{ date_joined }}</p>
-      <p>{{ email }}</p>
+      <p>가입날짜 : {{ date_joined }}</p>
+      <p>이메일 : {{ email }}</p>
       <p>{{ exp }}</p>
       <p>{{ first_name }}</p>
       <p>{{ followers }}</p>
