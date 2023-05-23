@@ -101,7 +101,7 @@ export default {
   toggleLike() {
       axios({
         method: 'post',
-        url: `http://localhost:8000/communities/${this.article}/like/`,
+        url: `http://localhost:8000/communities/${this.article.id}/like/`,
         headers: this.$store.getters.authHeader,
       })
         .then(() => {
