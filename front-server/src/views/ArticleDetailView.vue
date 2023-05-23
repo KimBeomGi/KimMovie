@@ -3,7 +3,7 @@
     <h1 class="article-title">{{ article?.movie_title }}</h1>
     <hr>
     <p class="article-title2">{{ article?.title }}</p>
-    <button @click="Go_Profile" class="article-info">{{ article?.username }} | </button>
+    <button @click="Go_Profile" class="article-info profile-button">{{ article?.username }}</button>
     <span class="article-info">{{ formatDateTime(article?.created_at) }}</span>
     <div class="article-content">
       <p>{{ article?.content }}</p>
@@ -119,6 +119,7 @@ export default {
 </script>
 
 <style scoped>
+
 .article-detail {
   background-color: #ffffff;
   color: #000000;
@@ -144,6 +145,7 @@ export default {
   font-size: 14px;
   color: #666666;
   margin-bottom: 5px;
+  margin-left: 10px;
 }
 
 .article-content {
@@ -222,5 +224,20 @@ export default {
   margin-top: 15px;
   font-size: 30px;
   font-weight: bold;
+}
+
+.profile-button {
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profile-button:hover {
+  background-color: #ff6600;
 }
 </style>

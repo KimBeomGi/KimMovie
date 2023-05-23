@@ -15,48 +15,51 @@
       <p>관리자 권한: {{ is_superuser }}</p>
       <p>포인트: {{ point }}</p>
       <p>유저명: {{ username }}</p>
-      <button @click="followUser" class="follow-button">{{ isFollowing ? '언팔로우' : '팔로우' }}</button>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-
 export default {
-  name: 'ProfileView',
+  name: 'MyProfileView',
   data() {
-    return {
-      date_joined: '',
-      exp: '',
-      followers: '',
-      followers_count: '',
-      followers_name: '',
-      followings: '',
-      followings_count: '',
-      followings_name: '',
-      grade: '',
-      groups: '',
-      is_superuser: '',
-      point: '',
-      username: '',
-    }
+      return {
+          date_joined : '',
+          email : '',
+          exp : '',
+          first_name : '',
+          followers : '',
+          followers_count : '',
+          followers_name : '',
+          followings : '',
+          followings_count : '',
+          followings_name : '',
+          grade : '',
+          groups : '',
+          is_superuser : '',
+          point : '',
+          username : '',
+      }
+
   },
-  created() {
+  created(){
     this.Profile()
   },
-  methods: {
-    Profile() {
+  methods:{
+    Profile(){
       axios({
         method: 'get',
-        url: `http://localhost:8000/accounts/api/v1/profile/${this.$route.params.id}/`,
+        url: 'http://localhost:8000/accounts/api/v1/profile/',
         headers: this.$store.getters.authHeader,
       })
         .then((res) => {
           console.log(this.$route.params.id)
           console.log(res.data)
           this.date_joined = res.data.date_joined
+          this.email = res.data.email
           this.exp = res.data.exp
+          this.first_name = res.data.first_name
           this.followers = res.data.followers
           this.followers_count = res.data.followers_count
           this.followers_name = res.data.followers_name
@@ -73,21 +76,7 @@ export default {
           console.log(err)
         })
     },
-    followUser() {
-      axios({
-        method: 'post',
-        url: `http://localhost:8000/accounts/api/v1/follow/${this.$route.params.id}/`,
-        headers: this.$store.getters.authHeader,
-      })
-        .then((res) => {
-          if (res.data.followers)
-          alert('팔로우 하였습니다.');
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-  },
+  }
 }
 </script>
 
@@ -115,24 +104,6 @@ h1 {
   color: #333;
 }
 
-.follow-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #007bff;
-  color: #ffffff;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 20px;
-  width: 100px;
-}
-
-.follow-button:hover {
-  background-color: #0056b3;
-}
 /* 추가적인 스타일링을 원하는 경우 여기에 작성하세요 */
 
 </style>
