@@ -24,7 +24,6 @@ class Movie(models.Model):
     genres = models.ManyToManyField(Genre)
 
 
-
 # class Quiz1(models.Model):
 #     question = models.CharField(max_length=255)
 #     options = models.CharField(max_length=255)

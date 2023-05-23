@@ -8,6 +8,7 @@ from django.dispatch import receiver
 
 # Create your models here.
 class User(AbstractUser):
+    # email = models.CharField(max_length=254)
     exp = models.IntegerField(default=0)
     point = models.IntegerField(default=100)    # 포인트 생성
     followings = models.ManyToManyField("self", symmetrical=False, related_name='followers')

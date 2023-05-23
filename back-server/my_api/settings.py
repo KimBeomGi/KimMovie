@@ -190,3 +190,5 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
+REST_AUTH_REGISTER_EMAIL_VERIFICATION = False
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

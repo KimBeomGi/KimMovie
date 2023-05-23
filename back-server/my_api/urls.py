@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    path('auth/', include('allauth.urls')),# 임시로 추가해줌
+
     path('admin/', admin.site.urls),
     # movies 넘겨주기
     path('api/v1/', include('movies.urls')),
@@ -26,4 +28,5 @@ urlpatterns = [
     path('accounts/', include('dj_rest_auth.urls')),
     path('accounts/signup/', include('dj_rest_auth.registration.urls')),
     path('accounts/api/v1/', include('accounts.urls'))
+    # path('accounts/', include('accounts.urls'))
 ]
