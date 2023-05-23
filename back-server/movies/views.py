@@ -298,6 +298,7 @@ def recommend_custom(request):
                 for movie in request.user.idealmovie.all():
                     category = movie.genres.all()
                     genres_all.extend(category)
+                    
 
             if request.user.like_movies.exists():
                 for movie in request.user.like_movies.all():
@@ -313,9 +314,10 @@ def recommend_custom(request):
                 genre = Genre.objects.get(pk=max_genre_id)
                 movies = genre.movie_set.all()
                 movies = list(movies)
-
+                random.shuffle(movies)
                 if len(movies) >= 60:
                     movies = random.sample(movies, 60)
+                    random.shuffle(movies)
                 elif len(movies) < 60:
                     need_num = 60 - len(movies)
                     excluded_genre = Genre.objects.get(pk=max_genre_id)
