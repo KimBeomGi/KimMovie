@@ -104,9 +104,10 @@ export default {
         url: `http://localhost:8000/communities/${this.article.id}/like/`,
         headers: this.$store.getters.authHeader,
       })
-        .then(() => {
-          this.$router.push({name:'CommunityView'})
-          this.$router.go(-1)
+        .then((res) => {
+          // this.$router.push({name:'CommunityView'})
+          // this.$router.go(-1)
+          console.log(res.data)
         })
         .catch((err) => {
           console.log(err)
