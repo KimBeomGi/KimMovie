@@ -44,6 +44,7 @@ export default {
       like_users_num : '',
       date : '',
       like : true,
+      sameuser : ''
     }
   },  
 
@@ -74,6 +75,7 @@ export default {
           this.like_users_num = res.data.like_users.length
           this.date = moment(res.data.article?.created_at).format('YYYY년 MM월 DD일')
           this.like = res.data.is_liked
+          this.sameuser = res.data.same_user
         })
         .catch((err) => {
           console.log(err)
@@ -102,6 +104,7 @@ export default {
         })
     },
     putArticle() {
+      if(this.sameuser){
     const { id, movie, title, content } = this.article;
     this.$router.push({
       name: 'ArticlePutView',
@@ -111,7 +114,9 @@ export default {
         title: title,
         content: content,
       }
-    });
+    })}else{
+      alert('타인의 게시물은 수정할 수 없습니다.')
+    }
   },
   toggleLike() {
       axios({

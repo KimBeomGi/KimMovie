@@ -134,7 +134,7 @@ router.beforeEach((to, from, next) => {
   // 앞으로 이동할 페이지(to)가 로그인이 필요한 페이지인지 확인
   const isAuthRequired = authPages.includes(to.name)
   // 앞으로 이동할 페이지(to)가 비로그인이 필요한 페이지인지 확인
-  const notisAuthRequired = notauthPages.includes(to.name)
+  const notisAuthRequired = notauthPages.includes(to.name)                  
   // const isAuthRequired = !allowAuthPages.includes(to.name)
 
   if (isAuthRequired && !isLoggedIn) {

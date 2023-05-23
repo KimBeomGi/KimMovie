@@ -25,15 +25,20 @@
         <p>평점: {{ moviedetail?.vote_average }} / 10.0</p>
         <p>참여인원: {{ moviedetail?.vote_count }}명</p>
         <p>출시일자: {{ moviedetail?.release_date }}</p>
+        
         <router-link :to="{ name: 'HomeView' }" class="back-link">
           [메인으로]
         </router-link>
       </div>
     </div>
     <!-- 게시글을 생성하는 뷰인 CreateView로 이동하는 링크 생성-->
-    <div class="action-buttons">
+    <span class="action-buttons">
       <router-link :to="{ name: 'CreateView', params: { movie: movieId, movieTitle: movieTitle }}" class="create-link">글 작성</router-link>
-    </div>
+    </span>
+    
+    <button class="action-buttons" @click="toggleFavorite" >
+      찜
+      </button>
     <DetailArticleList :movie_id="moviedetail?.id"/>
   </div>
 </template>
@@ -52,6 +57,7 @@ export default {
       showFullOverview: false,
       maxOverviewLength: 200,
       poster : '',
+      like : ''
     };
   },
   computed: {
@@ -95,6 +101,22 @@ export default {
     scrollToTop() {
       window.scrollTo(0, 0);
     },
+    toggleFavorite(){
+      axios({
+        method: 'post',
+        url: `http://localhost:8000/api/v1/like/${this.moviedetail?.id}`,
+        headers: this.$store.getters.authHeader,
+      })
+        .then((res) => {
+          // this.$router.push({name:'CommunityView'})
+          // this.$router.go(-1)
+          this.like = res.data.is_liked
+          // console.log(res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
   },
 };
 </script>
