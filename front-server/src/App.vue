@@ -39,6 +39,10 @@
   <input type="text" placeholder="영화 제목 검색" @keydown.enter.prevent="searchMovies" 
   v-model.trim="search"/>
 </li>
+      <!-- 프로필 버튼 -->
+        <li @click.prevent="ProfileView" class="nav-item active">
+          <a class="nav-link" href="">프로필 <span class="sr-only"></span></a>
+        </li>    
         </ul>
       </div>
     </div>
@@ -79,8 +83,14 @@ export default {
       if (this.$route.name !== 'SignUpView') {
       this.$router.push({ name: 'SignUpView' }); // 회원가입 라우터링크로 이동
     }},
+    ProfileView() {
+      if (this.$route.name !== 'ProfileView') {
+      this.$router.push({ name: 'ProfileView' }); // 회원가입 라우터링크로 이동
+    }},
+    
     searchMovies(){
-      this.$router.push({ name: 'NoneView' })
+      if (this.$route.name !== 'HomeView'){
+      this.$router.push({ name: 'HomeView' })}
       this.$nextTick(() => {
     this.$router.push({ name: 'SearchMoviesView', params: { query: this.search } })
     this.search = ''

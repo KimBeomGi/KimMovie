@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '@/views/HomeView'
+import ProfileView from '@/views/ProfileView'
 import SearchMoviesView from '@/views/SearchMoviesView'
 import MovieDetailView from '@/views/MovieDetailView'
 import CommunityView from '@/views/CommunityView'
@@ -84,6 +85,11 @@ const routes = [
     path: '/',
     name: 'HomeView',
     component: HomeView
+  },
+  {
+    path: '/profile/:id',
+    name: 'ProfileView',
+    component: ProfileView
   },
   {
     path: '/moviedetail/:id',
