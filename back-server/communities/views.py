@@ -126,15 +126,16 @@ def review_like(request, review_pk):
     user = request.user
     if review.like_users.filter(pk=user.pk).exists():
         review.like_users.remove(user)
-        # is_liked = False
+        is_liked = False
     else:
         review.like_users.add(user)
-        # is_liked = True
+        is_liked = True    
     
     review.like_users.count()
     like_users_num = review.like_users.count()
     context = {
-        'like_users_num':like_users_num
+        'like_users_num':like_users_num,
+        'is_liked' : is_liked
     }
     return Response(context, status=status.HTTP_200_OK)
 
