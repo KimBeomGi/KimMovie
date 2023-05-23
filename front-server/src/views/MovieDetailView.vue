@@ -25,7 +25,6 @@
         <p>평점: {{ moviedetail?.vote_average }} / 10.0</p>
         <p>참여인원: {{ moviedetail?.vote_count }}명</p>
         <p>출시일자: {{ moviedetail?.release_date }}</p>
-        <p>{{ this.moviedetail?.like_users.length }}</p>
         <button  @click="toggleFavorite" >
       {{likebt}}
       </button>
