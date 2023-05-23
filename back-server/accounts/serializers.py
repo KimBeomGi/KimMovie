@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import User
+# from movies.models import Movie
 
 class FollowSerializer(serializers.ModelSerializer):
     followings_count = serializers.SerializerMethodField()
@@ -29,6 +30,8 @@ class CustomUserSerializer(serializers.ModelSerializer):
     followers_count = serializers.SerializerMethodField()
     followings_name = serializers.SerializerMethodField()
     followers_name = serializers.SerializerMethodField()
+    idealmovie_name = serializers.SerializerMethodField()
+    like_movies_name = serializers.SerializerMethodField()
     
     def get_followings_count(self, obj):
         return obj.followings.count()
@@ -42,6 +45,12 @@ class CustomUserSerializer(serializers.ModelSerializer):
     def get_followers_name(self, obj):
         return [user.username for user in obj.followers.all()]
     
+    def get_idealmovie_name(self, obj):
+        return [movie.title for movie in obj.idealmovie.all()]
+
+    def get_like_movies_name(self, obj):
+        return [movie.title for movie in obj.like_movies.all()]
+    
     class Meta:
         model = User
         fields = ('id', 'password', 'last_login', 'is_superuser', 
@@ -50,4 +59,6 @@ class CustomUserSerializer(serializers.ModelSerializer):
                   'exp', 'point', 'grade',
                   'groups', 'user_permissions',
                   'followings', 'followers', 'followings_name', 'followers_name',
-                  'followings_count', 'followers_count', 'idealmovie',)     # 'idealmovie', 추가함
+                  'followings_count', 'followers_count',
+                  'idealmovie','idealmovie_name',
+                  'like_movies', 'like_movies_name',)     # 'idealmovie', 추가함

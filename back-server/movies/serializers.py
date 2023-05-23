@@ -7,11 +7,17 @@ import json
 # 영화 리뷰 게시판
 # 영화 리뷰 목록
 class MovieListSerializer(serializers.ModelSerializer):
-    # username = serializers.CharField(source='user.username', read_only=True)
+    user_id = serializers.SerializerMethodField()
+
+    def get_user_id(self, obj):
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            return request.user.id
+        return None
 
     class Meta:
         model = Movie
-        fields = ('id', 'title', 'overview','backdrop_path','poster_path', 'key')
+        fields = ('user_id', 'id', 'title', 'overview','backdrop_path','poster_path', 'key')
         # fields = ('id', 'title', 'content', 'user', 'username')
 
 class MovieSerializer(serializers.ModelSerializer):

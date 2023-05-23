@@ -91,12 +91,14 @@ def movie_list(request):
                         break
                 if matched:
                     filtered_movies.append(movie)
-            serializer = MovieListSerializer(filtered_movies, many=True)
+            # serializer = MovieListSerializer(filtered_movies, many=True)
+            serializer = MovieListSerializer(filtered_movies, context={'request': request}, many=True)
             return Response(serializer.data)
         else:
             movies = get_list_or_404(Movie)
             random.shuffle(movies)
-            serializer = MovieListSerializer(movies, many=True)
+            # serializer = MovieListSerializer(movies, many=True)
+            serializer = MovieListSerializer(movies, context={'request': request}, many=True)
             return Response(serializer.data)
     return Response(status=status.HTTP_400_BAD_REQUEST)
 
@@ -195,7 +197,7 @@ def recommend(request):
         serializer = MovieListSerializer(movies_recommend, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-# # user맞춤형 영화 추천 기능
+# # user맞춤형 영화 추천 기능(이상형 월드컵에 맞춰서)
 @api_view(['GET'])
 def recommend_custom(request):
     if request.method == 'GET':
@@ -233,6 +235,16 @@ def recommend_custom(request):
         return Response(serializer.data, status=status.HTTP_200_OK)
     return Response(status=status.HTTP_400_BAD_REQUEST)
     
+
+# # user맞춤형 영화 추천 기능(좋아요 기능에 맞춰서)
+# api_view(['GET'])
+# def recommend_custom(request):
+#     if request.method == 'GET':
+#         if request.user.is_authenticated:
+#             if request.user.idealmovie.exists():
+    
+    
+
 ######################
 # 영화 이상형 월드컵 기능
 
