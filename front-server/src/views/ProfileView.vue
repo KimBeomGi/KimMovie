@@ -1,7 +1,7 @@
 <template>
   <div class="profile-container" style="color : black;">
     <h1>프로필</h1>
-    <div class="profile-info">
+    <div class="profile-info" style="text-align: start;">
       <p>{{ isSuperuserText }}</p>
       <p>이름: {{ username }}</p>
       <p>가입날짜: {{ date_joined }}</p>
@@ -17,13 +17,14 @@
       <p>경험치: {{ exp }} EXP</p>
       <p>포인트: {{ point }} P</p>
       <p>그룹: {{ groups }}</p>
-      <button @click="followUser" class="follow-button">팔로우</button>
+      <button @click="followUser" class="follow-button">{{fbbutton}}</button>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import moment from 'moment'
 
 export default {
   name: 'ProfileView',
@@ -42,6 +43,7 @@ export default {
       is_superuser: '',
       point: '',
       username: '',
+      fb : ''
     }
   },
   created() {
@@ -54,6 +56,13 @@ export default {
       } else {
         return null;
       }
+    },
+    fbbutton(){
+      if(this.fb){
+        return '언팔로우'
+      }else{
+        return '팔로우'
+      }
     }
   },
   methods: {
@@ -64,9 +73,9 @@ export default {
         headers: this.$store.getters.authHeader,
       })
         .then((res) => {
-          console.log(this.$route.params.id)
-          console.log(res.data)
-          this.date_joined = res.data.date_joined
+          // console.log(this.$route.params.id)
+          // console.log(res.data)
+          this.date_joined = this.date_joined = moment(res.data.date_joined).format('YYYY년 MM월 DD일');
           this.exp = res.data.exp
           this.followers = res.data.followers
           this.followers_count = res.data.followers_count
@@ -79,6 +88,7 @@ export default {
           this.is_superuser = res.data.is_superuser
           this.point = res.data.point
           this.username = res.data.username
+          this.fb = res.data.is_follow
         })
         .catch((err) => {
           console.log(err)
@@ -91,11 +101,13 @@ export default {
         headers: this.$store.getters.authHeader,
       })
         .then((res) => {
-          console.log(res.data)
+          // console.log(res.data)
           if (res.data.is_follow){
             alert('팔로우 하였습니다.');
+            this.fb = true
           }else{
-            alert('언팔로우 하였습니다..');
+            alert('언팔로우 하였습니다.');
+            this.fb = false
           }
           
           this.followers = res.data.followers;
@@ -147,7 +159,7 @@ h1 {
   border-radius: 4px;
   cursor: pointer;
   margin-top: 20px;
-  width: 100px;
+  width: 120px;
 }
 
 .follow-button:hover {

@@ -17,7 +17,7 @@
       <button @click="toggleLike" :class="{'liked': article?.liked}" class="like-button">
         좋아요
       </button>
-      <span class="like-count">{{ articleID }}</span>
+      <span class="like-count">{{ like_users_num}}</span>
     </div>
     <hr>
     <CommentCreate :articleID="article?.id"/>
@@ -39,16 +39,15 @@ export default {
   data() {
     return {
       article: null,
-      likeCount: ''
+      likeCount: '',
+      like_users_num : ''
     }
   },  
-  computed:{
-    articleID(){
-      return this.article?.like_users.length
-    },
-  },
+
   created() {
     this.getArticleDetail()
+    this.like_users_num = this.article?.like_users.length
+
   },
   methods: {
     getArticleDetail() {
@@ -59,6 +58,8 @@ export default {
       })
         .then((res) => {
           this.article = res.data
+          this.like_users_num = res.data.like_users.length
+          console.log(res.data)
         })
         .catch((err) => {
           console.log(err)
@@ -107,7 +108,7 @@ export default {
         .then((res) => {
           // this.$router.push({name:'CommunityView'})
           // this.$router.go(-1)
-          console.log(res.data)
+          this.like_users_num = res.data.like_users_num
         })
         .catch((err) => {
           console.log(err)

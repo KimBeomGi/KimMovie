@@ -2,64 +2,80 @@
   <div class="profile-container" style="color : black;">
     <h1>프로필</h1>
     <div class="profile-info">
+      <p>{{ isSuperuserText }}</p>
+      <p>이름: {{ username }}</p>
       <p>가입날짜: {{ date_joined }}</p>
-      <p>경험치: {{ exp }}</p>
-      <p>팔로워: {{ followers }}</p>
-      <p>팔로워 수: {{ followers_count }}</p>
-      <p>팔로워 이름: {{ followers_name }}</p>
-      <p>팔로잉: {{ followings }}</p>
-      <p>팔로잉 수: {{ followings_count }}</p>
-      <p>팔로잉 이름: {{ followings_name }}</p>
+      
+      <!-- <p>팔로워: {{ followers }}</p> -->
+      <p>팔로워 수 : {{ followers_count }}명</p>
+      <p>나를 팔로워 한 사람 : {{ followers_name? followers_name.join(' ') : '' }}</p>
+      <!-- <p>팔로잉: {{ followings }}</p> -->
+      <p>팔로잉 수 : {{ followings_count }}명</p>
+      <p>나를 팔로잉 한 사람 : {{ followings_name? followings_name.join(' ') : '' }}</p>
       <p>등급: {{ grade }}</p>
+      
+      <p>경험치: {{ exp }} EXP</p>
+      <p>포인트: {{ point }} P</p>
       <p>그룹: {{ groups }}</p>
-      <p>관리자 권한: {{ is_superuser }}</p>
-      <p>포인트: {{ point }}</p>
-      <p>유저명: {{ username }}</p>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-export default {
-  name: 'MyProfileView',
-  data() {
-      return {
-          date_joined : '',
-          email : '',
-          exp : '',
-          first_name : '',
-          followers : '',
-          followers_count : '',
-          followers_name : '',
-          followings : '',
-          followings_count : '',
-          followings_name : '',
-          grade : '',
-          groups : '',
-          is_superuser : '',
-          point : '',
-          username : '',
-      }
+import moment from 'moment'
 
+export default {
+  name: 'ProfileView',
+  data() {
+    return {
+      date_joined: '',
+      exp: '',
+      followers: '',
+      followers_count: '',
+      followers_name: null,
+      followings: '',
+      followings_count: '',
+      followings_name: '',
+      grade: '',
+      groups: '',
+      is_superuser: '',
+      point: '',
+      username: '',
+      fb : ''
+    }
   },
-  created(){
+  created() {
     this.Profile()
   },
-  methods:{
-    Profile(){
+  computed: {
+    isSuperuserText() {
+      if (this.is_superuser === true) {
+        return '관리자';
+      } else {
+        return null;
+      }
+    },
+    fbbutton(){
+      if(this.fb){
+        return '언팔로우'
+      }else{
+        return '팔로우'
+      }
+    }
+  },
+  methods: {
+    Profile() {
       axios({
         method: 'get',
-        url: 'http://localhost:8000/accounts/api/v1/profile/',
+        url: `http://localhost:8000/accounts/api/v1/profile/`,
         headers: this.$store.getters.authHeader,
       })
         .then((res) => {
           console.log(this.$route.params.id)
           console.log(res.data)
-          this.date_joined = res.data.date_joined
-          this.email = res.data.email
+          this.date_joined = this.date_joined = moment(res.data.date_joined).format('YYYY년 MM월 DD일');
           this.exp = res.data.exp
-          this.first_name = res.data.first_name
           this.followers = res.data.followers
           this.followers_count = res.data.followers_count
           this.followers_name = res.data.followers_name
@@ -71,12 +87,14 @@ export default {
           this.is_superuser = res.data.is_superuser
           this.point = res.data.point
           this.username = res.data.username
+          this.fb = res.data.is_follow
         })
         .catch((err) => {
           console.log(err)
         })
     },
-  }
+    
+  },
 }
 </script>
 
@@ -104,6 +122,24 @@ h1 {
   color: #333;
 }
 
+.follow-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 120px;
+}
+
+.follow-button:hover {
+  background-color: #0056b3;
+}
 /* 추가적인 스타일링을 원하는 경우 여기에 작성하세요 */
 
 </style>
