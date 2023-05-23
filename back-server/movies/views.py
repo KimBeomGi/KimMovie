@@ -170,15 +170,23 @@ def get_genre(request):
 def movie_like(request, movie_pk):
     # movie = get_object_or_404(Movie, pk=request.POST.get('movie_pk'))
     movie = get_object_or_404(Movie, pk=movie_pk)
-    is_liked = movie.like_users.filter(id = request.user.id).exists()
+    user = request.user
+    is_liked = movie.like_users.filter(id = user.id).exists()
 
     if is_liked :
         movie.like_users.remove(request.user)
+        is_liked = False
     else:
         movie.like_users.add(request.user)
-    
+        is_liked = True
+    like_users_num = movie.like_users.count()
+    context = {
+        'like_users_num':like_users_num,
+        'is_liked': is_liked,
+        'movie_title': movie.title
+    }
     # return Response({'status': 'success', 'message': 'Liked status toggled successfully.'})
-    return Response(status=status.HTTP_200_OK)
+    return Response(context, status=status.HTTP_200_OK)
 
 ########################
 # 영화 추천
@@ -232,13 +240,42 @@ def recommend_custom(request):
     return Response(status=status.HTTP_400_BAD_REQUEST)
     
 
-# # user맞춤형 영화 추천 기능(좋아요 기능에 맞춰서)
-# api_view(['GET'])
-# def recommend_custom(request):
-#     if request.method == 'GET':
-#         if request.user.is_authenticated:
-#             if request.user.like_movies.exists():
-    
+# user맞춤형 영화 추천 기능(좋아요 기능에 맞춰서)
+@api_view(['GET'])
+def recommend_custom2(request):
+    if request.method == 'GET':
+        if request.user.is_authenticated:
+            if request.user.like_movies.exists():
+                genres_all = []
+                for movie in request.user.like_movies.all():
+                    categories = movie.genres.all()
+                    genres_all.extend(categories)
+                from collections import Counter
+                genre_counts = Counter(genres_all)
+                if len(genre_counts) > 0:
+                    sorted_counts = sorted(genre_counts.items(), key=lambda x: x[1], reverse=True)
+                    result = {genre.id: count for genre, count in sorted_counts}
+                    max_genre_id = list(result.keys())[0]
+                    genre = Genre.objects.get(pk=max_genre_id)
+                    movies = genre.movie_set.exclude(pk__in=request.user.like_movies.all())  # 좋아요한 영화는 제외
+                    movies = list(movies)
+                    if len(movies) >= 60:
+                        movies = random.sample(movies, 60)
+                    elif len(movies) < 60:
+                        need_num = 60 - len(movies)
+                        excluded_genre = Genre.objects.get(pk=max_genre_id)
+                        movies_filtered = Movie.objects.exclude(genres=excluded_genre).exclude(pk__in=request.user.like_movies.all())  # 좋아요한 영화는 제외
+                        sample_movies = random.sample(list(movies_filtered), need_num)
+                        random.shuffle(movies)
+                        movies += sample_movies
+                    serializer = MovieSerializer(movies, many=True)
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+        # 좋아요한 영화가 없거나 로그인이 안되어 있을 경우, 아무 영화나 60개 추천
+        movies = get_list_or_404(Movie)
+        movies_recommend = random.sample(movies, 60)
+        serializer = MovieSerializer(movies_recommend, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response(status=status.HTTP_400_BAD_REQUEST)
     
 
 ######################

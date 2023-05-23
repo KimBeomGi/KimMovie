@@ -49,8 +49,32 @@ def review_detail(request, review_pk):
 
     if request.method == 'GET':
         serializer = ReviewSerializer(review)
-        print(serializer.data)
-        return Response(serializer.data)
+        
+        user = request.user
+        if review.like_users.filter(pk=user.pk).exists():
+            # review.like_users.remove(user)
+            is_liked = True
+        else:
+            # review.like_users.add(user)
+            is_liked = False
+        
+        
+        if request.user == review.user:
+            same_user = True
+        else:
+            same_user = False
+        # # print(serializer.data)
+        # context = {
+        #     'same_user' : same_user
+        # }
+        # context.update(serializer.data)
+        # return Response(context)
+        data = serializer.data
+        data['same_user'] = request.user == review.user
+        data['is_liked'] = is_liked
+        return Response(data)
+
+            
     
     elif request.method == 'DELETE':
         if request.user == review.user:
