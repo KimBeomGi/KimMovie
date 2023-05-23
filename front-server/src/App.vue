@@ -40,7 +40,7 @@
   v-model.trim="search"/>
 </li>
       <!-- 프로필 버튼 -->
-        <li @click.prevent="ProfileView" class="nav-item active">
+        <li @click.prevent="MyProfileView" class="nav-item active">
           <a class="nav-link" href="">프로필 <span class="sr-only"></span></a>
         </li>    
         </ul>
@@ -83,9 +83,9 @@ export default {
       if (this.$route.name !== 'SignUpView') {
       this.$router.push({ name: 'SignUpView' }); // 회원가입 라우터링크로 이동
     }},
-    ProfileView() {
-      if (this.$route.name !== 'ProfileView') {
-      this.$router.push({ name: 'ProfileView' }); // 회원가입 라우터링크로 이동
+    MyProfileView() {
+      if (this.$route.name !== 'MyProfileView') {
+      this.$router.push({ name: 'MyProfileView' }); // 회원가입 라우터링크로 이동
     }},
     
     searchMovies(){

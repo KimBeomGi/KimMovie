@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '@/views/HomeView'
 import ProfileView from '@/views/ProfileView'
+import MyProfileView from '@/views/MyProfileView'
 import SearchMoviesView from '@/views/SearchMoviesView'
 import MovieDetailView from '@/views/MovieDetailView'
 import CommunityView from '@/views/CommunityView'
@@ -92,6 +93,11 @@ const routes = [
     component: ProfileView
   },
   {
+    path: '/MyProfileView',
+    name: 'MyProfileView',
+    component: MyProfileView
+  },
+  {
     path: '/moviedetail/:id',
     name: 'MovieDetailView',
     component: MovieDetailView
@@ -121,7 +127,7 @@ router.beforeEach((to, from, next) => {
   const isLoggedIn = store.getters.isLogin // 로그인 됨
   // const isLoggedIn = false // 로그인 안됨
   // 로그인이 필요한 페이지 지정
-  const authPages = ['LogOutView','ArticleDetailView','CreateView','MovieDetailView']
+  const authPages = ['LogOutView','ArticleDetailView','CreateView','MovieDetailView','MyProfileView']
   // 비로그인이 필요한 페이지 지정
   const notauthPages = ['LogInView', 'SignUpView']
   // const allowAuthPages = ['login']
