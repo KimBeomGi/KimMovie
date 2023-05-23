@@ -44,13 +44,15 @@ def follow(request, user_pk):
                 person.followers.remove(request.user)
             else:
                 person.followers.add(request.user)
-            serializer = FollowSerializer(person)
-            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+            serializer = FollowSerializer(person, context={'request':request})
+            data = serializer.data
+            data['is_follow'] = request.user in person.followers.all()
+            # return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+            return Response(data, status=status.HTTP_202_ACCEPTED)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
     else:
         return Response(status=status.HTTP_401_UNAUTHORIZED)
-    
 
 
 @api_view(['POST'])
