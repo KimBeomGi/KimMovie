@@ -18,6 +18,7 @@ urlpatterns = [
     ###### 영화추천
     path('recommend/', views.recommend),                    # 영화 추천방식
     path('recommend_custom/', views.recommend_custom),      # 영화 추천방식
+    path('recommend_custom2/', views.recommend_custom2),      # 영화 추천방식
     ###### 영화관련 게임
     path('ideal_movie/', views.ideal_movie),                # 이상영화 받기
     # path('ideal_movie/<int:movie_pk>/', views.win_ideal_movie),
