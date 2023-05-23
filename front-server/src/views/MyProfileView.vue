@@ -4,6 +4,7 @@
     <div class="profile-info">
       <button @click="put_user" class="edit-button">회원정보 수정</button>
       <button @click="put_password" class="edit-button">비밀번호 변경</button>
+      <button @click="put_delete" class="edit-button">회원 탈퇴</button>
       <p>{{ isSuperuserText }}</p>
       <p>닉네임 : {{ username }}</p>
       <p>이메일 : {{ email }}</p>
@@ -178,6 +179,23 @@ export default {
     },
     cancelEdit_password(){
       this.isEditing_password = false
+    },
+    put_delete(){
+      axios({
+        method: 'post',
+        url: 'http://localhost:8000/accounts/api/v1/unregister/',
+        headers: this.$store.getters.authHeader,
+      })
+        .then((res) => {
+          console.log(res.data)
+          alert('회원 탈퇴에 성공했습니다.')
+          this.$store.state.token = null
+          this.$router.push({ name: 'HomeView' })
+    })
+    .catch((err)=>{
+          console.log(err)
+          alert('회원 탈퇴에 실패했습니다.')
+        })
     }
  
 }}
