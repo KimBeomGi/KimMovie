@@ -7,6 +7,13 @@ class FollowSerializer(serializers.ModelSerializer):
     followers_count = serializers.SerializerMethodField()
     followings_name = serializers.SerializerMethodField()
     followers_name = serializers.SerializerMethodField()
+    is_follow = serializers.SerializerMethodField()
+
+    def get_is_follow(self, obj):
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            return request.user in obj.followers.all()
+        return False
     
     def get_followings_count(self, obj):
         return obj.followings.count()
@@ -22,7 +29,10 @@ class FollowSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
-        fields = ('followings_count', 'followers_count', 'followings', 'followers', 'followings_name', 'followers_name')
+        fields = ('followings_count', 'followers_count', 
+                  'followings', 'followers', 
+                  'followings_name', 'followers_name',
+                  'is_follow',)
         
 
 class CustomUserSerializer(serializers.ModelSerializer):
@@ -70,4 +80,4 @@ class CustomUserSerializer(serializers.ModelSerializer):
                   'followings', 'followers', 'followings_name', 'followers_name',
                   'followings_count', 'followers_count',
                   'idealmovie','idealmovie_name',
-                  'like_movies', 'like_movies_name',)     # 'idealmovie', 추가함
+                  'like_movies', 'like_movies_name',)

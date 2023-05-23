@@ -192,7 +192,8 @@ def anonyarticle_detail(request, anonyarticle_pk):
     
     elif request.method == 'DELETE':
         password = request.data.get('password')
-        if password and anonyarticle.password == password:
+        # if password and anonyarticle.password == password:
+        if anonyarticle.check_password(password):
             anonyarticle.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         return Response(status=status.HTTP_400_BAD_REQUEST)
@@ -200,7 +201,8 @@ def anonyarticle_detail(request, anonyarticle_pk):
     elif request.method == 'PUT':
         # anonyarticle의 비밀번호가 입력하는 비밀번호와 같을때만 작동하게 하기!
         password = request.data.get('password')
-        if password and anonyarticle.password == password:
+        # if password and anonyarticle.password == password:
+        if anonyarticle.check_password(password):
             serializer = AnonyarticleSerializer(anonyarticle, data=request.data)
             if serializer.is_valid(raise_exception=True):
                 serializer.save()
