@@ -91,18 +91,14 @@ def movie_list(request):
                         break
                 if matched:
                     filtered_movies.append(movie)
-            # serializer = MovieListSerializer(filtered_movies, many=True)
-            serializer = MovieListSerializer(filtered_movies, context={'request': request}, many=True)
+            serializer = MovieListSerializer(filtered_movies, many=True)
             return Response(serializer.data)
         else:
             movies = get_list_or_404(Movie)
             random.shuffle(movies)
-            # serializer = MovieListSerializer(movies, many=True)
-            serializer = MovieListSerializer(movies, context={'request': request}, many=True)
+            serializer = MovieListSerializer(movies, many=True)
             return Response(serializer.data)
     return Response(status=status.HTTP_400_BAD_REQUEST)
-
-
 
 
 # 영화 전체 데이터 평점 순 정렬

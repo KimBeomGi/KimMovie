@@ -79,3 +79,16 @@ def profile(request, user_pk):
         return Response(serializer.data, status=status.HTTP_200_OK)
     else:
         return Response(status=status.HTTP_401_UNAUTHORIZED)
+    
+    
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def myprofile(request):
+    if request.user.is_authenticated:
+        # person = get_user_model().objects.get(pk=user_pk)
+        user = request.user
+        person = get_object_or_404(get_user_model(), pk=user.pk)
+        serializer = CustomUserSerializer(person)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    else:
+        return Response(status=status.HTTP_401_UNAUTHORIZED)

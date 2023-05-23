@@ -26,7 +26,6 @@ class User(AbstractUser):
     
     # exp에 따른 등급 변환을 위한 부분
     # def save(self, *args, **kwargs):
-        # exp에 따라 등급을 설정
         if self.exp > 2000:
             self.grade = "플래티넘"
         elif self.exp > 1000:
