@@ -132,8 +132,11 @@ def review_like(request, review_pk):
         # is_liked = True
     
     review.like_users.count()
-    
-    return Response(status=status.HTTP_200_OK)
+    like_users_num = review.like_users.count()
+    context = {
+        'like_users_num':like_users_num
+    }
+    return Response(context, status=status.HTTP_200_OK)
 
 # #######################
 # # review 게시글의 댓글 좋아요 하기

@@ -237,7 +237,7 @@ def recommend_custom(request):
 # def recommend_custom(request):
 #     if request.method == 'GET':
 #         if request.user.is_authenticated:
-#             if request.user.idealmovie.exists():
+#             if request.user.like_movies.exists():
     
     
 
