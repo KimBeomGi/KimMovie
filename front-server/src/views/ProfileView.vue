@@ -2,19 +2,21 @@
   <div class="profile-container" style="color : black;">
     <h1>프로필</h1>
     <div class="profile-info">
+      <p>{{ isSuperuserText }}</p>
+      <p>이름: {{ username }}</p>
       <p>가입날짜: {{ date_joined }}</p>
-      <p>경험치: {{ exp }}</p>
-      <p>팔로워: {{ followers }}</p>
-      <p>팔로워 수: {{ followers_count }}</p>
-      <p>팔로워 이름: {{ followers_name }}</p>
-      <p>팔로잉: {{ followings }}</p>
-      <p>팔로잉 수: {{ followings_count }}</p>
-      <p>팔로잉 이름: {{ followings_name }}</p>
+      
+      <!-- <p>팔로워: {{ followers }}</p> -->
+      <p>팔로워 : {{ followers_count }}명</p>
+      <p>{{ followers_name.join(' ') }}</p>
+      <!-- <p>팔로잉: {{ followings }}</p> -->
+      <p>팔로잉 : {{ followings_count }}명</p>
+      <p>{{ followings_name.join(' ') }}</p>
       <p>등급: {{ grade }}</p>
+      
+      <p>경험치: {{ exp }} EXP</p>
+      <p>포인트: {{ point }} P</p>
       <p>그룹: {{ groups }}</p>
-      <p>관리자 권한: {{ is_superuser }}</p>
-      <p>포인트: {{ point }}</p>
-      <p>유저명: {{ username }}</p>
       <button @click="followUser" class="follow-button">{{ isFollowing ? '언팔로우' : '팔로우' }}</button>
     </div>
   </div>
@@ -44,6 +46,15 @@ export default {
   },
   created() {
     this.Profile()
+  },
+  computed: {
+    isSuperuserText() {
+      if (this.is_superuser === true) {
+        return '관리자';
+      } else {
+        return null;
+      }
+    }
   },
   methods: {
     Profile() {
@@ -82,6 +93,10 @@ export default {
         .then((res) => {
           if (res.data.followers)
           alert('팔로우 하였습니다.');
+          this.followers = res.data.followers;
+          this.followers_count = res.data.followers_count;
+          this.followers_name = res.data.followers_name;
+          
         })
         .catch((err) => {
           console.log(err);
