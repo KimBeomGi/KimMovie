@@ -47,6 +47,7 @@ export default {
     jQuery(function () {
       // eslint-disable-next-line
       jQuery("#Live").YTPlayer();
+      
     });
     this.user = JSON.parse(localStorage.getItem("currentUser"));
   },

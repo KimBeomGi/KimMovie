@@ -3,13 +3,13 @@
     <h1 class="article-title">{{ article?.movie_title }}</h1>
     <hr>
     <p class="article-title2">{{ article?.title }}</p>
-    <span class="article-info">{{ article?.username }} | </span>
+    <button @click="Go_Profile" class="article-info">{{ article?.username }} | </button>
     <span class="article-info">{{ formatDateTime(article?.created_at) }}</span>
     <div class="article-content">
       <p>{{ article?.content }}</p>
     </div>
     <div style="display: flex; flex-direction: row; align-items: center;">
-    <button @click="putArticle" class="put-button">수정</button>
+    <button  @click="putArticle" class="put-button">수정</button>
     <button @click="deleteArticle" class="delete-button">삭제</button>
     </div>
     <hr>
@@ -101,7 +101,7 @@ export default {
   toggleLike() {
       axios({
         method: 'post',
-        url: `http://localhost:8000/communities/${this.article.id}/like/`,
+        url: `http://localhost:8000/communities/${this.article}/like/`,
         headers: this.$store.getters.authHeader,
       })
         .then(() => {
@@ -111,6 +111,9 @@ export default {
         .catch((err) => {
           console.log(err)
         })
+    },
+    Go_Profile(){
+    this.$router.push({name:'ProfileView', params:{id : this.article?.user}})
     }
 }}
 </script>
