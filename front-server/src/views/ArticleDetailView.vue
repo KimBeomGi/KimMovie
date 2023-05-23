@@ -4,7 +4,7 @@
     <hr>
     <p class="article-title2">{{ article?.title }}</p>
     <button @click="Go_Profile" class="article-info profile-button">{{ article?.username }}</button>
-    <span class="article-info">{{ formatDateTime(article?.created_at) }}</span>
+    <span class="article-info">{{ date }}</span>
     <div class="article-content">
       <p>{{ article?.content }}</p>
     </div>
@@ -15,7 +15,7 @@
     <hr>
     <div style="display: flex; flex-direction: row; align-items: center;">
       <button @click="toggleLike" :class="{'liked': article?.liked}" class="like-button">
-        좋아요
+        {{likebt}}
       </button>
       <span class="like-count">{{ like_users_num}}</span>
     </div>
@@ -29,6 +29,7 @@
 import CommentView from '@/components/CommentView'
 import CommentCreate from '@/components/CommentCreate'
 import axios from 'axios'
+import moment from 'moment'
 
 export default {
   name: 'ArticleDetailView',
@@ -40,7 +41,9 @@ export default {
     return {
       article: null,
       likeCount: '',
-      like_users_num : ''
+      like_users_num : '',
+      date : '',
+      like : true,
     }
   },  
 
@@ -48,6 +51,15 @@ export default {
     this.getArticleDetail()
     this.like_users_num = this.article?.like_users.length
 
+  },
+  computed:{
+    likebt(){
+      if (this.like){
+        return '취소'
+      }else{
+        return '좋아요'
+      }
+    }
   },
   methods: {
     getArticleDetail() {
@@ -57,9 +69,11 @@ export default {
         headers: this.$store.getters.authHeader,
       })
         .then((res) => {
+          // console.log(res.data)
           this.article = res.data
           this.like_users_num = res.data.like_users.length
-          console.log(res.data)
+          this.date = moment(res.data.article?.created_at).format('YYYY년 MM월 DD일')
+          this.like = res.data.is_liked
         })
         .catch((err) => {
           console.log(err)
@@ -109,6 +123,8 @@ export default {
           // this.$router.push({name:'CommunityView'})
           // this.$router.go(-1)
           this.like_users_num = res.data.like_users_num
+          this.like = res.data.is_liked
+          // console.log(res.data)
         })
         .catch((err) => {
           console.log(err)

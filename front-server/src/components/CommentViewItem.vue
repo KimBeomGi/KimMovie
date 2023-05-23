@@ -2,7 +2,7 @@
   <div class="comment-item">
     <p class="comment-user">{{ comment.username }}</p>
     <!-- <p class="comment-user">작성자: {{ comment.user }}</p> -->
-    <p class="comment-date">{{ formatDateTime(comment.created_at) }}</p>
+    <p class="comment-date">{{ date }}</p>
     <p class="comment-content">{{ comment123 }}</p>
     <div class="button-container">
       <button @click="putComment" class="put-button">수정</button>
@@ -19,6 +19,7 @@
   
 <script>
 import axios from 'axios'
+import moment from 'moment'
   export default {
     name: 'CommentViewItem',
     props: {
@@ -29,7 +30,8 @@ import axios from 'axios'
       return{
         isEditing: false, // 수정 모달 표시 여부를 저장하는 데이터 속성
       updatedContent: '', // 수정된 내용을 저장하는 데이터 속성
-      comment123 : ''
+      comment123 : '',
+      date : moment(this.comment.created_at).format('YYYY년 MM월 DD일')
       }
     },
     created(){
