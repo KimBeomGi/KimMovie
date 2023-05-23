@@ -149,8 +149,15 @@ def movie_detail(request, movie_pk):
 
     if request.method == 'GET':
         serializer = MovieSerializer(movie)
+        user = request.user
+        if movie.like_users.filter(pk=user.pk).exists():
+            is_liked = True
+        else:
+            is_liked = False
         # print(serializer.data)
-        return Response(serializer.data)
+        data = serializer.data
+        data['is_liked'] = is_liked
+        return Response(data)
 
 # 장르 데이터
 @api_view(['GET'])
@@ -268,12 +275,12 @@ def recommend_custom2(request):
                         sample_movies = random.sample(list(movies_filtered), need_num)
                         random.shuffle(movies)
                         movies += sample_movies
-                    serializer = MovieSerializer(movies, many=True)
+                    serializer = MovieListSerializer(movies, many=True)
                     return Response(serializer.data, status=status.HTTP_200_OK)
         # 좋아요한 영화가 없거나 로그인이 안되어 있을 경우, 아무 영화나 60개 추천
         movies = get_list_or_404(Movie)
         movies_recommend = random.sample(movies, 60)
-        serializer = MovieSerializer(movies_recommend, many=True)
+        serializer = MovieListSerializer(movies_recommend, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     return Response(status=status.HTTP_400_BAD_REQUEST)
     
