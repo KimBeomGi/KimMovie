@@ -50,7 +50,6 @@ export default {
 
   created() {
     this.getArticleDetail()
-    this.like_users_num = this.article?.like_users.length
 
   },
   computed:{

@@ -25,9 +25,11 @@
         <p>평점: {{ moviedetail?.vote_average }} / 10.0</p>
         <p>참여인원: {{ moviedetail?.vote_count }}명</p>
         <p>출시일자: {{ moviedetail?.release_date }}</p>
+        <p>{{ this.moviedetail?.like_users.length }}</p>
         <button  @click="toggleFavorite" >
       {{likebt}}
       </button>
+      <span class="like-count">{{ like_users_num}}</span>
         <p></p>
         <router-link :to="{ name: 'HomeView' }" class="back-link">
           [메인으로]
@@ -58,7 +60,8 @@ export default {
       showFullOverview: false,
       maxOverviewLength: 200,
       poster : '',
-      like : true
+      like : '',
+      like_users_num : ''
     };
   },
   computed: {
@@ -87,6 +90,7 @@ export default {
   created() {
     this.getMovieDetail();
     this.scrollToTop()
+
   },
   methods: {
     getMovieDetail() {
@@ -99,6 +103,9 @@ export default {
           this.moviedetail = res.data;
           this.moviekey = `https://www.youtube.com/embed/${res.data.key}`;
           this.poster = 'https://image.tmdb.org/t/p/w500' + res.data.poster_path;
+          this.like_users_num = res.data.like_users.length
+          this.like = res.data.is_liked
+          // console.log(res)
         })
         .catch((err) => {
           // alert('에러')
@@ -118,9 +125,10 @@ export default {
         .then((res) => {
           // this.$router.push({name:'CommunityView'})
           // this.$router.go(-1)
+          this.like_users_num = res.data.like_users_num
           this.like = res.data.is_liked
-          console.log(res.data.is_liked)
-          // console.log(res.data)
+          // console.log(res.data.is_liked)
+          console.log(res.data)
         })
         .catch((err) => {
           console.log(this.moviedetail?.id)
@@ -210,5 +218,17 @@ button {
   cursor: pointer;
   margin-top: 20px;
   width: 100px;
+}
+
+.like-button:hover {
+  background-color: #0056b3;
+}
+
+.like-count {
+  margin-left: 20px;
+  margin-top: 15px;
+  font-size: 30px;
+  font-weight: bold;
+  color:white
 }
 </style>
