@@ -75,8 +75,11 @@ def profile(request, user_pk):
     if request.user.is_authenticated:
         # person = get_user_model().objects.get(pk=user_pk)
         person = get_object_or_404(get_user_model(), pk=user_pk)
-        serializer = CustomUserSerializer(person)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        serializer = CustomUserSerializer(person, context={'request':request})
+        data = serializer.data
+        data['is_follow'] = request.user in person.followers.all()
+
+        return Response(data, status=status.HTTP_200_OK)
     else:
         return Response(status=status.HTTP_401_UNAUTHORIZED)
     
