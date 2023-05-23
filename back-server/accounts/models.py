@@ -14,9 +14,7 @@ class User(AbstractUser):
     followings = models.ManyToManyField("self", symmetrical=False, related_name='followers')
     grade = models.CharField(max_length=20, default="새싹")  # 등급 필드 추가
     
-    # idealmovie = models.ManyToManyField(Movie, related_name='choiceidealuser',null=True, blank=True)
     idealmovie = models.ManyToManyField(Movie, related_name='choiceidealuser', blank=True)
-    # profile_img = models.CharField(max_length=256, default="")
     
     # superuser는 기본으로 1000000 exp, point 가짐
     def save(self, *args, **kwargs):
