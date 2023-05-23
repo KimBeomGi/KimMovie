@@ -48,6 +48,8 @@
     </div>
   </nav>
     <router-view style="margin-top: 60px;"/>
+    <hr>
+    <p>MADE BY KIMS</p>
   </div>
 </template>
 

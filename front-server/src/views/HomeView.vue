@@ -4,7 +4,9 @@
 <template>
   <div>
     <HeaderMovie/>
+    <RecommendForYou/>
     <PopularMovie/>
+    <GenreMovie/>
   </div>
 </template>
 
@@ -12,11 +14,16 @@
 // HeaderMovie 컴포넌트와 PopularMovie 컴포넌트를 받아온다.
 import HeaderMovie from '@/components/HeaderMovie.vue'
 import PopularMovie from '@/components/PopularMovie.vue'
+import GenreMovie from '@/components/GenreMovie.vue'
+import RecommendForYou from '@/components/RecommendForYou.vue'
+
 export default {
   name: 'HomeView',
   components : {
     HeaderMovie,
-    PopularMovie
+    PopularMovie,
+    GenreMovie,
+    RecommendForYou,
   },
 }
 </script>

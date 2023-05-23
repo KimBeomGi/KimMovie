@@ -134,7 +134,10 @@ def movies_by_genre(request, genre_pk):
     if request.method == 'GET':
         genre = get_object_or_404(Genre, pk=genre_pk)
         movies = list(genre.movie_set.all())
-        random.shuffle(movies)
+        if len(movies) > 60:
+            movies = random.sample(movies, 60)          # 60개의 영화만 선택
+        else:
+            random.shuffle(movies)                      # 영화 리스트를 무작위로 섞음
         serializer = MovieListSerializer(movies, many=True)
         return Response(serializer.data)
     return Response(status=status.HTTP_404_NOT_FOUND)
