@@ -294,7 +294,7 @@ export default new Vuex.Store({
       })
         .then((res) => {
         // console.log(res, context)
-          console.log(res.data)
+          // console.log(res.data)
           context.commit('GET_ANONYMOUSARTICLES', res.data)
           // alert('영화 리뷰들을 확인해보세요!')
         })

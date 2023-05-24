@@ -13,10 +13,10 @@
       <p>팔로잉 수: {{ followings_count }}명</p>
       <p>나를 팔로잉 한 사람: {{ followings_name ? followings_name.join(' ') : '' }}</p>
       <p>등급: {{ grade }}</p>
-
+      <p>좋아요 한 영화 : {{ like_movies_name ? like_movies_name.join(', ') : '' }}</p>
       <p>경험치: {{ exp }} EXP</p>
       <p>포인트: {{ point }} P</p>
-      <p>그룹: {{ groups }}</p>
+
       
       <div class="button-container d-flex justify-content-between">
         <button @click="followUser" class="follow-button">{{ fbbutton }}</button>
@@ -48,7 +48,8 @@ export default {
       is_superuser: '',
       point: '',
       username: '',
-      fb : ''
+      fb : '',
+      like_movies_name : ''
     }
   },
   created() {
@@ -94,6 +95,7 @@ export default {
           this.point = res.data.point
           this.username = res.data.username
           this.fb = res.data.is_follow
+          this.like_movies_name = res.data.like_movies_name
         })
         .catch((err) => {
           console.log(err)

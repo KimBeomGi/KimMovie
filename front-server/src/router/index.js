@@ -139,7 +139,7 @@ router.beforeEach((to, from, next) => {
   const isLoggedIn = store.getters.isLogin // 로그인 됨
   // const isLoggedIn = false // 로그인 안됨
   // 로그인이 필요한 페이지 지정
-  const authPages = ['LogOutView','ArticleDetalView','CreateView','MovieDetailView','MyProfileView','Quiz1View']
+  const authPages = ['LogOutView','ArticleDetalView','CreateView','MovieDetailView','MyProfileView','Quiz1View','Quiz2View']
   // 비로그인이 필요한 페이지 지정
   const notauthPages = ['LogInView', 'SignUpView']
   // const allowAuthPages = ['login']
