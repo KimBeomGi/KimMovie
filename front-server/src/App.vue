@@ -43,6 +43,14 @@
         <li @click.prevent="MyProfileView" class="nav-item active">
           <a class="nav-link" href="">프로필 <span class="sr-only"></span></a>
         </li>    
+      <!-- 퀴즈 버튼 -->
+        <li @click.prevent="Quiz1View" class="nav-item active">
+          <a class="nav-link" href="">퀴즈1 <span class="sr-only"></span></a>
+        </li>    
+      <!-- 퀴즈 버튼 -->
+        <li @click.prevent="Quiz2View" class="nav-item active">
+          <a class="nav-link" href="">퀴즈2 <span class="sr-only"></span></a>
+        </li>    
         </ul>
       </div>
     </div>
@@ -89,6 +97,16 @@ export default {
       if (this.$route.name !== 'MyProfileView') {
       this.$router.push({ name: 'MyProfileView' }); // 회원가입 라우터링크로 이동
     }},
+    Quiz1View() {
+      if (this.$route.name !== 'Quiz1View') {
+        alert('Point 50을 사용하여 3지선다 퀴즈를 푸시겠습니까? 성공하면 100포인트를 얻습니다!')
+      this.$router.push({ name: 'Quiz1View' }); // 회원가입 라우터링크로 이동
+    }},
+    Quiz2View() {
+      if (this.$route.name !== 'Quiz2View') {
+        alert('Point 50을 사용하여 OX 퀴즈를 푸시겠습니까? 성공하면 100포인트를 얻습니다!')
+      this.$router.push({ name: 'Quiz2View' }); // 회원가입 라우터링크로 이동
+    }},
     
     searchMovies(){
       if (this.$route.name !== 'HomeView'){
@@ -102,7 +120,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -17,10 +17,9 @@
       <p>팔로잉 수 : {{ followings_count }}명</p>
       <p>나를 팔로잉 한 사람 : {{ followings_name ? followings_name.join(' ') : '' }}</p>
       <p>등급: {{ grade }}</p>
-      
+      <p>좋아요 한 영화 : {{ like_movies_name ? like_movies_name.join(', ') : '' }}</p>
       <p>경험치: {{ exp }} EXP</p>
       <p>포인트: {{ point }} P</p>
-      <p>그룹: {{ groups }}</p>
     </div>
     <div v-if="isEditing_user" class="modal">
       <!-- 모달 내용을 추가하고 사용자가 수정할 수 있는 입력 필드를 제공합니다. -->
@@ -68,7 +67,8 @@ export default {
       is_superuser: '',
       point: '',
       username: '',
-      fb : ''
+      fb : '',
+      like_movies_name : ''
     }
   },
   created() {
@@ -115,6 +115,7 @@ export default {
           this.username = res.data.username
           this.fb = res.data.is_follow
           this.email = res.data.email
+          this.like_movies_name = res.data.like_movies_name
         })
         .catch((err) => {
           console.log(err)
