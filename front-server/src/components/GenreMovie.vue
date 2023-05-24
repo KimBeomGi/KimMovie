@@ -507,25 +507,8 @@ export default {
   },
   created() {
     ///////////////////////////////////////////////////////////////////////////////
-    this.getGenrecards12()   // 12-모험
-    this.getGenrecards14()   // 14-판타지
-    this.getGenrecards16()   // 16-애니메이션
-    this.getGenrecards18()   // 18-드라마
-    this.getGenrecards27()   // 27-공포
-    this.getGenrecards28()   // 28-액션
-    this.getGenrecards35()   // 35-코미디
-    this.getGenrecards36()   // 36-역사
-    this.getGenrecards37()   // 37-서부
-    this.getGenrecards53()   // 53-스릴러
-    this.getGenrecards80()   // 80-범죄
-    this.getGenrecards99()   // 99-다큐멘터리
-    this.getGenrecards878()  // 878-SF
-    this.getGenrecards9648() // 9648-미스터리
-    this.getGenrecards10402()  // 10402-음악
-    this.getGenrecards10749()  // 10749-로맨스
-    this.getGenrecards10751()  // 10751-가족
-    this.getGenrecards10752()  // 10752-전쟁
-    this.getGenrecards10770()  // 10770-TV 영화
+    this.getGenrecards()
+    
     ///////////////////////////////////////////////////////////////////////////////
   },
   methods: {
@@ -542,80 +525,8 @@ export default {
     },
     ////////////////////////////////////////////////////////////////////////////////
     // 12-모험
-    getGenrecards12() {
-      this.$store.dispatch('getGenrecards12')
-    },
-    // 14-판타지
-    getGenrecards14() {
-      this.$store.dispatch('getGenrecards14')
-    },
-    // 16-애니메이션
-    getGenrecards16() {
-      this.$store.dispatch('getGenrecards16')
-    },
-    // 18-드라마
-    getGenrecards18() {
-      this.$store.dispatch('getGenrecards18')
-    },
-    // 27-공포
-    getGenrecards27() {
-      this.$store.dispatch('getGenrecards27')
-    },
-    // 28-액션
-    getGenrecards28() {
-      this.$store.dispatch('getGenrecards28')
-    },
-    // 35-코미디
-    getGenrecards35() {
-      this.$store.dispatch('getGenrecards35')
-    },
-    // 36-역사
-    getGenrecards36() {
-      this.$store.dispatch('getGenrecards36')
-    },
-    // 37-서부
-    getGenrecards37() {
-      this.$store.dispatch('getGenrecards37')
-    },
-    // 53-스릴러
-    getGenrecards53() {
-      this.$store.dispatch('getGenrecards53')
-    },
-    // 80-범죄
-    getGenrecards80() {
-      this.$store.dispatch('getGenrecards80')
-    },
-    // 99-다큐멘터리
-    getGenrecards99() {
-      this.$store.dispatch('getGenrecards99')
-    },
-    // 878-SF
-    getGenrecards878() {
-      this.$store.dispatch('getGenrecards878')
-    },
-    // 9648-미스터리
-    getGenrecards9648() {
-      this.$store.dispatch('getGenrecards9648')
-    },
-    // 10402-음악
-    getGenrecards10402() {
-      this.$store.dispatch('getGenrecards10402')
-    },
-    // 10749-로맨스
-    getGenrecards10749() {
-      this.$store.dispatch('getGenrecards10749')
-    },
-    // 10751-가족
-    getGenrecards10751() {
-      this.$store.dispatch('getGenrecards10751')
-    },
-    // 10752-전쟁
-    getGenrecards10752() {
-      this.$store.dispatch('getGenrecards10752')
-    },
-    // 10770-TV 영화
-    getGenrecards10770() {
-      this.$store.dispatch('getGenrecards10770')
+    getGenrecards() {
+      this.$store.dispatch('getGenrecards')
     },
     //////////////////////////////////////////////////////////////////////////////////////////
   },

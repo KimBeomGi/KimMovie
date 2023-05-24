@@ -50,6 +50,7 @@ export default new Vuex.Store({
     high_vote_cards: [],  // 평점 높은 영화
     high_pop_cards: [],   // 인기 많은 영화
     latest_cards: [],     // 최신 영화
+    ////////////////////////////////////////
 
   },
   getters: {
@@ -92,77 +93,28 @@ export default new Vuex.Store({
     },
     SET_CURRENT_USER: (state, user) => state.currentUser = user,
     SET_PROFILE: (state, profile) => state.profile = profile,
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //home에서 쓰기위해 GET_GENRECARDS 추가함
-    GET_GENRECARDS12(state,genre_cards12){    // 12-모험
-      state.genre_cards12 = genre_cards12
-    },
-    GET_GENRECARDS14(state,genre_cards14){    // 14-판타지
-      state.genre_cards14 = genre_cards14
-    },
-    GET_GENRECARDS16(state, genre_cards16) {    // 16-애니메이션
-      state.genre_cards16 = genre_cards16
-    },
-    GET_GENRECARDS18(state, genre_cards18) {    // 18-드라마
-      state.genre_cards18 = genre_cards18
-    },
-    GET_GENRECARDS27(state, genre_cards27) {    // 27-공포
-      state.genre_cards27 = genre_cards27
-    },
-    GET_GENRECARDS28(state, genre_cards28) {    // 28-액션
-      state.genre_cards28 = genre_cards28
-    },
-    GET_GENRECARDS35(state, genre_cards35) {    // 35-코미디
-      state.genre_cards35 = genre_cards35
-    },
-    GET_GENRECARDS36(state, genre_cards36) {    // 36-역사
-      state.genre_cards36 = genre_cards36
-    },
-    GET_GENRECARDS37(state, genre_cards37) {    // 37-서부
-      state.genre_cards37 = genre_cards37
-    },
-    GET_GENRECARDS53(state, genre_cards53) {    // 53-스릴러
-      state.genre_cards53 = genre_cards53
-    },
-    GET_GENRECARDS80(state, genre_cards80) {    // 80-범죄
-      state.genre_cards80 = genre_cards80
-    },
-    GET_GENRECARDS99(state, genre_cards99) {    // 99-다큐멘터리
-      state.genre_cards99 = genre_cards99
-    },
-    GET_GENRECARDS878(state, genre_cards878) {    // 878-SF
-      state.genre_cards878 = genre_cards878
-    },
-    GET_GENRECARDS9648(state, genre_cards9648) {    // 9648-미스터리
-      state.genre_cards9648 = genre_cards9648
-    },
-    GET_GENRECARDS10402(state, genre_cards10402) {    // 10402-음악
-      state.genre_cards10402 = genre_cards10402
-    },
-    GET_GENRECARDS10749(state, genre_cards10749) {    // 10749-로맨스
-      state.genre_cards10749 = genre_cards10749
-    },
-    GET_GENRECARDS10751(state, genre_cards10751) {    // 10751-가족
-      state.genre_cards10751 = genre_cards10751
-    },
-    GET_GENRECARDS10752(state, genre_cards10752) {    // 10752-전쟁
-      state.genre_cards10752 = genre_cards10752
-    },
-    GET_GENRECARDS10770(state, genre_cards10770) {    // 10770-TV 영화
-      state.genre_cards10770 = genre_cards10770
-    },
-    ///////////////////////////////////////////////////////////////////////////////////////
-    GET_CARDSCUSTOM(state, cards_custom) {    // 맞춤 추천 영화
-      state.cards_custom = cards_custom
-    },
-    GET_HIGHVOTE(state, high_vote_cards) {       // 평점 높은 영화
-      state.high_vote_cards = high_vote_cards
-    },
-    GET_HIGHPOP(state, high_pop_cards) {        // 인기 많은 영화
-      state.high_pop_cards = high_pop_cards
-    },
-    GET_LATEST(state, latest_cards) {         // 최신 영화
-      state.latest_cards = latest_cards
+
+    ////////////
+    GET_GENRECARDS(state, genre_cards) {
+      state.genre_cards12 = genre_cards[0]              // 12-모험
+      state.genre_cards14 = genre_cards[1]              // 14-판타지
+      state.genre_cards16 = genre_cards[2]              // 16-애니메이션
+      state.genre_cards18 = genre_cards[3]              // 18-드라마
+      state.genre_cards27 = genre_cards[4]              // 27-공포
+      state.genre_cards28 = genre_cards[5]              // 28-액션
+      state.genre_cards35 = genre_cards[6]              // 35-코미디
+      state.genre_cards36 = genre_cards[7]              // 36-역사
+      state.genre_cards37 = genre_cards[8]              // 37-서부
+      state.genre_cards53 = genre_cards[9]              // 53-스릴러
+      state.genre_cards80 = genre_cards[10]             // 80-범죄
+      state.genre_cards99 = genre_cards[11]             // 99-다큐멘터리
+      state.genre_cards878 = genre_cards[12]            // 878-SF
+      state.genre_cards9648 = genre_cards[13]           // 9648-미스터리
+      state.genre_cards10402 = genre_cards[14]          // 10402-음악
+      state.genre_cards10749 = genre_cards[15]          // 10749-로맨스
+      state.genre_cards10751 = genre_cards[16]          // 10751-가족
+      state.genre_cards10752 = genre_cards[17]          // 10752-전쟁
+      state.genre_cards10770 = genre_cards[18]          // 10770-TV 영화
     },
     
   },
@@ -355,268 +307,13 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    ///////////////////////////////////////////////////////////////
-    //home에서 쓰기위해 GET_GENRECARDS 추가함
-    // 12-모험
-    getGenrecards12(context) {
+    getGenrecards(context) {
       axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/api/v1/genre/12/',
+        url: 'http://127.0.0.1:8000/api/v1/genre_all/',
       })
         .then((res) => {
-          // console.log(res.data)
-          context.commit('GET_GENRECARDS12', res.data)
-        })
-        .catch((err) => {
-        console.log(err)
-      })
-    },
-    // 14-판타지
-    getGenrecards14(context) {
-      axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8000/api/v1/genre/14/',
-      })
-        .then((res) => {
-          // console.log(res.data)
-          context.commit('GET_GENRECARDS14', res.data)
-        })
-        .catch((err) => {
-        console.log(err)
-      })
-    },
-    // 16-애니메이션
-    getGenrecards16(context) {
-      axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8000/api/v1/genre/16/',
-      })
-        .then((res) => {
-          // console.log(res.data)
-          context.commit('GET_GENRECARDS16', res.data)
-        })
-        .catch((err) => {
-        console.log(err)
-      })
-    },
-    // 18-드라마
-    getGenrecards18(context) {
-      axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8000/api/v1/genre/18/',
-      })
-        .then((res) => {
-          // console.log(res.data)
-          context.commit('GET_GENRECARDS18', res.data)
-        })
-        .catch((err) => {
-        console.log(err)
-      })
-    },
-    // 27-공포
-    getGenrecards27(context) {
-      axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8000/api/v1/genre/27/',
-      })
-        .then((res) => {
-          // console.log(res.data)
-          context.commit('GET_GENRECARDS27', res.data)
-        })
-        .catch((err) => {
-        console.log(err)
-      })
-    },
-    // 28-액션
-    getGenrecards28(context) {
-      axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8000/api/v1/genre/28/',
-      })
-        .then((res) => {
-          // console.log(res.data)
-          context.commit('GET_GENRECARDS28', res.data)
-        })
-        .catch((err) => {
-        console.log(err)
-      })
-    },
-    // 35-코미디
-    getGenrecards35(context) {
-      axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8000/api/v1/genre/35/',
-      })
-        .then((res) => {
-          // console.log(res.data)
-          context.commit('GET_GENRECARDS35', res.data)
-        })
-        .catch((err) => {
-        console.log(err)
-      })
-    },
-    // 36-역사
-    getGenrecards36(context) {
-      axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8000/api/v1/genre/36/',
-      })
-        .then((res) => {
-          // console.log(res.data)
-          context.commit('GET_GENRECARDS36', res.data)
-        })
-        .catch((err) => {
-        console.log(err)
-      })
-    },
-    // 37-서부
-    getGenrecards37(context) {
-      axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8000/api/v1/genre/37/',
-      })
-        .then((res) => {
-          // console.log(res.data)
-          context.commit('GET_GENRECARDS37', res.data)
-        })
-        .catch((err) => {
-        console.log(err)
-      })
-    },
-    // 53-스릴러
-    getGenrecards53(context) {
-      axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8000/api/v1/genre/53/',
-      })
-        .then((res) => {
-          // console.log(res.data)
-          context.commit('GET_GENRECARDS53', res.data)
-        })
-        .catch((err) => {
-        console.log(err)
-      })
-    },
-    // 80-범죄
-    getGenrecards80(context) {
-      axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8000/api/v1/genre/80/',
-      })
-        .then((res) => {
-          // console.log(res.data)
-          context.commit('GET_GENRECARDS80', res.data)
-        })
-        .catch((err) => {
-        console.log(err)
-      })
-    },
-    // 99-다큐멘터리
-    getGenrecards99(context) {
-      axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8000/api/v1/genre/99/',
-      })
-        .then((res) => {
-          // console.log(res.data)
-          context.commit('GET_GENRECARDS99', res.data)
-        })
-        .catch((err) => {
-        console.log(err)
-      })
-    },
-    // 878-SF
-    getGenrecards878(context) {
-      axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8000/api/v1/genre/878/',
-      })
-        .then((res) => {
-          // console.log(res.data)
-          context.commit('GET_GENRECARDS878', res.data)
-        })
-        .catch((err) => {
-        console.log(err)
-      })
-    },
-    // 9648-미스터리
-    getGenrecards9648(context) {
-      axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8000/api/v1/genre/9648/',
-      })
-        .then((res) => {
-          // console.log(res.data)
-          context.commit('GET_GENRECARDS9648', res.data)
-        })
-        .catch((err) => {
-        console.log(err)
-      })
-    },
-    // 10402-음악
-    getGenrecards10402(context) {
-      axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8000/api/v1/genre/10402/',
-      })
-        .then((res) => {
-          // console.log(res.data)
-          context.commit('GET_GENRECARDS10402', res.data)
-        })
-        .catch((err) => {
-        console.log(err)
-      })
-    },
-    // 10749-로맨스
-    getGenrecards10749(context) {
-      axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8000/api/v1/genre/10749/',
-      })
-        .then((res) => {
-          // console.log(res.data)
-          context.commit('GET_GENRECARDS10749', res.data)
-        })
-        .catch((err) => {
-        console.log(err)
-      })
-    },
-    // 10751-가족
-    getGenrecards10751(context) {
-      axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8000/api/v1/genre/10751/',
-      })
-        .then((res) => {
-          // console.log(res.data)
-          context.commit('GET_GENRECARDS10751', res.data)
-        })
-        .catch((err) => {
-        console.log(err)
-      })
-    },
-    // 10752-전쟁
-    getGenrecards10752(context) {
-      axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8000/api/v1/genre/10752/',
-      })
-        .then((res) => {
-          // console.log(res.data)
-          context.commit('GET_GENRECARDS10752', res.data)
-        })
-        .catch((err) => {
-        console.log(err)
-      })
-    },
-    // 10770-TV 영화
-    getGenrecards10770(context) {
-      axios({
-        method: 'get',
-        url: 'http://127.0.0.1:8000/api/v1/genre/10770/',
-      })
-        .then((res) => {
-          context.commit('GET_GENRECARDS10770', res.data)
+          context.commit('GET_GENRECARDS', res.data)
         })
         .catch((err) => {
           console.log(err)
@@ -675,7 +372,6 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
-    
   },
 
 })

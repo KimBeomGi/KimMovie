@@ -8,7 +8,6 @@
     <h1>당신을 위한 추천</h1>
     <hr>
     <RecommendForYou/>
-    <!-- <RandomMovie/> -->
     <hr>
     <!--  -->
     <h1>대중의 선택</h1>
@@ -18,7 +17,6 @@
     <!--  -->
     <h1>장르별 모아보기</h1>
     <hr>
-    <!-- <PopularMovie/> -->
     <GenreMovie/>
     
   </div>
@@ -27,10 +25,8 @@
 <script>
 // HeaderMovie 컴포넌트와 PopularMovie 컴포넌트를 받아온다.
 import HeaderMovie from '@/components/HeaderMovie.vue'
-// import PopularMovie from '@/components/PopularMovie.vue'
 import GenreMovie from '@/components/GenreMovie.vue'
 import RecommendForYou from '@/components/RecommendForYou.vue'
-// import RandomMovie from '@/components/RandomMovie.vue'
 import AdvertiseMovie from '@/components/AdvertiseMovie.vue'
 
 
@@ -38,10 +34,8 @@ export default {
   name: 'HomeView',
   components : {
     HeaderMovie,
-    // PopularMovie,
     GenreMovie,
     RecommendForYou,
-    // RandomMovie,
     AdvertiseMovie,
   },
 }
