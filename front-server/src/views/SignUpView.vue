@@ -1,21 +1,27 @@
 <template>
   <div class="login-container">
-    <h1>회원가입</h1>
+    <br>
+    <br>
+    <br>
+    <div class="box">
+      <h1 style="text-align: start;">회원가입</h1>
     <form @submit.prevent="signUp" class="login-form">
-      <label for="username">아이디 :</label>
-      <input type="text" id="username" v-model="username"><br>
+      <label for="username"></label>
+      <input placeholder="아이디" type="text" id="username" style="width: 300px; height:60px;" v-model="username"><br>
 
-      <label for="password1">비밀번호 :</label>
-      <input type="password" id="password1" v-model="password1"><br>
+      <label for="password1"></label>
+      <input placeholder="비밀번호 입력" style="width: 300px; height:60px;" type="password" id="password1" v-model="password1"><br>
 
-      <label for="password2">비밀번호 확인 :</label>
-      <input type="password" id="password2" v-model="password2"><br>
+      <label for="password2"></label>
+      <input placeholder="비밀번호 재확인" style="width: 300px; height:60px;" type="password" id="password2" v-model="password2"><br>
       
-      <label for="email">이메일 :</label>
-      <input type="text" id="email" v-model="email">
-
-      <button type="submit" class="signup-button">회원가입</button>
+      <label  for="email"></label>
+      <input style="width: 300px; height:60px;" placeholder="이메일 : kimssafy@ssafy.com" type="text" id="email" v-model="email">
+        <br>
+        <br>
+      <button style="width: 300px; height:60px;" type="submit" class="signup-button">회원가입</button>
     </form>
+  </div>
   </div>
 </template>
 
@@ -48,6 +54,11 @@ export default {
 </script>
 
 <style>
+.box{
+  height: 1000px;
+  width: 300px;
+  background-color: black;
+}
 .login-container {
   display: flex;
   flex-direction: column;
@@ -63,7 +74,7 @@ export default {
 }
 
 .login-form label {
-  margin-bottom: 10px;
+  margin-bottom: 1px;
 }
 
 .login-form input[type="text"],
@@ -76,7 +87,7 @@ export default {
 }
 
 .signup-button {
-  background-color: #2196f3;
+  background-color: red;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -88,6 +99,6 @@ export default {
 }
 
 .signup-button:hover {
-  background-color: #0d8bf7;
+  background-color: rgb(98, 6, 6);
 }
 </style>
