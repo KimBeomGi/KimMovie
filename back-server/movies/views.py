@@ -329,6 +329,8 @@ def recommend_custom(request):
                     random.shuffle(movies)
                     movies += sample_movies
                 serializer = MovieSerializer(movies, many=True)
+                # data = serializer.data
+                # data['user_name'] = request.user.username
                 return Response(serializer.data, status=status.HTTP_200_OK)
 
         # 이상영화와 좋아요한 영화가 없거나 로그인이 안되어 있을 경우, 아무 영화나 60개 추천
