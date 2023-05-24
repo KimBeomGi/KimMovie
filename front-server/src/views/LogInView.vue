@@ -9,6 +9,9 @@
       <input type="password" id="password" v-model="password"><br>
 
       <button type="submit" class="login-button">로그인</button>
+      <!-- signup 버튼 -->
+          <a @click.prevent="signup" class="nav-link" href="">signup <span class="sr-only"></span></a>
+
     </form>
   </div>
 </template>
@@ -33,6 +36,10 @@ export default {
       }
       this.$store.dispatch('login', payload)
     },
+    signup() {
+      if (this.$route.name !== 'SignUpView') {
+      this.$router.push({ name: 'SignUpView' }); // 회원가입 라우터링크로 이동
+    }},
   }
 }
 </script>
