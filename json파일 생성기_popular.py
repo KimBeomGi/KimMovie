@@ -108,5 +108,5 @@ while True:
     page += 1
 
 # 수집된 데이터를 JSON 파일로 저장
-with open('movies_popular_500p.json', 'w', encoding='utf-8') as file:
+with open('movies_popular_500page.json', 'w', encoding='utf-8') as file:
     json.dump(all_movies, file, ensure_ascii=False, indent=4)

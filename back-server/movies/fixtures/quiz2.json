@@ -50,7 +50,7 @@
   {
     "model": "movies.quiz2",
     "fields": {
-      "question": "영화 '매트릭스' 시리즈는 2000년대에 개봉한 영화이다.",
+      "question": "영화 '매트릭스'는 시리즈 영화이다.",
       "options": ["O", "X"],
       "answer": "O"
     }
@@ -66,7 +66,7 @@
   {
     "model": "movies.quiz2",
     "fields": {
-      "question": "영화 '쇼생크 탈출'은 1994년에 개봉한 범죄 영화이다.",
+      "question": "영화 '쇼생크 탈출'은 프랭크 다라본트가 감독을 맡은 영화이다.",
       "options": ["O", "X"],
       "answer": "O"
     }
@@ -170,7 +170,7 @@
   {
     "model": "movies.quiz2",
     "fields": {
-      "question": "'베놈'은 마블 코믹스의 캐릭터를 원작으로 한 영화이다.",
+      "question": "'스파이더맨'시리즈는 마블 코믹스의 캐릭터를 원작으로 한 영화이다.",
       "options": ["O", "X"],
       "answer": "X"
     }
@@ -274,17 +274,17 @@
   {
     "model": "movies.quiz2",
     "fields": {
-      "question": "'미션 임파서블' 시리즈는 브라이언 드 파마가 감독한 영화이다.",
+      "question": "'미션 임파서블' 시리즈는 톰 크루즈가 주연으로 등장한다.",
       "options": ["O", "X"],
-      "answer": "X"
+      "answer": "O"
     }
   },
   {
     "model": "movies.quiz2",
     "fields": {
-      "question": "'제노: 어썰트'는 스코틀랜드의 전설을 소재로 한 영화이다.",
+      "question": "'신과함께:인과연'은 주호민 작가의 원작을 소재로 한 영화이다.",
       "options": ["O", "X"],
-      "answer": "X"
+      "answer": "O"
     }
   },
   {
@@ -298,7 +298,7 @@
   {
     "model": "movies.quiz2",
     "fields": {
-      "question": "'킹스맨: 시크릿 서클'은 마크 밀러가 감독한 영화이다.",
+      "question": "'킹스맨: 골든 서클'은 마크 밀러가 감독한 영화이다.",
       "options": ["O", "X"],
       "answer": "X"
     }
@@ -314,15 +314,15 @@
   {
     "model": "movies.quiz2",
     "fields": {
-      "question": "'어밴트 체어'는 쿡 경의 소설을 원작으로 한 영화이다.",
+      "question": "'명량'는 역사를 기반으로 한 영화이다.",
       "options": ["O", "X"],
-      "answer": "X"
+      "answer": "O"
     }
   },
   {
     "model": "movies.quiz2",
     "fields": {
-      "question": "'그린 북'은 2018년에 개봉한 드라마 영화이다.",
+      "question": "'국제시장'은 천만관객 영화이다.",
       "options": ["O", "X"],
       "answer": "O"
     }
@@ -346,15 +346,15 @@
   {
     "model": "movies.quiz2",
     "fields": {
-      "question": "'분노의 질주' 시리즈는 저스틴 린이 감독한 영화이다.",
+      "question": "'분노의 질주' 시리즈는 빡빡이들이 나오는 영화로 유명하다.",
       "options": ["O", "X"],
-      "answer": "X"
+      "answer": "O"
     }
   },
   {
     "model": "movies.quiz2",
     "fields": {
-      "question": "'어벤져스: 어스의 마이티 히어로'는 DC 코믹스의 영화이다.",
+      "question": "'어벤져스'시리즈는 DC 코믹스의 영화이다.",
       "options": ["O", "X"],
       "answer": "X"
     }
@@ -378,7 +378,7 @@
   {
     "model": "movies.quiz2",
     "fields": {
-      "question": "'해리 포터와 아즈카반의 죄수'는 J.K. 롤링의 소설을 원작으로 한 영화이다.",
+      "question": "'반지의 제왕'시리즈는 뉴질랜드에서 촬영되었다.",
       "options": ["O", "X"],
       "answer": "O"
     }
@@ -386,9 +386,9 @@
   {
     "model": "movies.quiz2",
     "fields": {
-      "question": "'라라랜드'의 주인공인 세바스찬과 미아는 음악가와 배우를 꿈꾸는 인물이다.",
+      "question": "'스즈메의 문단속'은 지브리 스튜디오에서 제작되었다.",
       "options": ["O", "X"],
-      "answer": "O"
+      "answer": "X"
     }
   }
 ]
