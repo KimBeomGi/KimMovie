@@ -1,11 +1,11 @@
 <template>
   <div style="background-color: black; position: relative;">
     <!-- 12-모험 -->
-    <h1 style="text-align: start;">모험</h1>
+    <h1 style="text-align: start;">모험🧳</h1>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
-      <button class="arrow-button left" @click="$refs.carousel.prev()">
+      <button class="arrow-button left rounded-4" @click="$refs.carousel.prev()">
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
@@ -17,17 +17,17 @@
       </div>
       <template #nextArrow>
         
-        <button class="arrow-button right" @click="$refs.carousel.next()">
+        <button class="arrow-button right rounded-4" @click="$refs.carousel.next()">
       <i class="fa fa-chevron-right"></i>
     </button>
     </template>
     </vue-slick-carousel>
     <!-- 14-판타지 -->
-    <h1 style="text-align: start;">판타지</h1>
+    <h1 style="text-align: start;">판타지🧙</h1>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
-      <button class="arrow-button left" @click="$refs.carousel.prev()">
+      <button class="arrow-button left rounded-4" @click="$refs.carousel.prev()">
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
@@ -39,17 +39,17 @@
       </div>
       <template #nextArrow>
         
-        <button class="arrow-button right" @click="$refs.carousel.next()">
+        <button class="arrow-button right rounded-4" @click="$refs.carousel.next()">
       <i class="fa fa-chevron-right"></i>
     </button>
     </template>
     </vue-slick-carousel>
     <!-- 16-애니메이션 -->
-    <h1 style="text-align: start;">애니메이션</h1>
+    <h1 style="text-align: start;">애니메이션📚</h1>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
-      <button class="arrow-button left" @click="$refs.carousel.prev()">
+      <button class="arrow-button left rounded-4" @click="$refs.carousel.prev()">
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
@@ -61,17 +61,17 @@
       </div>
       <template #nextArrow>
         
-        <button class="arrow-button right" @click="$refs.carousel.next()">
+        <button class="arrow-button right rounded-4" @click="$refs.carousel.next()">
       <i class="fa fa-chevron-right"></i>
     </button>
     </template>
     </vue-slick-carousel>
     <!-- 18-드라마 -->
-    <h1 style="text-align: start;">드라마</h1>
+    <h1 style="text-align: start;">드라마🏃🏻</h1>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
-      <button class="arrow-button left" @click="$refs.carousel.prev()">
+      <button class="arrow-button left rounded-4" @click="$refs.carousel.prev()">
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
@@ -83,17 +83,17 @@
       </div>
       <template #nextArrow>
         
-        <button class="arrow-button right" @click="$refs.carousel.next()">
+        <button class="arrow-button right rounded-4" @click="$refs.carousel.next()">
       <i class="fa fa-chevron-right"></i>
     </button>
     </template>
     </vue-slick-carousel>
     <!-- 27-공포 -->
-    <h1 style="text-align: start;">공포</h1>
+    <h1 style="text-align: start;">공포😱</h1>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
-      <button class="arrow-button left" @click="$refs.carousel.prev()">
+      <button class="arrow-button left rounded-4" @click="$refs.carousel.prev()">
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
@@ -105,17 +105,17 @@
       </div>
       <template #nextArrow>
         
-        <button class="arrow-button right" @click="$refs.carousel.next()">
+        <button class="arrow-button right rounded-4" @click="$refs.carousel.next()">
       <i class="fa fa-chevron-right"></i>
     </button>
     </template>
     </vue-slick-carousel>
     <!-- 28-액션 -->
-    <h1 style="text-align: start;">액션</h1>
+    <h1 style="text-align: start;">액션⚔️</h1>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
-      <button class="arrow-button left" @click="$refs.carousel.prev()">
+      <button class="arrow-button left rounded-4" @click="$refs.carousel.prev()">
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
@@ -127,17 +127,17 @@
       </div>
       <template #nextArrow>
         
-        <button class="arrow-button right" @click="$refs.carousel.next()">
+        <button class="arrow-button right rounded-4" @click="$refs.carousel.next()">
       <i class="fa fa-chevron-right"></i>
     </button>
     </template>
     </vue-slick-carousel>
     <!-- 35-코미디 -->
-    <h1 style="text-align: start;">코미디</h1>
+    <h1 style="text-align: start;">코미디😆</h1>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
-      <button class="arrow-button left" @click="$refs.carousel.prev()">
+      <button class="arrow-button left rounded-4" @click="$refs.carousel.prev()">
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
@@ -149,17 +149,17 @@
       </div>
       <template #nextArrow>
         
-        <button class="arrow-button right" @click="$refs.carousel.next()">
+        <button class="arrow-button right rounded-4" @click="$refs.carousel.next()">
       <i class="fa fa-chevron-right"></i>
     </button>
     </template>
     </vue-slick-carousel>
     <!-- 36-역사 -->
-    <h1 style="text-align: start;">역사</h1>
+    <h1 style="text-align: start;">역사🏛️</h1>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
-      <button class="arrow-button left" @click="$refs.carousel.prev()">
+      <button class="arrow-button left rounded-4" @click="$refs.carousel.prev()">
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
@@ -171,17 +171,17 @@
       </div>
       <template #nextArrow>
         
-        <button class="arrow-button right" @click="$refs.carousel.next()">
+        <button class="arrow-button right rounded-4" @click="$refs.carousel.next()">
       <i class="fa fa-chevron-right"></i>
     </button>
     </template>
     </vue-slick-carousel>
     <!-- 37-서부 -->
-    <h1 style="text-align: start;">서부</h1>
+    <h1 style="text-align: start;">서부🤠</h1>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
-      <button class="arrow-button left" @click="$refs.carousel.prev()">
+      <button class="arrow-button left rounded-4" @click="$refs.carousel.prev()">
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
@@ -193,17 +193,17 @@
       </div>
       <template #nextArrow>
         
-        <button class="arrow-button right" @click="$refs.carousel.next()">
+        <button class="arrow-button right rounded-4" @click="$refs.carousel.next()">
       <i class="fa fa-chevron-right"></i>
     </button>
     </template>
     </vue-slick-carousel>
     <!-- 53-스릴러 -->
-    <h1 style="text-align: start;">스릴러</h1>
+    <h1 style="text-align: start;">스릴러😨</h1>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
-      <button class="arrow-button left" @click="$refs.carousel.prev()">
+      <button class="arrow-button left rounded-4" @click="$refs.carousel.prev()">
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
@@ -215,17 +215,17 @@
       </div>
       <template #nextArrow>
         
-        <button class="arrow-button right" @click="$refs.carousel.next()">
+        <button class="arrow-button right rounded-4" @click="$refs.carousel.next()">
       <i class="fa fa-chevron-right"></i>
     </button>
     </template>
     </vue-slick-carousel>
     <!-- 80-범죄 -->
-    <h1 style="text-align: start;">범죄</h1>
+    <h1 style="text-align: start;">범죄🚓</h1>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
-      <button class="arrow-button left" @click="$refs.carousel.prev()">
+      <button class="arrow-button left rounded-4" @click="$refs.carousel.prev()">
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
@@ -237,17 +237,17 @@
       </div>
       <template #nextArrow>
         
-        <button class="arrow-button right" @click="$refs.carousel.next()">
+        <button class="arrow-button right rounded-4" @click="$refs.carousel.next()">
       <i class="fa fa-chevron-right"></i>
     </button>
     </template>
     </vue-slick-carousel>
     <!-- 99-다큐멘터리 -->
-    <h1 style="text-align: start;">다큐멘터리</h1>
+    <h1 style="text-align: start;">다큐멘터리📹️</h1>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
-      <button class="arrow-button left" @click="$refs.carousel.prev()">
+      <button class="arrow-button left rounded-4" @click="$refs.carousel.prev()">
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
@@ -259,17 +259,17 @@
       </div>
       <template #nextArrow>
         
-        <button class="arrow-button right" @click="$refs.carousel.next()">
+        <button class="arrow-button right rounded-4" @click="$refs.carousel.next()">
       <i class="fa fa-chevron-right"></i>
     </button>
     </template>
     </vue-slick-carousel>
     <!-- 878-SF -->
-    <h1 style="text-align: start;">SF</h1>
+    <h1 style="text-align: start;">SF🛰️</h1>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
-      <button class="arrow-button left" @click="$refs.carousel.prev()">
+      <button class="arrow-button left rounded-4" @click="$refs.carousel.prev()">
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
@@ -281,17 +281,17 @@
       </div>
       <template #nextArrow>
         
-        <button class="arrow-button right" @click="$refs.carousel.next()">
+        <button class="arrow-button right rounded-4" @click="$refs.carousel.next()">
       <i class="fa fa-chevron-right"></i>
     </button>
     </template>
     </vue-slick-carousel>
     <!-- 9648-미스터리 -->
-    <h1 style="text-align: start;">미스터리</h1>
+    <h1 style="text-align: start;">미스터리🕵️</h1>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
-      <button class="arrow-button left" @click="$refs.carousel.prev()">
+      <button class="arrow-button left rounded-4" @click="$refs.carousel.prev()">
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
@@ -303,17 +303,17 @@
       </div>
       <template #nextArrow>
         
-        <button class="arrow-button right" @click="$refs.carousel.next()">
+        <button class="arrow-button right rounded-4" @click="$refs.carousel.next()">
       <i class="fa fa-chevron-right"></i>
     </button>
     </template>
     </vue-slick-carousel>
     <!-- 10402-음악 -->
-    <h1 style="text-align: start;">음악</h1>
+    <h1 style="text-align: start;">음악🎵</h1>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
-      <button class="arrow-button left" @click="$refs.carousel.prev()">
+      <button class="arrow-button left rounded-4" @click="$refs.carousel.prev()">
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
@@ -325,17 +325,17 @@
       </div>
       <template #nextArrow>
         
-        <button class="arrow-button right" @click="$refs.carousel.next()">
+        <button class="arrow-button right rounded-4" @click="$refs.carousel.next()">
       <i class="fa fa-chevron-right"></i>
     </button>
     </template>
     </vue-slick-carousel>
     <!-- 10749-로맨스 -->
-    <h1 style="text-align: start;">로맨스</h1>
+    <h1 style="text-align: start;">로맨스❤️</h1>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
-      <button class="arrow-button left" @click="$refs.carousel.prev()">
+      <button class="arrow-button left rounded-4" @click="$refs.carousel.prev()">
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
@@ -347,17 +347,17 @@
       </div>
       <template #nextArrow>
         
-        <button class="arrow-button right" @click="$refs.carousel.next()">
+        <button class="arrow-button right rounded-4" @click="$refs.carousel.next()">
       <i class="fa fa-chevron-right"></i>
     </button>
     </template>
     </vue-slick-carousel>
     <!-- 10751-가족 -->
-    <h1 style="text-align: start;">가족</h1>
+    <h1 style="text-align: start;">가족👪️</h1>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
-      <button class="arrow-button left" @click="$refs.carousel.prev()">
+      <button class="arrow-button left rounded-4" @click="$refs.carousel.prev()">
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
@@ -369,17 +369,17 @@
       </div>
       <template #nextArrow>
         
-        <button class="arrow-button right" @click="$refs.carousel.next()">
+        <button class="arrow-button right rounded-4" @click="$refs.carousel.next()">
       <i class="fa fa-chevron-right"></i>
     </button>
     </template>
     </vue-slick-carousel>
     <!-- 10752-전쟁 -->
-    <h1 style="text-align: start;">전쟁</h1>
+    <h1 style="text-align: start;">전쟁🎖️</h1>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
-      <button class="arrow-button left" @click="$refs.carousel.prev()">
+      <button class="arrow-button left rounded-4" @click="$refs.carousel.prev()">
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
@@ -391,17 +391,17 @@
       </div>
       <template #nextArrow>
         
-        <button class="arrow-button right" @click="$refs.carousel.next()">
+        <button class="arrow-button right rounded-4" @click="$refs.carousel.next()">
       <i class="fa fa-chevron-right"></i>
     </button>
     </template>
     </vue-slick-carousel>
     <!-- 10770-TV 영화 -->
-    <h1 style="text-align: start;">TV 영화</h1>
+    <h1 style="text-align: start;">TV 영화📺️</h1>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
-      <button class="arrow-button left" @click="$refs.carousel.prev()">
+      <button class="arrow-button left rounded-4" @click="$refs.carousel.prev()">
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
@@ -413,7 +413,7 @@
       </div>
       <template #nextArrow>
         
-        <button class="arrow-button right" @click="$refs.carousel.next()">
+        <button class="arrow-button right rounded-4" @click="$refs.carousel.next()">
       <i class="fa fa-chevron-right"></i>
     </button>
     </template>
@@ -630,6 +630,9 @@ export default {
 </script>
 
 <style scoped>
+h1{
+  padding-left: 35px;
+}
 .card {
   display: flex;
   justify-content: center;
@@ -640,10 +643,6 @@ export default {
 .card-body {
   background-color: transparent;
 }
-/* .arrow-button {
-  height: 50%;
-  width: auto;
-} */
 
 .card-container {
   position: relative;

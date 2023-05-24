@@ -1,7 +1,7 @@
 <template>
   <div style="background-color: black; position: relative;">
-    <h1 style="text-align: start;">당신을 위한 맞춤 추천😘</h1>
-
+    <!-- 영화 인기 순 -->
+    <h1 style="text-align: start;">요즘 인기작😉</h1>
     <vue-slick-carousel
       v-bind="carouselSettings"
     >
@@ -10,7 +10,7 @@
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
-      <div v-for="moviecard in cards_custom" :key="moviecard.id" class="card space" style="background-color: black;">
+      <div v-for="moviecard in high_pop_cards" :key="moviecard.id" class="card space" style="background-color: black;">
         <div class="content-wrapper mx-3">
           <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
@@ -23,8 +23,8 @@
     </button>
     </template>
     </vue-slick-carousel>
-    <!--  -->
-    <h1 style="text-align: start;">이런 영화는 어때요🤔</h1>
+    <!-- 영화 평점 순 -->
+    <h1 style="text-align: start;">이런 명작은 어때요🎬</h1>
     <vue-slick-carousel
       v-bind="carouselSettings"
     >
@@ -33,13 +33,37 @@
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
-      <div v-for="moviecard in cards" :key="moviecard.id" class="card space" style="background-color: black;">
+      <div v-for="moviecard in high_vote_cards" :key="moviecard.id" class="card space" style="background-color: black;">
         <div class="content-wrapper mx-3">
           <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
         <div class="card-body"></div>
       </div>
       <template #nextArrow>
+        
+        <button class="arrow-button right rounded-4" @click="$refs.carousel.next()">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    </template>
+    </vue-slick-carousel>
+    <!-- 영화 개봉일 순 -->
+    <h1 style="text-align: start;">최신 영화 한 편 보시죠🕶</h1>
+    <vue-slick-carousel
+      v-bind="carouselSettings"
+    >
+    <template #prevArrow>
+      <button class="arrow-button left rounded-4" @click="$refs.carousel.prev()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+    </template>
+      <div v-for="moviecard in latest_cards" :key="moviecard.id" class="card space" style="background-color: black;">
+        <div class="content-wrapper mx-3">
+          <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
+        </div>
+        <div class="card-body"></div>
+      </div>
+      <template #nextArrow>
+        
         <button class="arrow-button right rounded-4" @click="$refs.carousel.next()">
       <i class="fa fa-chevron-right"></i>
     </button>
@@ -53,7 +77,7 @@ import VueSlickCarousel from 'vue-slick-carousel';
 import 'vue-slick-carousel/dist/vue-slick-carousel.css';
 
 export default {
-  name: 'RecommendForYou',
+  name: 'AdvertiseMovie',
   components: {
     VueSlickCarousel,
   },
@@ -70,16 +94,20 @@ export default {
     };
   },
   computed: {
-    cards_custom() {
-      return this.$store.state.cards_custom;
+    high_vote_cards() {
+      return this.$store.state.high_vote_cards;
     },
-    cards() {
-      return this.$store.state.cards
+    high_pop_cards() {
+      return this.$store.state.high_pop_cards;
+    },
+    latest_cards() {
+      return this.$store.state.latest_cards;
     },
   },
   created() {
-    this.getCardsCustom();
-    this.getCards()
+    this.getHighVote();
+    this.getHighPop();
+    this.getlatest();
   },
   methods: {
     goMovieDetailView(moviecard) {
@@ -93,11 +121,14 @@ export default {
         this.carouselSettings.slidesToShow = Math.floor(windowWidth / 290);
       }
     },
-    getCardsCustom() {
-      this.$store.dispatch('getCardsCustom');
+    getHighVote() {
+      this.$store.dispatch('getHighVote');
     },
-    getCards() {
-      this.$store.dispatch('getCards')
+    getHighPop() {
+      this.$store.dispatch('getHighPop');
+    },
+    getlatest() {
+      this.$store.dispatch('getlatest');
     },
   },
   mounted() {
@@ -124,10 +155,6 @@ h1{
 .card-body {
   background-color: transparent;
 }
-/* .arrow-button {
-  height: 50%;
-  width: auto;
-} */
 
 .card-container {
   position: relative;
