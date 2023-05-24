@@ -3,7 +3,7 @@
     <h1 class="article-title">{{ article?.movie_title }}</h1>
     <hr>
     <p class="article-title2">{{ article?.title }}</p>
-    <button @click="Go_Profile" class="article-info profile-button">{{ article?.username }}</button>
+    <button @click="Go_Profile" class=" profile-button">{{ article?.username }}</button>
     <span class="article-info">{{ date }}</span>
     <div class="article-content">
       <p>{{ article?.content }}</p>
@@ -55,7 +55,7 @@ export default {
   computed:{
     likebt(){
       if (this.like){
-        return '취소'
+        return '좋아요 취소'
       }else{
         return '좋아요'
       }
@@ -232,7 +232,7 @@ export default {
   border-radius: 4px;
   cursor: pointer;
   margin-top: 20px;
-  width: 100px;
+  width: 130px;
 }
 
 .like-button:hover {
@@ -248,8 +248,8 @@ export default {
 }
 
 .profile-button {
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: white;
   border: none;
   border-radius: 4px;
   padding: 5px 10px;
@@ -259,6 +259,6 @@ export default {
 }
 
 .profile-button:hover {
-  background-color: #ff6600;
+  background-color: gray;
 }
 </style>

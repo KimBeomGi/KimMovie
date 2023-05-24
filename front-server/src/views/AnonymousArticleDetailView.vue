@@ -10,8 +10,7 @@
     <input placeholder="비밀번호를 입력하세요." type="text" id="title" v-model.trim="password" class="form-input">
       
     </div>
-    <button @click="putArticle" class="put-button">수정</button>
-    <button @click="deleteArticle" class="delete-button">삭제</button>
+    
     </div>
     <hr>
     <p class="article-title2">{{ article?.title }}</p>
@@ -19,6 +18,10 @@
     <span class="article-info">[익명] | {{ formatDateTime(article?.created_at) }}</span>
     <div class="article-content">
       <p>{{ article?.content }}</p>
+    </div>
+    <div style="display: flex; flex-direction: row; align-items: center;">
+    <button  @click="putArticle" class="put-button">수정</button>
+    <button @click="deleteArticle" class="delete-button">삭제</button>
     </div>
     
     <!-- <p>{{ article?.password }}</p> -->
@@ -61,7 +64,7 @@ export default {
         // headers: this.$store.getters.authHeader,
       })
         .then((res) => {
-          // console.log(this.$route.params.id)
+          // console.log(res.data)/
           this.article = res.data
         })
         .catch((err) => {
@@ -95,6 +98,7 @@ export default {
     },
     putArticle(){
       const { id, title, content } = this.article;
+
     this.$router.push({
       name: 'AnonymousArticlePutView',
       params: {
@@ -151,37 +155,36 @@ export default {
 }
 
 .delete-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ff5a5f;
-  color: #ffffff;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  margin-left: 10px;
   margin-top: 20px;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px; /* 버튼 폰트 크기 */
+  width: 100px; /* 버튼 너비 */
+  height: 40px; /* 버튼 높이 */
 }
 
 .delete-button:hover {
-  background-color: #ff4449;
+  background-color: gray;
 }
 .put-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: green;
-  color: #ffffff;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
   margin-top: 20px;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px; /* 버튼 폰트 크기 */
+  width: 100px; /* 버튼 너비 */
+  height: 40px; /* 버튼 높이 */
 }
 
 .put-button:hover {
-  background-color: green;
+  background-color: gray;
 }
 </style>

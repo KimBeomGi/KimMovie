@@ -241,7 +241,6 @@ export default new Vuex.Store({
         // headers: context.getters.authHeader,
       })
         .then((res) => {
-        // console.log(res, context)
           context.commit('GET_ARTICLES', res.data)
           // alert('영화 리뷰들을 확인해보세요!')
         })

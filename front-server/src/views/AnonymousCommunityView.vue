@@ -1,7 +1,7 @@
 <template>
   <div style="background-color: #ffffff; color: #000000;">
     <h1>익명 게시판</h1>
-    <button @click="Go_AnonymousCreateView" class="write-button" >작성</button>
+    <button @click="Go_AnonymousCreateView" class="write-button" >글 쓰기</button>
     <AnonymousArticleList/>
     
     
@@ -42,20 +42,19 @@ export default {
 
 <style scoped>
 .write-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #4caf50;
+  background-color: black;
   color: white;
-  padding: 10px 20px;
-  font-size: 16px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 16px; /* 버튼 폰트 크기 */
+  width: 100px; /* 버튼 너비 */
+  height: 30px; /* 버튼 높이 */
+  text-align: center;
 }
 
 .write-button:hover {
-  background-color: #45a049;
+  background-color: gray;
 }
 
 
