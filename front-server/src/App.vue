@@ -1,5 +1,6 @@
 <template>
-  <div id="app">
+  <div id="app" >
+    <div id="content">    <!-- footer 추가시키려고 추가생성함 -->
     <hr>
     <hr>
     <hr>
@@ -64,14 +65,16 @@
           </button>
         </div>
       </div>
-
-  </nav>
+    </nav>
     <router-view style="margin-top: 60px;"/>
+    </div>
 
     <!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  -->
     <!-- footer -->
-    <hr class="my-1">
-    <FooterView/>
+    <footer class="footer">
+    <!-- <footer> -->
+      <FooterView/>
+    </footer>
     <!-- <p class="mb-3">MADE BY KIMS</p> -->
 
   </div>
@@ -151,6 +154,9 @@ export default {
   text-align: center;
   color: #ffffff;
   background-color: black;
+  min-height: 100vh;   /* footer 하단에 고정하려고 추가함  */
+  display: flex;
+  flex-direction: column;
 }
 
 nav a {
@@ -205,4 +211,19 @@ button:hover{
 .navbar-nav .nav-link {
   font-size: 24px;
 }
+
+/* footer 하단에 고정하려고 추가함  */
+html, body {
+  height: 100%;
+}
+
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+#content {
+  flex-grow: 1;
+}
+/* 여기까지 footer때문에 이용했음 */
 </style>
