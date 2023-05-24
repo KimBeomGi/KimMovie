@@ -1,10 +1,14 @@
 <template>
   <div>
-    <p>{{ question }}</p>
-    <button @click="choose1">1. {{ option1 }}</button>
-    <button @click="choose2">2. {{ option2 }}</button>
-    <p>{{ answer }}</p>
+    <p style="font-size: 80px; margin-top: 300px;">Q. {{ question }}</p>
+
+    <div class="d-flex justify-content-evenly" style="margin-top: 100px;">
+    <button class="cancel-button" @click="choose1">1. {{ option1 }}</button>
+    <button class="cancel-button" @click="choose2">2. {{ option2 }}</button>
   </div>
+  <p style="margin-top:100px; color:black;">{{ answer }}</p>
+  </div>
+
 </template>
 
 <script>
@@ -61,11 +65,10 @@ export default {
       .then((res)=>{
         // console.log(res)
         if (res.data.message==='오답입니다!'){
-          alert('오답입니다. ㅠㅠ')
+          alert('오답입니다 ㅠㅠ 정답은 ${this.answer}!  이전 화면으로 돌아갑니다.')
         }else{
-        alert('정답입니다. 100포인트를 얻습니다!')}
-        
-        this.getQuiz2()
+          alert('정답입니다! 100포인트를 얻습니다. 이전 화면으로 돌아갑니다.')}
+        this.$router.go(-1)
         // console.log(res)
       })
       .catch((err)=>{
@@ -87,10 +90,10 @@ export default {
       .then((res)=>{
         // console.log(res)
         if (res.data.message==='오답입니다!'){
-          alert('오답입니다. ㅠㅠ')
+          alert('오답입니다 ㅠㅠ 정답은 ${this.answer}! 이전 화면으로 돌아갑니다.')
         }else{
-        alert('정답입니다. 100포인트를 얻습니다!')}
-        this.getQuiz2()
+          alert('정답입니다! 100포인트를 얻습니다. 이전 화면으로 돌아갑니다.')}
+        this.$router.go(-1)
         // console.log(res)
       })
       .catch((err)=>{

@@ -1,6 +1,7 @@
 <template>
   <div style="background-color: #ffffff; color: #000000;">
-    <h1>게시판</h1>
+    <br>
+    <h1>영화 리뷰 게시판</h1>
     
     <!-- ArticleList 컴포넌트를 보여준다.-->
     <ArticleList/>

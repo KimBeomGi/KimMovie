@@ -2,25 +2,36 @@
   <div class="profile-container" style="color: black;">
     <h1>내 프로필</h1>
     <div class="profile-info">
-      <button @click="put_user" class="edit-button">회원정보 수정</button>
-      <button @click="put_password" class="edit-button">비밀번호 변경</button>
-      <button @click="put_delete" class="edit-button">회원 탈퇴</button>
+      
       <p>{{ isSuperuserText }}</p>
-      <p>닉네임 : {{ username }}</p>
-      <p>이메일 : {{ email }}</p>
+      <div style="margin-bottom: 10px;">
+      <span style="margin-bottom:">닉네임 : {{ username }}</span>
+      <button @click="put_user" class="edit-button" style="margin-left: 300px;">닉네임 수정</button>
+    </div>
+    <div style="margin-bottom: 10px;">
+      <span>비밀번호 : ********</span> <button @click="put_password" class="edit-button" style="margin-left: 264px;">비밀번호 변경</button>
+    </div>
+    <div style="margin-bottom: 10px;">
+      <span>이메일 : {{ email }}</span>  
+    </div>
       <p>가입날짜 : {{ date_joined }}</p>
       
       <!-- <p>팔로워: {{ followers }}</p> -->
       <p>팔로워 수 : {{ followers_count }}명</p>
-      <p>나를 팔로워 한 사람 : {{ followers_name ? followers_name.join(' ') : '' }}</p>
+      <p>나를 팔로워 한 사람 : {{ followers_name ? followers_name.join(', ') : '' }}</p>
       <!-- <p>팔로잉: {{ followings }}</p> -->
       <p>팔로잉 수 : {{ followings_count }}명</p>
-      <p>나를 팔로잉 한 사람 : {{ followings_name ? followings_name.join(' ') : '' }}</p>
+      <p>내가 팔로잉 한 사람 : {{ followings_name ? followings_name.join(', ') : '' }}</p>
       <p>등급: {{ grade }}</p>
       <p>좋아요 한 영화 : {{ like_movies_name ? like_movies_name.join(', ') : '' }}</p>
       <p>경험치: {{ exp }} EXP</p>
       <p>포인트: {{ point }} P</p>
+      <button @click="put_delete" class="edit-button" style="margin-left: 400px;">회원 탈퇴</button>
+      
+
+      
     </div>
+    
     <div v-if="isEditing_user" class="modal">
       <!-- 모달 내용을 추가하고 사용자가 수정할 수 있는 입력 필드를 제공합니다. -->
       <input v-model="updated_username" type="text" placeholder="닉네임을 입력하세요" class="input-field" />
@@ -99,7 +110,7 @@ export default {
       })
         .then((res) => {
           // console.log(this.$route.params.id)
-          // console.log(res.data)
+          console.log(res.data)
           this.date_joined = this.date_joined = moment(res.data.date_joined).format('YYYY년 MM월 DD일');
           this.exp = res.data.exp
           this.followers = res.data.followers
@@ -214,6 +225,7 @@ export default {
 
 .profile-info {
   margin-top: 20px;
+  text-align: start;
 }
 
 .profile-info p {
@@ -226,22 +238,20 @@ h1 {
 }
 
 .edit-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #007bff;
-  color: #ffffff;
-  padding: 10px 20px;
-  font-size: 16px;
+
+  background-color: #f2f2f2;
+  color: red;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  margin-bottom: 10px;
-  width: 180px;
+  font-size: 16px; /* 버튼 폰트 크기 */
+  width: 150px; /* 버튼 너비 */
+  height: 30px; /* 버튼 높이 */
+  text-align: center;
 }
 
 .edit-button:hover {
-  background-color: #0056b3;
+  background-color: gray;
 }
 
 .save-button {
