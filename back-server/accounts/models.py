@@ -25,16 +25,39 @@ class User(AbstractUser):
     
     # exp에 따른 등급 변환을 위한 부분
     # def save(self, *args, **kwargs):
-        if self.exp > 2000:
-            self.grade = "플래티넘"
-        elif self.exp > 1000:
-            self.grade = "골드"
-        elif self.exp > 500:
-            self.grade = "실버"
+        
+        if self.exp > 20000:
+            self.grade = "🏦갓물주"
+        # 3500차이
+        elif self.exp > 16350:
+            self.grade = "💎다이아Ⅰ"
+        elif self.exp > 12850:
+            self.grade = "💎다이아Ⅱ"
+        elif self.exp > 9350:
+            self.grade = "💎다이아Ⅲ"
+        # 2000차이
+        elif self.exp > 7350:
+            self.grade = "🥇골드Ⅰ"
+        elif self.exp > 5350:
+            self.grade = "🥇골드Ⅱ"
+        elif self.exp > 3350:
+            self.grade = "🥇골드Ⅲ"
+        # 1000차이
+        elif self.exp > 2350:
+            self.grade = "🥈실버Ⅰ"
+        elif self.exp > 1850:
+            self.grade = "🥈실버Ⅱ"
+        elif self.exp > 1350:
+            self.grade = "🥈실버Ⅲ"
+        # 500차이
+        elif self.exp > 950:
+            self.grade = "🥉브론즈Ⅰ"
+        elif self.exp > 550:
+            self.grade = "🥉브론즈Ⅱ"
         elif self.exp > 150:
-            self.grade = "브론즈"
+            self.grade = "🥉브론즈Ⅲ"
         else:
-            self.grade = "새싹"
+            self.grade = "🌱새싹"
 
         super().save(*args, **kwargs)
 
