@@ -1,6 +1,6 @@
 <template>
   <div class="profile-container" style="color: black;">
-    <h1>프로필</h1>
+    <h1>{{ username }}의 프로필</h1>
     <div class="profile-info" style="text-align: start; display: flex; flex-direction: column;">
       <p>{{ isSuperuserText }}</p>
       <p>이름: {{ username }}</p>

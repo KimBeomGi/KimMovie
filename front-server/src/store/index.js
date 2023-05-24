@@ -17,6 +17,7 @@ export default new Vuex.Store({
     ],
     anonymousarticles: [
     ],
+    username:'',
     token: null,
     cards: [],
     searchcards: [],
