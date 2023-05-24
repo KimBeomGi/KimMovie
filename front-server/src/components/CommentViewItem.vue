@@ -11,8 +11,10 @@
     <div v-if="isEditing" class="modal">
     <!-- 모달 내용을 추가하고 사용자가 수정할 수 있는 입력 필드를 제공합니다. -->
     <input v-model="updatedContent" type="text" placeholder="수정할 내용을 입력하세요" class="input-field"/>
-    <button @click="saveChanges">저장</button>
-    <button @click="cancelEdit">취소</button>
+    <div class="button-container">
+    <button class="put-button"  @click="saveChanges">저장</button>
+    <button class="delete-button" @click="cancelEdit">취소</button>
+  </div>
   </div>
   </div>
 </template>
@@ -142,38 +144,38 @@ import moment from 'moment'
 }
 
 .delete-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ff5a5f;
-  color: #ffffff;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
   margin-left: 10px;
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px; /* 버튼 폰트 크기 */
+  width: 100px; /* 버튼 너비 */
+  height: 40px; /* 버튼 높이 */
 }
 
 .delete-button:hover {
-  background-color: #ff4449;
+  background-color: gray;
 }
 
 .put-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: green;
-  color: #ffffff;
+  margin-top: 20px;
+  background-color: black;
+  color: white;
   padding: 10px 20px;
-  font-size: 16px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 16px; /* 버튼 폰트 크기 */
+  width: 100px; /* 버튼 너비 */
+  height: 40px; /* 버튼 높이 */
 }
 
 .put-button:hover {
-  background-color: green;
+  background-color: gray;
 }
 
 .modal {

@@ -73,10 +73,11 @@ import axios from 'axios'
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    color: #ffffff;
   }
   
   .comment-form button:hover {
-    background-color: #e0e0e0;
+    background-color: gray;
   }
 
   .comment-heading {

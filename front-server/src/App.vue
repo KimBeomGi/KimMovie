@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <hr>
-    <hr>
-    <hr>
     <nav class="navbar navbar-expand-xl navbar-dark" style="background-color: black; height: 90px;">
       <div class="container-fluid">
         <!-- logo 버튼 -->
@@ -66,6 +63,8 @@
       </div>
 
   </nav>
+    <div class="box"></div>
+
     <router-view style="margin-top: 60px;"/>
 
     <!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  -->
@@ -144,6 +143,10 @@ export default {
 </script>
 
 <style scoped>
+.box{
+  height: 80px;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -155,9 +158,10 @@ export default {
 
 nav a {
   font-weight: bold;
-  color: #ffffff;
+  color: red;
   
 }
+
 
 nav a.router-link-exact-active {
   color: #42b983;
@@ -167,11 +171,11 @@ button{
 	width:80px;
 	height: 30px;
 	color:#fff;
-	background: #004fff;
+	background: red;
 	font-size: 16px;
 	border:none;
 	border-radius: 20px;
-	box-shadow: 0 4px 16px rgba(0,79,255,0.3);
+	box-shadow: 0 4px 16px rgba(100, 4, 12, 0.9);
 	transition:0.3s;
   margin-left: 10px;
 }
@@ -179,9 +183,9 @@ button:focus {
 	outline:0;
 }
 button:hover{
-	background: rgba(0,79,255,0.9);
+	background: rgba(100, 4, 12, 0.9);
 	cursor: pointer;
-	box-shadow: 0 2px 4px rgba(0,79,255,0.6);
+	box-shadow: 0 2px 4px rgba(100, 4, 12, 0.9);
 }
 
 .navbar {
