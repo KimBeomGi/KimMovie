@@ -16,6 +16,8 @@ import CreateView from '@/views/CreateView'
 import SignUpView from '@/views/SignUpView'
 import LogInView from '@/views/LogInView'
 import LogOutView from '@/views/LogOutView'
+import Quiz1View from '@/views/Quiz1View'
+import Quiz2View from '@/views/Quiz2View'
 import NoneView from '@/views/NoneView'
 import store from '@/store'
 
@@ -98,6 +100,16 @@ const routes = [
     component: MyProfileView
   },
   {
+    path: '/Quiz1View',
+    name: 'Quiz1View',
+    component: Quiz1View
+  },
+  {
+    path: '/Quiz2View',
+    name: 'Quiz2View',
+    component: Quiz2View
+  },
+  {
     path: '/moviedetail/:id',
     name: 'MovieDetailView',
     component: MovieDetailView
@@ -127,7 +139,7 @@ router.beforeEach((to, from, next) => {
   const isLoggedIn = store.getters.isLogin // 로그인 됨
   // const isLoggedIn = false // 로그인 안됨
   // 로그인이 필요한 페이지 지정
-  const authPages = ['LogOutView','ArticleDetailView','CreateView','MovieDetailView','MyProfileView']
+  const authPages = ['LogOutView','ArticleDetalView','CreateView','MovieDetailView','MyProfileView','Quiz1View']
   // 비로그인이 필요한 페이지 지정
   const notauthPages = ['LogInView', 'SignUpView']
   // const allowAuthPages = ['login']
