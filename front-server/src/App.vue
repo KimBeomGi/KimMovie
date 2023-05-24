@@ -56,13 +56,21 @@
     </div>
   </nav>
     <router-view style="margin-top: 60px;"/>
-    <hr>
-    <p>MADE BY KIMS</p>
+
+    <!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  -->
+    <!-- footer -->
+    <hr class="my-1">
+    <FooterView/>
+    <!-- <p class="mb-3">MADE BY KIMS</p> -->
   </div>
 </template>
 
 <script>
+import FooterView from '@/components/FooterView.vue'
 export default {
+  components : {
+    FooterView,
+  },
   data(){
     return{
       search : ''

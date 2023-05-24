@@ -46,6 +46,10 @@ export default new Vuex.Store({
     genre_cards10770: [], // 10770-TV 영화
     ///////////////////////////////////////
     cards_custom: [],     // 맞춤 추천 영화
+    high_vote_cards: [],  // 평점 높은 영화
+    high_pop_cards: [],   // 인기 많은 영화
+    latest_cards: [],     // 최신 영화
+
   },
   getters: {
     isLogin(state) {
@@ -149,6 +153,15 @@ export default new Vuex.Store({
     ///////////////////////////////////////////////////////////////////////////////////////
     GET_CARDSCUSTOM(state, cards_custom) {    // 맞춤 추천 영화
       state.cards_custom = cards_custom
+    },
+    GET_HIGHVOTE(state, high_vote_cards) {       // 평점 높은 영화
+      state.high_vote_cards = high_vote_cards
+    },
+    GET_HIGHPOP(state, high_pop_cards) {        // 인기 많은 영화
+      state.high_pop_cards = high_pop_cards
+    },
+    GET_LATEST(state, latest_cards) {         // 최신 영화
+      state.latest_cards = latest_cards
     },
     
   },
@@ -617,6 +630,45 @@ export default new Vuex.Store({
       })
         .then((res) => {
           context.commit('GET_CARDSCUSTOM', res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    // 평점 높은 영화
+    getHighVote(context) {
+      axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/api/v1/vote_average/',
+      })
+        .then((res) => {
+          context.commit('GET_HIGHVOTE', res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    // 인기 많은 영화
+    getHighPop(context) {
+      axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/api/v1/popularity/',
+      })
+        .then((res) => {
+          context.commit('GET_HIGHPOP', res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    // 최신 영화
+    getlatest(context) {
+      axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/api/v1/release_date/',
+      })
+        .then((res) => {
+          context.commit('GET_LATEST', res.data)
         })
         .catch((err) => {
           console.log(err)
