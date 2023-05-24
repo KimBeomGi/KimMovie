@@ -389,12 +389,13 @@ def quiz1(request):
     if request.user.is_authenticated:
         user = request.user
         # user 포인트 확인
-        if user.point < 50:
-            context = {
-                "question" : "포인트가 충분하지 않습니다."
-            }
-            return Response(context)
+        
         if request.method == 'GET':
+            if user.point < 50:
+                context = {
+                "question" : "포인트가 충분하지 않습니다."
+                }
+                return Response(context)
             quizzes = get_list_or_404(Quiz1)
             quiz = random.sample(quizzes, 1)[0]
             options = quiz.options
@@ -431,12 +432,13 @@ def quiz1(request):
 def quiz2(request):
     if request.user.is_authenticated:
         user = request.user
-        if user.point < 50:
-            context = {
-                "question" : "포인트가 충분하지 않습니다."
-            }
-            return Response(context)
+        
         if request.method == 'GET':
+            if user.point < 50:
+                context = {
+                "question" : "포인트가 충분하지 않습니다."
+                }
+                return Response(context)
             quizzes = get_list_or_404(Quiz2)
             quiz = random.sample(quizzes, 1)
             serializer = Quiz2Serializer(quiz, many=True)
