@@ -1,27 +1,6 @@
 <template>
   <div style="background-color: black; position: relative;">
-    <h1 style="text-align: start;">당신을 위한 맞춤 추천</h1>
-    
-    
-    
-    
-    <!-- <vue-slick-carousel
-      ref="carousel"
-      :slides-to-show="slidesToShow"
-      :slides-to-scroll="2"
-      :center-mode="true"
-      :center-padding="0"
-      :arrow="false"
-      :infinite="true"
-      :speed="500"
-    >
-      <div v-for="moviecard in cards_custom" :key="moviecard.id" class="card space" style="background-color: black;">
-        <div class="content-wrapper mx-3">
-          <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
-        </div>
-        <div class="card-body"></div>
-      </div>
-    </vue-slick-carousel> -->
+    <h1 style="text-align: start;">지금 뜨는 콘텐츠</h1>
     <vue-slick-carousel
       v-bind="carouselSettings"
     >
@@ -30,14 +9,13 @@
           <i class="fa fa-chevron-left"></i>
         </button>
     </template>
-      <div v-for="moviecard in cards_custom" :key="moviecard.id" class="card space" style="background-color: black;">
+      <div v-for="moviecard in cards" :key="moviecard.id" class="card space" style="background-color: black;">
         <div class="content-wrapper mx-3">
           <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
         <div class="card-body"></div>
       </div>
       <template #nextArrow>
-        
         <button class="arrow-button right" @click="$refs.carousel.next()">
       <i class="fa fa-chevron-right"></i>
     </button>
@@ -57,30 +35,32 @@ export default {
   },
   data() {
     return {
-      carouselSettings: {
-        centerMode: true,
-        centerPadding: '20px',
-        focusOnSelect: true,
-        infinite: true,
-        slidesToShow: 7,
-        speed: 500,
-      },
-    };
+      slidesToShow: 2,
+      carouselSettings : {
+        "centerMode": true,
+        "centerPadding": "20px",
+        "focusOnSelect": true,
+        "infinite": true,
+        "slidesToShow": 7,
+        "speed": 500
+      }
+    }
   },
   computed: {
-    cards_custom() {
-      return this.$store.state.cards_custom;
+    cards() {
+      return this.$store.state.cards
     },
+    
   },
   created() {
-    this.getCardsCustom();
+    this.getCards()
   },
   methods: {
     goMovieDetailView(moviecard) {
-      this.$router.push({ name: 'MovieDetailView', params: { id: moviecard.id }});
+      this.$router.push({ name: 'MovieDetailView', params: { id: moviecard.id }})
     },
-    getCardsCustom() {
-      this.$store.dispatch('getCardsCustom');
+    getCards() {
+      this.$store.dispatch('getCards')
     },
     updateSlidesToShow() {
       const windowWidth = window.innerWidth;
@@ -91,14 +71,14 @@ export default {
       }
     },
   },
-  mounted() {
+  mounted() {    
     this.updateSlidesToShow();
     window.addEventListener('resize', this.updateSlidesToShow);
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.updateSlidesToShow);
   },
-};
+}
 </script>
 
 <style scoped>

@@ -1,3 +1,4 @@
+<!--
 <template>
   <div class="card-container">
     <button class="arrow-button left" @click="moveLeft">
@@ -80,6 +81,8 @@ export default {
 }
 
 .arrow-button {
+  height: 50%;
+  width: auto;
   position: absolute;
   top: 45%;
   transform: translateY(-50%);
@@ -90,8 +93,6 @@ export default {
   color: white;
   background-color: black;
   z-index: 2;
-  width: 100px; /* 버튼의 가로 크기를 조절 */
-  height: 400px; /* 버튼의 세로 크기를 조절 */
   opacity: 0.8; /* 기본적으로 버튼을 투명하게 설정 */
   transition: opacity 0.3s; /* 마우스 호버 시 투명도 변화를 부드럽게 설정 */
 }

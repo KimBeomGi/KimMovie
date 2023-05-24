@@ -1,398 +1,448 @@
 <template>
-  <div style="background-color: black;">
+  <div style="background-color: black; position: relative;">
     <!-- 12-모험 -->
-    <h1 style="text-align: start;"> 모험</h1>
-    <div class="card-container">
-      <button class="arrow-button left" @click="moveLeft12">
-        <i class="fa fa-chevron-left"></i>
-      </button>
-      <div class="card-wrapper">
-        <div class="card-row" :style="{ transform: `translateX(${translateX12}px)` }"> <!-- 수정 -->
-          <div v-for="moviecard in cards12" :key="moviecard.id" class="card space" style="width: 18rem; background-color: black;">
-            <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
-            <div class="card-body ">
-            </div>
-          </div>
+    <h1 style="text-align: start;">모험</h1>
+    <vue-slick-carousel
+      v-bind="carouselSettings">
+    <template #prevArrow>
+      <button class="arrow-button left" @click="$refs.carousel.prev()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+    </template>
+      <div v-for="moviecard in cards12" :key="moviecard.id" class="card space" style="background-color: black;">
+        <div class="content-wrapper mx-3">
+          <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
+        <div class="card-body"></div>
       </div>
-      <button class="arrow-button right" @click="moveRight12">
-        <i class="fa fa-chevron-right"></i>
-      </button>
-    </div>
+      <template #nextArrow>
+        
+        <button class="arrow-button right" @click="$refs.carousel.next()">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    </template>
+    </vue-slick-carousel>
     <!-- 14-판타지 -->
-    <h1 style="text-align: start;"> 판타지</h1>
-    <div class="card-container">
-      <button class="arrow-button left" @click="moveLeft14">
-        <i class="fa fa-chevron-left"></i>
-      </button>
-      <div class="card-wrapper">
-        <div class="card-row" :style="{ transform: `translateX(${translateX14}px)` }"> <!-- 수정 -->
-          <div v-for="moviecard in cards14" :key="moviecard.id" class="card space" style="width: 18rem; background-color: black;">
-            <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
-            <div class="card-body ">
-            </div>
-          </div>
+    <h1 style="text-align: start;">판타지</h1>
+    <vue-slick-carousel
+      v-bind="carouselSettings">
+    <template #prevArrow>
+      <button class="arrow-button left" @click="$refs.carousel.prev()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+    </template>
+      <div v-for="moviecard in cards14" :key="moviecard.id" class="card space" style="background-color: black;">
+        <div class="content-wrapper mx-3">
+          <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
+        <div class="card-body"></div>
       </div>
-      <button class="arrow-button right" @click="moveRight14">
-        <i class="fa fa-chevron-right"></i>
-      </button>
-    </div>
+      <template #nextArrow>
+        
+        <button class="arrow-button right" @click="$refs.carousel.next()">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    </template>
+    </vue-slick-carousel>
     <!-- 16-애니메이션 -->
     <h1 style="text-align: start;">애니메이션</h1>
-    <div class="card-container">
-      <button class="arrow-button left" @click="moveLeft16">
-        <i class="fa fa-chevron-left"></i>
-      </button>
-      <div class="card-wrapper">
-        <div class="card-row" :style="{ transform: `translateX(${translateX16}px)` }">
-          <div v-for="moviecard in cards16" :key="moviecard.id" class="card space" style="width: 18rem; background-color: black;">
-            <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
-            <div class="card-body">
-            </div>
-          </div>
+    <vue-slick-carousel
+      v-bind="carouselSettings">
+    <template #prevArrow>
+      <button class="arrow-button left" @click="$refs.carousel.prev()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+    </template>
+      <div v-for="moviecard in cards16" :key="moviecard.id" class="card space" style="background-color: black;">
+        <div class="content-wrapper mx-3">
+          <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
+        <div class="card-body"></div>
       </div>
-      <button class="arrow-button right" @click="moveRight16">
-        <i class="fa fa-chevron-right"></i>
-      </button>
-    </div>
+      <template #nextArrow>
+        
+        <button class="arrow-button right" @click="$refs.carousel.next()">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    </template>
+    </vue-slick-carousel>
     <!-- 18-드라마 -->
     <h1 style="text-align: start;">드라마</h1>
-    <div class="card-container">
-      <button class="arrow-button left" @click="moveLeft18">
-        <i class="fa fa-chevron-left"></i>
-      </button>
-      <div class="card-wrapper">
-        <div class="card-row" :style="{ transform: `translateX(${translateX18}px)` }">
-          <div v-for="moviecard in cards18" :key="moviecard.id" class="card space" style="width: 18rem; background-color: black;">
-            <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
-            <div class="card-body">
-            </div>
-          </div>
+    <vue-slick-carousel
+      v-bind="carouselSettings">
+    <template #prevArrow>
+      <button class="arrow-button left" @click="$refs.carousel.prev()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+    </template>
+      <div v-for="moviecard in cards18" :key="moviecard.id" class="card space" style="background-color: black;">
+        <div class="content-wrapper mx-3">
+          <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
+        <div class="card-body"></div>
       </div>
-      <button class="arrow-button right" @click="moveRight18">
-        <i class="fa fa-chevron-right"></i>
-      </button>
-    </div>
+      <template #nextArrow>
+        
+        <button class="arrow-button right" @click="$refs.carousel.next()">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    </template>
+    </vue-slick-carousel>
     <!-- 27-공포 -->
     <h1 style="text-align: start;">공포</h1>
-    <div class="card-container">
-      <button class="arrow-button left" @click="moveLeft27">
-        <i class="fa fa-chevron-left"></i>
-      </button>
-      <div class="card-wrapper">
-        <div class="card-row" :style="{ transform: `translateX(${translateX27}px)` }">
-          <div v-for="moviecard in cards27" :key="moviecard.id" class="card space" style="width: 18rem; background-color: black;">
-            <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
-            <div class="card-body">
-            </div>
-          </div>
+    <vue-slick-carousel
+      v-bind="carouselSettings">
+    <template #prevArrow>
+      <button class="arrow-button left" @click="$refs.carousel.prev()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+    </template>
+      <div v-for="moviecard in cards27" :key="moviecard.id" class="card space" style="background-color: black;">
+        <div class="content-wrapper mx-3">
+          <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
+        <div class="card-body"></div>
       </div>
-      <button class="arrow-button right" @click="moveRight27">
-        <i class="fa fa-chevron-right"></i>
-      </button>
-    </div>
+      <template #nextArrow>
+        
+        <button class="arrow-button right" @click="$refs.carousel.next()">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    </template>
+    </vue-slick-carousel>
     <!-- 28-액션 -->
     <h1 style="text-align: start;">액션</h1>
-    <div class="card-container">
-      <button class="arrow-button left" @click="moveLeft28">
-        <i class="fa fa-chevron-left"></i>
-      </button>
-      <div class="card-wrapper">
-        <div class="card-row" :style="{ transform: `translateX(${translateX28}px)` }">
-          <div v-for="moviecard in cards28" :key="moviecard.id" class="card space" style="width: 18rem; background-color: black;">
-            <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
-            <div class="card-body">
-            </div>
-          </div>
+    <vue-slick-carousel
+      v-bind="carouselSettings">
+    <template #prevArrow>
+      <button class="arrow-button left" @click="$refs.carousel.prev()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+    </template>
+      <div v-for="moviecard in cards28" :key="moviecard.id" class="card space" style="background-color: black;">
+        <div class="content-wrapper mx-3">
+          <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
+        <div class="card-body"></div>
       </div>
-      <button class="arrow-button right" @click="moveRight28">
-        <i class="fa fa-chevron-right"></i>
-      </button>
-    </div>
+      <template #nextArrow>
+        
+        <button class="arrow-button right" @click="$refs.carousel.next()">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    </template>
+    </vue-slick-carousel>
     <!-- 35-코미디 -->
     <h1 style="text-align: start;">코미디</h1>
-    <div class="card-container">
-      <button class="arrow-button left" @click="moveLeft35">
-        <i class="fa fa-chevron-left"></i>
-      </button>
-      <div class="card-wrapper">
-        <div class="card-row" :style="{ transform: `translateX(${translateX35}px)` }">
-          <div v-for="moviecard in cards35" :key="moviecard.id" class="card space" style="width: 18rem; background-color: black;">
-            <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
-            <div class="card-body">
-            </div>
-          </div>
+    <vue-slick-carousel
+      v-bind="carouselSettings">
+    <template #prevArrow>
+      <button class="arrow-button left" @click="$refs.carousel.prev()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+    </template>
+      <div v-for="moviecard in cards35" :key="moviecard.id" class="card space" style="background-color: black;">
+        <div class="content-wrapper mx-3">
+          <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
+        <div class="card-body"></div>
       </div>
-      <button class="arrow-button right" @click="moveRight35">
-        <i class="fa fa-chevron-right"></i>
-      </button>
-    </div>
+      <template #nextArrow>
+        
+        <button class="arrow-button right" @click="$refs.carousel.next()">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    </template>
+    </vue-slick-carousel>
     <!-- 36-역사 -->
     <h1 style="text-align: start;">역사</h1>
-    <div class="card-container">
-      <button class="arrow-button left" @click="moveLeft36">
-        <i class="fa fa-chevron-left"></i>
-      </button>
-      <div class="card-wrapper">
-        <div class="card-row" :style="{ transform: `translateX(${translateX36}px)` }">
-          <div v-for="moviecard in cards36" :key="moviecard.id" class="card space" style="width: 18rem; background-color: black;">
-            <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
-            <div class="card-body">
-            </div>
-          </div>
+    <vue-slick-carousel
+      v-bind="carouselSettings">
+    <template #prevArrow>
+      <button class="arrow-button left" @click="$refs.carousel.prev()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+    </template>
+      <div v-for="moviecard in cards36" :key="moviecard.id" class="card space" style="background-color: black;">
+        <div class="content-wrapper mx-3">
+          <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
+        <div class="card-body"></div>
       </div>
-      <button class="arrow-button right" @click="moveRight36">
-        <i class="fa fa-chevron-right"></i>
-      </button>
-    </div>
+      <template #nextArrow>
+        
+        <button class="arrow-button right" @click="$refs.carousel.next()">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    </template>
+    </vue-slick-carousel>
     <!-- 37-서부 -->
     <h1 style="text-align: start;">서부</h1>
-    <div class="card-container">
-      <button class="arrow-button left" @click="moveLeft37">
-        <i class="fa fa-chevron-left"></i>
-      </button>
-      <div class="card-wrapper">
-        <div class="card-row" :style="{ transform: `translateX(${translateX37}px)` }">
-          <div v-for="moviecard in cards37" :key="moviecard.id" class="card space" style="width: 18rem; background-color: black;">
-            <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
-            <div class="card-body">
-            </div>
-          </div>
+    <vue-slick-carousel
+      v-bind="carouselSettings">
+    <template #prevArrow>
+      <button class="arrow-button left" @click="$refs.carousel.prev()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+    </template>
+      <div v-for="moviecard in cards37" :key="moviecard.id" class="card space" style="background-color: black;">
+        <div class="content-wrapper mx-3">
+          <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
+        <div class="card-body"></div>
       </div>
-      <button class="arrow-button right" @click="moveRight37">
-        <i class="fa fa-chevron-right"></i>
-      </button>
-    </div>
+      <template #nextArrow>
+        
+        <button class="arrow-button right" @click="$refs.carousel.next()">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    </template>
+    </vue-slick-carousel>
     <!-- 53-스릴러 -->
     <h1 style="text-align: start;">스릴러</h1>
-    <div class="card-container">
-      <button class="arrow-button left" @click="moveLeft53">
-        <i class="fa fa-chevron-left"></i>
-      </button>
-      <div class="card-wrapper">
-        <div class="card-row" :style="{ transform: `translateX(${translateX53}px)` }">
-          <div v-for="moviecard in cards53" :key="moviecard.id" class="card space" style="width: 18rem; background-color: black;">
-            <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
-            <div class="card-body">
-            </div>
-          </div>
+    <vue-slick-carousel
+      v-bind="carouselSettings">
+    <template #prevArrow>
+      <button class="arrow-button left" @click="$refs.carousel.prev()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+    </template>
+      <div v-for="moviecard in cards53" :key="moviecard.id" class="card space" style="background-color: black;">
+        <div class="content-wrapper mx-3">
+          <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
+        <div class="card-body"></div>
       </div>
-      <button class="arrow-button right" @click="moveRight53">
-        <i class="fa fa-chevron-right"></i>
-      </button>
-    </div>
+      <template #nextArrow>
+        
+        <button class="arrow-button right" @click="$refs.carousel.next()">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    </template>
+    </vue-slick-carousel>
     <!-- 80-범죄 -->
     <h1 style="text-align: start;">범죄</h1>
-    <div class="card-container">
-      <button class="arrow-button left" @click="moveLeft80">
-        <i class="fa fa-chevron-left"></i>
-      </button>
-      <div class="card-wrapper">
-        <div class="card-row" :style="{ transform: `translateX(${translateX80}px)` }">
-          <div v-for="moviecard in cards80" :key="moviecard.id" class="card space" style="width: 18rem; background-color: black;">
-            <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
-            <div class="card-body">
-            </div>
-          </div>
+    <vue-slick-carousel
+      v-bind="carouselSettings">
+    <template #prevArrow>
+      <button class="arrow-button left" @click="$refs.carousel.prev()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+    </template>
+      <div v-for="moviecard in cards80" :key="moviecard.id" class="card space" style="background-color: black;">
+        <div class="content-wrapper mx-3">
+          <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
+        <div class="card-body"></div>
       </div>
-      <button class="arrow-button right" @click="moveRight80">
-        <i class="fa fa-chevron-right"></i>
-      </button>
-    </div>
+      <template #nextArrow>
+        
+        <button class="arrow-button right" @click="$refs.carousel.next()">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    </template>
+    </vue-slick-carousel>
     <!-- 99-다큐멘터리 -->
     <h1 style="text-align: start;">다큐멘터리</h1>
-    <div class="card-container">
-      <button class="arrow-button left" @click="moveLeft99">
-        <i class="fa fa-chevron-left"></i>
-      </button>
-      <div class="card-wrapper">
-        <div class="card-row" :style="{ transform: `translateX(${translateX99}px)` }">
-          <div v-for="moviecard in cards99" :key="moviecard.id" class="card space" style="width: 18rem; background-color: black;">
-            <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
-            <div class="card-body">
-            </div>
-          </div>
+    <vue-slick-carousel
+      v-bind="carouselSettings">
+    <template #prevArrow>
+      <button class="arrow-button left" @click="$refs.carousel.prev()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+    </template>
+      <div v-for="moviecard in cards99" :key="moviecard.id" class="card space" style="background-color: black;">
+        <div class="content-wrapper mx-3">
+          <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
+        <div class="card-body"></div>
       </div>
-      <button class="arrow-button right" @click="moveRight99">
-        <i class="fa fa-chevron-right"></i>
-      </button>
-    </div>
+      <template #nextArrow>
+        
+        <button class="arrow-button right" @click="$refs.carousel.next()">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    </template>
+    </vue-slick-carousel>
     <!-- 878-SF -->
     <h1 style="text-align: start;">SF</h1>
-    <div class="card-container">
-      <button class="arrow-button left" @click="moveLeft878">
-        <i class="fa fa-chevron-left"></i>
-      </button>
-      <div class="card-wrapper">
-        <div class="card-row" :style="{ transform: `translateX(${translateX878}px)` }">
-          <div v-for="moviecard in cards878" :key="moviecard.id" class="card space" style="width: 18rem; background-color: black;">
-            <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
-            <div class="card-body">
-            </div>
-          </div>
+    <vue-slick-carousel
+      v-bind="carouselSettings">
+    <template #prevArrow>
+      <button class="arrow-button left" @click="$refs.carousel.prev()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+    </template>
+      <div v-for="moviecard in cards878" :key="moviecard.id" class="card space" style="background-color: black;">
+        <div class="content-wrapper mx-3">
+          <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
+        <div class="card-body"></div>
       </div>
-      <button class="arrow-button right" @click="moveRight878">
-        <i class="fa fa-chevron-right"></i>
-      </button>
-    </div>
+      <template #nextArrow>
+        
+        <button class="arrow-button right" @click="$refs.carousel.next()">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    </template>
+    </vue-slick-carousel>
     <!-- 9648-미스터리 -->
     <h1 style="text-align: start;">미스터리</h1>
-    <div class="card-container">
-      <button class="arrow-button left" @click="moveLeft9648">
-        <i class="fa fa-chevron-left"></i>
-      </button>
-      <div class="card-wrapper">
-        <div class="card-row" :style="{ transform: `translateX(${translateX9648}px)` }">
-          <div v-for="moviecard in cards9648" :key="moviecard.id" class="card space" style="width: 18rem; background-color: black;">
-            <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
-            <div class="card-body">
-            </div>
-          </div>
+    <vue-slick-carousel
+      v-bind="carouselSettings">
+    <template #prevArrow>
+      <button class="arrow-button left" @click="$refs.carousel.prev()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+    </template>
+      <div v-for="moviecard in cards9648" :key="moviecard.id" class="card space" style="background-color: black;">
+        <div class="content-wrapper mx-3">
+          <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
+        <div class="card-body"></div>
       </div>
-      <button class="arrow-button right" @click="moveRight9648">
-        <i class="fa fa-chevron-right"></i>
-      </button>
-    </div>
+      <template #nextArrow>
+        
+        <button class="arrow-button right" @click="$refs.carousel.next()">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    </template>
+    </vue-slick-carousel>
     <!-- 10402-음악 -->
     <h1 style="text-align: start;">음악</h1>
-    <div class="card-container">
-      <button class="arrow-button left" @click="moveLeft10402">
-        <i class="fa fa-chevron-left"></i>
-      </button>
-      <div class="card-wrapper">
-        <div class="card-row" :style="{ transform: `translateX(${translateX10402}px)` }">
-          <div v-for="moviecard in cards10402" :key="moviecard.id" class="card space" style="width: 18rem; background-color: black;">
-            <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
-            <div class="card-body">
-            </div>
-          </div>
+    <vue-slick-carousel
+      v-bind="carouselSettings">
+    <template #prevArrow>
+      <button class="arrow-button left" @click="$refs.carousel.prev()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+    </template>
+      <div v-for="moviecard in cards10402" :key="moviecard.id" class="card space" style="background-color: black;">
+        <div class="content-wrapper mx-3">
+          <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
+        <div class="card-body"></div>
       </div>
-      <button class="arrow-button right" @click="moveRight10402">
-        <i class="fa fa-chevron-right"></i>
-      </button>
-    </div>
+      <template #nextArrow>
+        
+        <button class="arrow-button right" @click="$refs.carousel.next()">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    </template>
+    </vue-slick-carousel>
     <!-- 10749-로맨스 -->
     <h1 style="text-align: start;">로맨스</h1>
-    <div class="card-container">
-      <button class="arrow-button left" @click="moveLeft10749">
-        <i class="fa fa-chevron-left"></i>
-      </button>
-      <div class="card-wrapper">
-        <div class="card-row" :style="{ transform: `translateX(${translateX10749}px)` }">
-          <div v-for="moviecard in cards10749" :key="moviecard.id" class="card space" style="width: 18rem; background-color: black;">
-            <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
-            <div class="card-body">
-            </div>
-          </div>
+    <vue-slick-carousel
+      v-bind="carouselSettings">
+    <template #prevArrow>
+      <button class="arrow-button left" @click="$refs.carousel.prev()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+    </template>
+      <div v-for="moviecard in cards10749" :key="moviecard.id" class="card space" style="background-color: black;">
+        <div class="content-wrapper mx-3">
+          <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
+        <div class="card-body"></div>
       </div>
-      <button class="arrow-button right" @click="moveRight10749">
-        <i class="fa fa-chevron-right"></i>
-      </button>
-    </div>
+      <template #nextArrow>
+        
+        <button class="arrow-button right" @click="$refs.carousel.next()">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    </template>
+    </vue-slick-carousel>
     <!-- 10751-가족 -->
     <h1 style="text-align: start;">가족</h1>
-    <div class="card-container">
-      <button class="arrow-button left" @click="moveLeft10751">
-        <i class="fa fa-chevron-left"></i>
-      </button>
-      <div class="card-wrapper">
-        <div class="card-row" :style="{ transform: `translateX(${translateX10751}px)` }">
-          <div v-for="moviecard in cards10751" :key="moviecard.id" class="card space" style="width: 18rem; background-color: black;">
-            <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
-            <div class="card-body">
-            </div>
-          </div>
+    <vue-slick-carousel
+      v-bind="carouselSettings">
+    <template #prevArrow>
+      <button class="arrow-button left" @click="$refs.carousel.prev()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+    </template>
+      <div v-for="moviecard in cards10751" :key="moviecard.id" class="card space" style="background-color: black;">
+        <div class="content-wrapper mx-3">
+          <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
+        <div class="card-body"></div>
       </div>
-      <button class="arrow-button right" @click="moveRight10751">
-        <i class="fa fa-chevron-right"></i>
-      </button>
-    </div>
-    <!-- 10752-로맨스 -->
+      <template #nextArrow>
+        
+        <button class="arrow-button right" @click="$refs.carousel.next()">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    </template>
+    </vue-slick-carousel>
+    <!-- 10752-전쟁 -->
     <h1 style="text-align: start;">전쟁</h1>
-    <div class="card-container">
-      <button class="arrow-button left" @click="moveLeft10752">
-        <i class="fa fa-chevron-left"></i>
-      </button>
-      <div class="card-wrapper">
-        <div class="card-row" :style="{ transform: `translateX(${translateX10752}px)` }">
-          <div v-for="moviecard in cards10752" :key="moviecard.id" class="card space" style="width: 18rem; background-color: black;">
-            <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
-            <div class="card-body">
-            </div>
-          </div>
+    <vue-slick-carousel
+      v-bind="carouselSettings">
+    <template #prevArrow>
+      <button class="arrow-button left" @click="$refs.carousel.prev()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+    </template>
+      <div v-for="moviecard in cards10752" :key="moviecard.id" class="card space" style="background-color: black;">
+        <div class="content-wrapper mx-3">
+          <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
+        <div class="card-body"></div>
       </div>
-      <button class="arrow-button right" @click="moveRight10752">
-        <i class="fa fa-chevron-right"></i>
-      </button>
-    </div>
-    <!-- 10770-로맨스 -->
+      <template #nextArrow>
+        
+        <button class="arrow-button right" @click="$refs.carousel.next()">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    </template>
+    </vue-slick-carousel>
+    <!-- 10770-TV 영화 -->
     <h1 style="text-align: start;">TV 영화</h1>
-    <div class="card-container">
-      <button class="arrow-button left" @click="moveLeft10770">
-        <i class="fa fa-chevron-left"></i>
-      </button>
-      <div class="card-wrapper">
-        <div class="card-row" :style="{ transform: `translateX(${translateX10770}px)` }">
-          <div v-for="moviecard in cards10770" :key="moviecard.id" class="card space" style="width: 18rem; background-color: black;">
-            <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
-            <div class="card-body">
-            </div>
-          </div>
+    <vue-slick-carousel
+      v-bind="carouselSettings">
+    <template #prevArrow>
+      <button class="arrow-button left" @click="$refs.carousel.prev()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+    </template>
+      <div v-for="moviecard in cards10770" :key="moviecard.id" class="card space" style="background-color: black;">
+        <div class="content-wrapper mx-3">
+          <img @click="goMovieDetailView(moviecard)" :src="`https://image.tmdb.org/t/p/w185${moviecard?.poster_path}`" class="card-img-top" alt="">
         </div>
+        <div class="card-body"></div>
       </div>
-      <button class="arrow-button right" @click="moveRight10770">
-        <i class="fa fa-chevron-right"></i>
-      </button>
-    </div>
+      <template #nextArrow>
+        
+        <button class="arrow-button right" @click="$refs.carousel.next()">
+      <i class="fa fa-chevron-right"></i>
+    </button>
+    </template>
+    </vue-slick-carousel>
+
+    <!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  -->
   </div>
 </template>
 
 <script>
+import VueSlickCarousel from 'vue-slick-carousel';
+import 'vue-slick-carousel/dist/vue-slick-carousel.css';
+
 export default {
-  name: 'GenreMovie',
+  name: 'RecommendForYou',
+  components: {
+    VueSlickCarousel,
+  },
   data() {
     return {
-      ///////////////////////////////////////////////////////////////////////////////
-      translateX12: 0, // 12-모험
-      translateX14: 0, // 14-판타지
-      translateX16: 0, // 16-애니메이션
-      translateX18: 0, // 18-드라마
-      translateX27: 0, // 27-공포
-      translateX28: 0, // 28-액션
-      translateX35: 0, // 35-코미디
-      translateX36: 0, // 36-역사
-      translateX37: 0, // 37-서부
-      translateX53: 0, // 53-스릴러
-      translateX80: 0, // 80-범죄
-      translateX99: 0, // 99-다큐멘터리
-      translateX878: 0, // 878-SF
-      translateX9648: 0, // 9648-미스터리
-      translateX10402: 0, // 10402-음악
-      translateX10749: 0, // 10749-로맨스
-      translateX10751: 0, // 10751-가족
-      translateX10752: 0, // 10752-전쟁
-      translateX10770: 0, // 10770-TV 영화
-      ///////////////////////////////////////////////////////////////////////////////
-      cardWidth: 200,
-      containerWidth: 0,
-    }
+      carouselSettings: {
+        centerMode: true,
+        centerPadding: '20px',
+        focusOnSelect: true,
+        infinite: true,
+        slidesToShow: 7,
+        speed: 500,
+      },
+    };
   },
   computed: {
     ///////////////////////////////////////////////////////////////////////////////
@@ -455,15 +505,7 @@ export default {
     },
     ///////////////////////////////////////////////////////////////////////////////
   },
-  mounted() {
-    this.$nextTick(() => {
-      if (this.$refs.cardWrapper) {
-        this.containerWidth = this.$refs.cardWrapper.offsetWidth
-      }
-    })
-  },
   created() {
-    // 화면이 켜지면 getArticles 메서드를 실행한다.
     ///////////////////////////////////////////////////////////////////////////////
     this.getGenrecards12()   // 12-모험
     this.getGenrecards14()   // 14-판타지
@@ -488,243 +530,17 @@ export default {
   },
   methods: {
     goMovieDetailView(moviecard) {
-      this.$router.push({ name: 'MovieDetailView', params: { id: moviecard.id }})
-    },
-    ////////////////////////////////////////////////////////////////////////////////
-    // 12-모험
-    moveRight12() {
-      const maxTranslate = this.containerWidth - this.cardWidth * this.cards12.length
-      if (this.translateX12 > maxTranslate + this.cardWidth * 11 ) {
-        this.translateX12 -= this.cardWidth*7
-      }
-    },
-    moveLeft12() {
-      if (this.translateX12 < 0) {
-        this.translateX12 += this.cardWidth*7
-      }
-    },
-    // 14-판타지
-    moveRight14() {
-      const maxTranslate = this.containerWidth - this.cardWidth * this.cards14.length
-      if (this.translateX14 > maxTranslate + this.cardWidth * 11 ) {
-        this.translateX14 -= this.cardWidth*7
-      }
-    },
-    moveLeft14() {
-      if (this.translateX14 < 0) {
-        this.translateX14 += this.cardWidth*7
-      }
-    },
-    // 16-애니메이션
-    moveRight16() {
-      const maxTranslate = this.containerWidth - this.cardWidth * this.cards16.length
-      if (this.translateX16 > maxTranslate + this.cardWidth * 11 ) {
-        this.translateX16 -= this.cardWidth*7
-      }
-    },
-    moveLeft16() {
-      if (this.translateX16 < 0) {
-        this.translateX16 += this.cardWidth*7
-      }
-    },
-    // 18-드라마
-    moveRight18() {
-      const maxTranslate = this.containerWidth - this.cardWidth * this.cards18.length
-      if (this.translateX18 > maxTranslate + this.cardWidth * 11 ) {
-        this.translateX18 -= this.cardWidth*7
-      }
-    },
-    moveLeft18() {
-      if (this.translateX18 < 0) {
-        this.translateX18 += this.cardWidth*7
-      }
-    },
-    // 27-공포
-    moveRight27() {
-      const maxTranslate27 = this.containerWidth - this.cardWidth * this.cards27.length
-      if (this.translateX27 > maxTranslate27 + this.cardWidth * 11) {
-        this.translateX27 -= this.cardWidth * 7
-      }
-    },
-    moveLeft27() {
-      if (this.translateX27 < 0) {
-        this.translateX27 += this.cardWidth * 7
-      }
-    },
-    // 28-액션
-    moveRight28() {
-      const maxTranslate28 = this.containerWidth - this.cardWidth * this.cards28.length
-      if (this.translateX28 > maxTranslate28 + this.cardWidth * 11) {
-        this.translateX28 -= this.cardWidth * 7
-      }
-    },
-    moveLeft28() {
-      if (this.translateX28 < 0) {
-        this.translateX28 += this.cardWidth * 7
-      }
-    },
-    // 35-코미디
-    moveRight35() {
-      const maxTranslate35 = this.containerWidth - this.cardWidth * this.cards35.length
-      if (this.translateX35 > maxTranslate35 + this.cardWidth * 11) {
-        this.translateX35 -= this.cardWidth * 7
-      }
-    },
-    moveLeft35() {
-      if (this.translateX35 < 0) {
-        this.translateX35 += this.cardWidth * 7
-      }
-    },
-    // 36-역사
-    moveRight36() {
-      const maxTranslate36 = this.containerWidth - this.cardWidth * this.cards36.length
-      if (this.translateX36 > maxTranslate36 + this.cardWidth * 11) {
-        this.translateX36 -= this.cardWidth * 7
-      }
-    },
-    moveLeft36() {
-      if (this.translateX36 < 0) {
-        this.translateX36 += this.cardWidth * 7
-      }
-    },
-    // 37-서부
-    moveRight37() {
-      const maxTranslate37 = this.containerWidth - this.cardWidth * this.cards37.length
-      if (this.translateX37 > maxTranslate37 + this.cardWidth * 11) {
-        this.translateX37 -= this.cardWidth * 7
-      }
-    },
-    moveLeft37() {
-      if (this.translateX37 < 0) {
-        this.translateX37 += this.cardWidth * 7
-      }
-    },
-    // 53-스릴러
-    moveRight53() {
-      const maxTranslate53 = this.containerWidth - this.cardWidth * this.cards53.length
-      if (this.translateX53 > maxTranslate53 + this.cardWidth * 11) {
-        this.translateX53 -= this.cardWidth * 7
-      }
-    },
-    moveLeft53() {
-      if (this.translateX53 < 0) {
-        this.translateX53 += this.cardWidth * 7
-      }
-    },
-    // 80-범죄
-    moveRight80() {
-      const maxTranslate80 = this.containerWidth - this.cardWidth * this.cards80.length
-      if (this.translateX80 > maxTranslate80 + this.cardWidth * 11) {
-        this.translateX80 -= this.cardWidth * 7
-      }
-    },
-    moveLeft80() {
-      if (this.translateX80 < 0) {
-        this.translateX80 += this.cardWidth * 7
-      }
-    },
-    // 99-다큐멘터리
-    moveRight99() {
-      const maxTranslate99 = this.containerWidth - this.cardWidth * this.cards99.length
-      if (this.translateX99 > maxTranslate99 + this.cardWidth * 11) {
-        this.translateX99 -= this.cardWidth * 7
-      }
-    },
-    moveLeft99() {
-      if (this.translateX99 < 0) {
-        this.translateX99 += this.cardWidth * 7
-      }
-    },
-    // 878-SF
-    moveRight878() {
-      const maxTranslate878 = this.containerWidth - this.cardWidth * this.cards878.length
-      if (this.translateX878 > maxTranslate878 + this.cardWidth * 11) {
-        this.translateX878 -= this.cardWidth * 7
-      }
-    },
-    moveLeft878() {
-      if (this.translateX878 < 0) {
-        this.translateX878 += this.cardWidth * 7
-      }
-    },
-    // 9648-미스터리
-    moveRight9648() {
-      const maxTranslate9648 = this.containerWidth - this.cardWidth * this.cards9648.length
-      if (this.translateX9648 > maxTranslate9648 + this.cardWidth * 11) {
-        this.translateX9648 -= this.cardWidth * 7
-      }
-    },
-    moveLeft9648() {
-      if (this.translateX9648 < 0) {
-        this.translateX9648 += this.cardWidth * 7
-      }
-    },
-    // 10402-음악
-    moveRight10402() {
-      const maxTranslate10402 = this.containerWidth - this.cardWidth * this.cards10402.length
-      if (this.translateX10402 > maxTranslate10402 + this.cardWidth * 11) {
-        this.translateX10402 -= this.cardWidth * 7
-      }
-    },
-    moveLeft10402() {
-      if (this.translateX10402 < 0) {
-        this.translateX10402 += this.cardWidth * 7
-      }
-    },
-    // 10749-로맨스
-    moveRight10749() {
-      const maxTranslate10749 = this.containerWidth - this.cardWidth * this.cards10749.length
-      if (this.translateX10749 > maxTranslate10749 + this.cardWidth * 11) {
-        this.translateX10749 -= this.cardWidth * 7
-      }
-    },
-    moveLeft10749() {
-      if (this.translateX10749 < 0) {
-        this.translateX10749 += this.cardWidth * 7
-      }
-    },
-    // 10751-가족
-    moveRight10751() {
-      const maxTranslate10751 = this.containerWidth - this.cardWidth * this.cards10751.length
-      if (this.translateX10751 > maxTranslate10751 + this.cardWidth * 11) {
-        this.translateX10751 -= this.cardWidth * 7
-      }
-    },
-    moveLeft10751() {
-      if (this.translateX10751 < 0) {
-        this.translateX10751 += this.cardWidth * 7
-      }
-    },
-    // 10752-전쟁
-    moveRight10752() {
-      const maxTranslate10752 = this.containerWidth - this.cardWidth * this.cards10752.length
-      if (this.translateX10752 > maxTranslate10752 + this.cardWidth * 11) {
-        this.translateX10752 -= this.cardWidth * 7
-      }
-    },
-    moveLeft10752() {
-      if (this.translateX10752 < 0) {
-        this.translateX10752 += this.cardWidth * 7
-      }
-    },
-    // 10770-TV 영화
-    moveRight10770() {
-      const maxTranslate10770 = this.containerWidth - this.cardWidth * this.cards10770.length
-      if (this.translateX10770 > maxTranslate10770 + this.cardWidth * 11) {
-        this.translateX10770 -= this.cardWidth * 7
-      }
-    },
-    moveLeft10770() {
-      if (this.translateX10770 < 0) {
-        this.translateX10770 += this.cardWidth * 7
+      this.$router.push({ name: 'MovieDetailView', params: { id: moviecard.id }});
+    },  
+    updateSlidesToShow() {
+      const windowWidth = window.innerWidth;
+      if (windowWidth <= 580) {
+        this.carouselSettings.slidesToShow = 2;
+      } else {
+        this.carouselSettings.slidesToShow = Math.floor(windowWidth / 290);
       }
     },
     ////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-    ///////////////////////////////////////////////////
     // 12-모험
     getGenrecards12() {
       this.$store.dispatch('getGenrecards12')
@@ -801,8 +617,82 @@ export default {
     getGenrecards10770() {
       this.$store.dispatch('getGenrecards10770')
     },
-    /////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////
   },
-  
-}
+  mounted() {
+    this.updateSlidesToShow();
+    window.addEventListener('resize', this.updateSlidesToShow);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.updateSlidesToShow);
+  },
+};
 </script>
+
+<style scoped>
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+.card-body {
+  background-color: transparent;
+}
+/* .arrow-button {
+  height: 50%;
+  width: auto;
+} */
+
+.card-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-wrapper {
+  display: flex;
+  transition: transform 0.3s;
+  z-index: 1; /* 카드를 화살표 위에 올리기 위해 z-index 설정 */
+}
+
+.card-row {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.arrow-button {
+  height: 50%;
+  width: auto;
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  color: white;
+  background-color: black;
+  z-index: 2;
+  opacity: 0.8; /* 기본적으로 버튼을 투명하게 설정 */
+  transition: opacity 0.3s; /* 마우스 호버 시 투명도 변화를 부드럽게 설정 */
+}
+
+.arrow-button:hover {
+  opacity: 1; /* 마우스 호버 시 투명도를 1로 설정하여 버튼이 더욱 뚜렷하게 보이도록 함 */
+  background-color: blue;
+}
+
+.left {
+  left: 10px;
+}
+
+.right {
+  right: 10px;
+}
+
+.fa-chevron-left,
+.fa-chevron-right {
+  font-size: 24px;
+}
+</style>
