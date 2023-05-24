@@ -1,5 +1,5 @@
 <template>
-  <div id="footer">
+  <div id="footer" style="width:100%;">
       <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
           <symbol id="check2" viewBox="0 0 16 16">
             <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
@@ -33,14 +33,14 @@
       </symbol>
     </svg>
 
-    <div class="container">
+    <div class="container border-top border-white">
       <!-- <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"> -->
-      <footer class="d-flex flex-wrap justify-content-between align-items-center py-1">
+      <footer class="d-flex flex-wrap justify-content-between align-items-center my-3">
         <p class="col-md-4 mb-0 text-white">&copy; 2023 KIMS, Inc</p>
 
         <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
           <!-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg> -->
-          <img src="@/assets/Kim Movie.png" alt="" width="80" height="80">
+          <img src="@/assets/Kim Movie.png" alt="" width="60S" height="60">
         </a>
 
         <ul class="nav col-md-4 justify-content-center">
