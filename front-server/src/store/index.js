@@ -91,6 +91,7 @@ export default new Vuex.Store({
     GET_CARDS_HIGHSCORE(state,cards_highscore){
       state.cards_highscore = cards_highscore
     },
+    
     SET_CURRENT_USER: (state, user) => state.currentUser = user,
     SET_PROFILE: (state, profile) => state.profile = profile,
 
@@ -117,6 +118,18 @@ export default new Vuex.Store({
       state.genre_cards10770 = genre_cards[18]          // 10770-TV 영화
     },
     
+    GET_CARDSCUSTOM(state,cards_custom){
+      state.cards_custom = cards_custom
+    },
+    GET_HIGHVOTE(state,high_vote_cards){
+      state.high_vote_cards = high_vote_cards
+    },
+    GET_HIGHPOP(state,high_pop_cards){
+      state.high_pop_cards = high_pop_cards
+    },
+    GET_LATEST(state,latest_cards){
+      state.latest_cards = latest_cards
+    },
   },
   actions: {
     // 회원가입 페이지인 SignUpView의 signUp()메서드를 실행하고 여기로 온다.

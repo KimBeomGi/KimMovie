@@ -70,7 +70,7 @@
 
     <!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  -->
     <!-- footer -->
-    <footer class="footer">
+    <footer class="footer border-top border-white mt-3">
     <!-- <footer> -->
       <FooterView/>
     </footer>

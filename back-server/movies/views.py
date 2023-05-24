@@ -14,7 +14,7 @@ from .serializers import IdealMovieSerializer, Quiz1Serializer, Quiz2Serializer
 from .models import Genre, Movie, Quiz1, Quiz2
 # from .models import Ideal
 import random
-
+from django.db.models import Count
 from django.contrib.auth import get_user_model
 
 # Create your views here.
@@ -73,8 +73,8 @@ def movie_list(request):
 @api_view(['GET'])
 def vote_average_sort(request):
     if request.method == 'GET':
-        movies = list(Movie.objects.order_by('-vote_average')[:30])  # 평점 순으로 정렬
-        random.shuffle(movies)
+        movies = Movie.objects.filter(vote_count__gte=1000).order_by('-vote_average')[:50]
+        movies = random.sample(list(movies), 30)
         serializer = MovieListSerializer(movies, many=True)
         return Response(serializer.data)
     return Response(status=status.HTTP_400_BAD_REQUEST)
