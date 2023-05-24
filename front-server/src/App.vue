@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <hr>
+    <hr>
+    <hr>
     <nav class="navbar navbar-expand-xl navbar-dark" style="background-color: black; height: 90px;">
       <div class="container-fluid">
         <!-- logo 버튼 -->
@@ -43,7 +46,11 @@
             </li>
             <!-- 내 정보 버튼 -->
             <li v-if="islogin" @click.prevent="MyProfileView" class="nav-item active">
-              <a class="nav-link" href="">내 정보 <span class="sr-only"></span></a>
+              <a class="nav-link" href="">프로필 <span class="sr-only"></span></a>
+            </li>
+            <!-- 로그인 버튼 -->
+            <li v-if="!islogin" @click.prevent="login" class="nav-item">
+              <a class="nav-link" href="">로그인 <span class="sr-only"></span></a>
             </li>
             <!-- 로그아웃 버튼 -->
             <li v-if="islogin" @click.prevent="logout" class="nav-item">
