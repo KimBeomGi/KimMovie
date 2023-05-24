@@ -14,7 +14,7 @@
     </div>
     <hr>
     <div style="display: flex; flex-direction: row; align-items: center;">
-      <button @click="toggleLike" :class="{'liked': article?.liked}" class="like-button">
+      <button @click="toggleLike"  class="like-button">
         {{likebt}}
       </button>
       <span class="like-count">{{ like_users_num}}</span>
@@ -50,7 +50,6 @@ export default {
 
   created() {
     this.getArticleDetail()
-    this.like_users_num = this.article?.like_users.length
 
   },
   computed:{
