@@ -31,8 +31,8 @@ export default {
   const end = start + this.pageSize;
   return this.anonymousarticles
     .slice(start, end)
-    .sort((a, b) => b.id - a.id)
-    .reverse();
+    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+    // .reverse();
 },
     pageCount() {
       return Math.ceil(this.anonymousarticles.length / this.pageSize);
@@ -41,7 +41,7 @@ export default {
   data() {
     return {
       currentPage: 1,
-      pageSize: 10,
+      pageSize: 5,
     };
   },
   methods: {
@@ -66,6 +66,7 @@ export default {
   background-color: black;
   display: flex;
   justify-content: center;
+  margin-right: 0px;
 }
 
 .pagination button {

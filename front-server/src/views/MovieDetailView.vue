@@ -106,7 +106,8 @@ this.$router.push({name:'HomeView'})
           this.poster = 'https://image.tmdb.org/t/p/w500' + res.data.poster_path;
           this.like_users_num = res.data.like_users.length
           this.like = res.data.is_liked
-          // console.log(res)
+          
+          console.log(res)
         })
         .catch((err) => {
           // alert('에러')

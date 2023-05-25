@@ -21,6 +21,7 @@ export default {
   components: {
     ArticleListItem,
   },
+
   computed: {
     // computed는 정보가 바뀔 때 실행된다.
     // state에 있는 articles에 전체 게시글이 변경될 때마다 갱신해준다.
@@ -31,9 +32,10 @@ export default {
   const start = (this.currentPage - 1) * this.pageSize;
   const end = start + this.pageSize;
   return this.articles
+
     .slice(start, end)
-    .sort((a, b) => b.id - a.id)
-    .reverse();
+    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+    // .reverse();
 },
     pageCount() {
       return Math.ceil(this.articles.length / this.pageSize);
@@ -42,7 +44,7 @@ export default {
   data() {
     return {
       currentPage: 1,
-      pageSize: 10,
+      pageSize: 5,
     };
   },
   methods: {
@@ -67,6 +69,7 @@ export default {
   background-color: black;
   display: flex;
   justify-content: center;
+  margin-right: 0px;
 }
 
 .pagination button {

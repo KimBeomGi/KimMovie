@@ -55,7 +55,7 @@
         return this.filteredArticles.slice(startIndex, endIndex);
       },
       filteredArticles() {
-        return this.articles.filter((article) => article.movie === this.movie_id).reverse();
+        return this.articles.filter((article) => article.movie === this.movie_id)
         
       },
       pageCount() {
