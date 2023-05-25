@@ -285,7 +285,8 @@ export default new Vuex.Store({
     getCards(context) {
       axios({
         method: 'get',
-        url: 'http://localhost:8000/api/v1/recommend/',
+        // url: 'http://localhost:8000/api/v1/recommend/',
+        url: 'http://127.0.0.1:8000/api/v1/recommend/',
       })
         .then((res) => {
           // console.log(res.data)
