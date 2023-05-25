@@ -42,4 +42,8 @@ export default {
 </script>
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
+  .font_NanumBrush{
+    font-family: 'Nanum Brush Script', cursive;
+  }
 </style>

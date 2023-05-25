@@ -1,7 +1,7 @@
 <template>
   <div style="background-color: black; position: relative;">
     <!-- 12-모험 -->
-    <h1 style="text-align: start;">모험🧳</h1>
+    <h2 class="font_NanumBrush" style="text-align: start;">모험🧳</h2>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
@@ -23,7 +23,7 @@
     </template>
     </vue-slick-carousel>
     <!-- 14-판타지 -->
-    <h1 style="text-align: start;">판타지🧙</h1>
+    <h2 class="font_NanumBrush" style="text-align: start;">판타지🧙</h2>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
@@ -45,7 +45,7 @@
     </template>
     </vue-slick-carousel>
     <!-- 16-애니메이션 -->
-    <h1 style="text-align: start;">애니메이션📚</h1>
+    <h2 class="font_NanumBrush" style="text-align: start;">애니메이션📚</h2>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
@@ -67,7 +67,7 @@
     </template>
     </vue-slick-carousel>
     <!-- 18-드라마 -->
-    <h1 style="text-align: start;">드라마🏃🏻</h1>
+    <h2 class="font_NanumBrush" style="text-align: start;">드라마🏃🏻</h2>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
@@ -89,7 +89,7 @@
     </template>
     </vue-slick-carousel>
     <!-- 27-공포 -->
-    <h1 style="text-align: start;">공포😱</h1>
+    <h2 class="font_NanumBrush" style="text-align: start;">공포😱</h2>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
@@ -111,7 +111,7 @@
     </template>
     </vue-slick-carousel>
     <!-- 28-액션 -->
-    <h1 style="text-align: start;">액션⚔️</h1>
+    <h2 class="font_NanumBrush" style="text-align: start;">액션⚔️</h2>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
@@ -133,7 +133,7 @@
     </template>
     </vue-slick-carousel>
     <!-- 35-코미디 -->
-    <h1 style="text-align: start;">코미디😆</h1>
+    <h2 class="font_NanumBrush" style="text-align: start;">코미디😆</h2>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
@@ -155,7 +155,7 @@
     </template>
     </vue-slick-carousel>
     <!-- 36-역사 -->
-    <h1 style="text-align: start;">역사🏛️</h1>
+    <h2 class="font_NanumBrush" style="text-align: start;">역사🏛️</h2>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
@@ -177,7 +177,7 @@
     </template>
     </vue-slick-carousel>
     <!-- 37-서부 -->
-    <h1 style="text-align: start;">서부🤠</h1>
+    <h2 class="font_NanumBrush" style="text-align: start;">서부🤠</h2>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
@@ -199,7 +199,7 @@
     </template>
     </vue-slick-carousel>
     <!-- 53-스릴러 -->
-    <h1 style="text-align: start;">스릴러😨</h1>
+    <h2 class="font_NanumBrush" style="text-align: start;">스릴러😨</h2>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
@@ -221,7 +221,7 @@
     </template>
     </vue-slick-carousel>
     <!-- 80-범죄 -->
-    <h1 style="text-align: start;">범죄🚓</h1>
+    <h2 class="font_NanumBrush" style="text-align: start;">범죄🚓</h2>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
@@ -243,7 +243,7 @@
     </template>
     </vue-slick-carousel>
     <!-- 99-다큐멘터리 -->
-    <h1 style="text-align: start;">다큐멘터리📹️</h1>
+    <h2 class="font_NanumBrush" style="text-align: start;">다큐멘터리📹️</h2>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
@@ -265,7 +265,7 @@
     </template>
     </vue-slick-carousel>
     <!-- 878-SF -->
-    <h1 style="text-align: start;">SF🛰️</h1>
+    <h2 class="font_NanumBrush" style="text-align: start;">SF🛰️</h2>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
@@ -287,7 +287,7 @@
     </template>
     </vue-slick-carousel>
     <!-- 9648-미스터리 -->
-    <h1 style="text-align: start;">미스터리🕵️</h1>
+    <h2 class="font_NanumBrush" style="text-align: start;">미스터리🕵️</h2>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
@@ -309,7 +309,7 @@
     </template>
     </vue-slick-carousel>
     <!-- 10402-음악 -->
-    <h1 style="text-align: start;">음악🎵</h1>
+    <h2 class="font_NanumBrush" style="text-align: start;">음악🎵</h2>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
@@ -331,7 +331,7 @@
     </template>
     </vue-slick-carousel>
     <!-- 10749-로맨스 -->
-    <h1 style="text-align: start;">로맨스❤️</h1>
+    <h2 class="font_NanumBrush" style="text-align: start;">로맨스❤️</h2>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
@@ -353,7 +353,7 @@
     </template>
     </vue-slick-carousel>
     <!-- 10751-가족 -->
-    <h1 style="text-align: start;">가족👪️</h1>
+    <h2 class="font_NanumBrush" style="text-align: start;">가족👪️</h2>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
@@ -375,7 +375,7 @@
     </template>
     </vue-slick-carousel>
     <!-- 10752-전쟁 -->
-    <h1 style="text-align: start;">전쟁🎖️</h1>
+    <h2 class="font_NanumBrush" style="text-align: start;">전쟁🎖️</h2>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
@@ -397,7 +397,7 @@
     </template>
     </vue-slick-carousel>
     <!-- 10770-TV 영화 -->
-    <h1 style="text-align: start;">TV 영화📺️</h1>
+    <h2 class="font_NanumBrush" style="text-align: start;">TV 영화📺️</h2>
     <vue-slick-carousel
       v-bind="carouselSettings">
     <template #prevArrow>
@@ -541,68 +541,76 @@ export default {
 </script>
 
 <style scoped>
-h1{
-  padding-left: 35px;
-}
-.card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-}
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
+  .font_NanumBrush{
+    font-family: 'Nanum Brush Script', cursive;
+  }
 
-.card-body {
-  background-color: transparent;
-}
+  h1{
+    padding-left: 35px;
+  }
+  h2{
+    padding-left: 35px;
+  }
+  .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+  }
 
-.card-container {
-  position: relative;
-  overflow: hidden;
-}
+  .card-body {
+    background-color: transparent;
+  }
 
-.card-wrapper {
-  display: flex;
-  transition: transform 0.3s;
-  z-index: 1; /* 카드를 화살표 위에 올리기 위해 z-index 설정 */
-}
+  .card-container {
+    position: relative;
+    overflow: hidden;
+  }
 
-.card-row {
-  display: flex;
-  flex-wrap: nowrap;
-}
+  .card-wrapper {
+    display: flex;
+    transition: transform 0.3s;
+    z-index: 1; /* 카드를 화살표 위에 올리기 위해 z-index 설정 */
+  }
 
-.arrow-button {
-  height: 50%;
-  width: auto;
-  position: absolute;
-  top: 45%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-  color: white;
-  background-color: black;
-  z-index: 2;
-  opacity: 0.8; /* 기본적으로 버튼을 투명하게 설정 */
-  transition: opacity 0.3s; /* 마우스 호버 시 투명도 변화를 부드럽게 설정 */
-}
+  .card-row {
+    display: flex;
+    flex-wrap: nowrap;
+  }
 
-.arrow-button:hover {
-  opacity: 1; /* 마우스 호버 시 투명도를 1로 설정하여 버튼이 더욱 뚜렷하게 보이도록 함 */
-  background-color: blue;
-}
+  .arrow-button {
+    height: 50%;
+    width: auto;
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    color: white;
+    background-color: black;
+    z-index: 2;
+    opacity: 0.8; /* 기본적으로 버튼을 투명하게 설정 */
+    transition: opacity 0.3s; /* 마우스 호버 시 투명도 변화를 부드럽게 설정 */
+  }
 
-.left {
-  left: 10px;
-}
+  .arrow-button:hover {
+    opacity: 1; /* 마우스 호버 시 투명도를 1로 설정하여 버튼이 더욱 뚜렷하게 보이도록 함 */
+    background-color: red;
+  }
 
-.right {
-  right: 10px;
-}
+  .left {
+    left: 10px;
+  }
 
-.fa-chevron-left,
-.fa-chevron-right {
-  font-size: 24px;
-}
+  .right {
+    right: 10px;
+  }
+
+  .fa-chevron-left,
+  .fa-chevron-right {
+    font-size: 24px;
+  }
 </style>
