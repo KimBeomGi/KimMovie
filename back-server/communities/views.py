@@ -21,7 +21,7 @@ from .models import Review, Comment, Anonyarticle, Anonycomment
 def review_list(request):
     if request.method == 'GET':
         # articles = Article.objects.all()
-        reviews = get_list_or_404(Review)
+        reviews = Review.objects.all().order_by('-id')
         serializer = ReviewListSerializer(reviews, many=True)
         return Response(serializer.data)
 
@@ -190,7 +190,8 @@ def review_like(request, review_pk):
 def anonyarticle_list(request):
     if request.method == 'GET':
         # articles = Article.objects.all()
-        anonyarticle = get_list_or_404(Anonyarticle)
+        # anonyarticle = get_list_or_404(Anonyarticle)
+        anonyarticle = Anonyarticle.objects.all().order_by('-id')
         serializer = AnonyarticleListSerializer(anonyarticle, many=True)
         return Response(serializer.data)
 

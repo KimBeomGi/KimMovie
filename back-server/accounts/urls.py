@@ -9,5 +9,5 @@ urlpatterns = [
     path('follow/<int:user_pk>/', views.follow),            # follow 하기
     path('unregister/', views.unregister),                  # 회원 탈퇴
     path('profile/<int:user_pk>/', views.profile),          # 다른사람 profile 보기
-    path('profile/', views.myprofile),                        # 내 profile 보기   
+    path('profile/', views.myprofile),                      # 내 profile 보기   
 ]
