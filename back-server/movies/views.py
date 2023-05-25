@@ -168,6 +168,7 @@ def recommend(request):
 def recommend_custom(request):
     if request.method == 'GET':
         if request.user.is_authenticated:
+            print('로그인됨')
             genres_all = []
             if request.user.idealmovie.exists():
                 for movie in request.user.idealmovie.all():
@@ -200,9 +201,10 @@ def recommend_custom(request):
                     sample_movies = random.sample(list(movies_filtered), need_num)
                     random.shuffle(movies)
                     movies += sample_movies
+                print('받음')
                 serializer = MovieSerializer(movies, many=True)
                 return Response(serializer.data, status=status.HTTP_200_OK)
-
+        print('못받음')
         # 이상영화와 좋아요한 영화가 없거나 로그인이 안되어 있을 경우, 아무 영화나 60개 추천
         movies = get_list_or_404(Movie)
         movies_recommend = random.sample(movies, 30)

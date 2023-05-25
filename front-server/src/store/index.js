@@ -338,6 +338,7 @@ export default new Vuex.Store({
       axios({
         method: 'get',
         url: 'http://127.0.0.1:8000/api/v1/recommend_custom/',
+        headers: context.getters.authHeader,
       })
         .then((res) => {
           context.commit('GET_CARDSCUSTOM', res.data)
