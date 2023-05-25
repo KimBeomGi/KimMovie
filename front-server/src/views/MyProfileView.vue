@@ -25,9 +25,9 @@
       <p>팔로잉 수 : {{ followings_count }}명</p>
       <p>내가 팔로잉 한 사람 : {{ followings_name ? followings_name.join(', ') : '' }}</p>
       <p>등급: {{ grade }}</p>
-      <p>좋아요 한 영화 : {{ like_movies_name ? like_movies_name.join(', ') : '' }}</p>
       <p>경험치: {{ exp }} EXP</p>
       <p>포인트: {{ point }} P</p>
+      <p>좋아요 한 영화 : {{ like_movies_name ? like_movies_name.join(', ') : '' }}</p>
       <button @click="put_delete" class="edit-button" style="margin-left: 410px;">회원 탈퇴</button>
       
 

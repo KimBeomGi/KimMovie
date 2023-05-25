@@ -68,9 +68,9 @@ export default {
       })
       .then((res)=>{
         if (res.data.message==='오답입니다!'){
-          alert(`오답입니다 ㅠㅠ 정답은 ${this.answer}!`)
+          alert(`오답입니다 ㅠㅠ 50포인트를 잃습니다.\n정답은 ${this.answer}!\n이전 화면으로 돌아갑니다.`)
         }else{
-        alert('정답입니다! 100포인트를 얻습니다. 이전 화면으로 돌아갑니다.')}
+        alert('정답입니다! 100포인트를 얻습니다.\n이전 화면으로 돌아갑니다.')}
         this.$router.go(-1)
         console.log(res)
       })
@@ -91,9 +91,9 @@ export default {
       })
       .then((res)=>{
         if (res.data.message==='오답입니다!'){
-          alert(`오답입니다 ㅠㅠ 정답은 ${this.answer}!`)
+          alert(`오답입니다 ㅠㅠ 50포인트를 잃습니다.\n정답은 ${this.answer}!\n이전 화면으로 돌아갑니다.`)
         }else{
-          alert('정답입니다! 100포인트를 얻습니다. 이전 화면으로 돌아갑니다.')}
+          alert('정답입니다! 100포인트를 얻습니다.\n이전 화면으로 돌아갑니다.')}
         this.$router.go(-1)
         console.log(res)
       })
@@ -115,9 +115,9 @@ export default {
       })
       .then((res)=>{
         if (res.data.message==='오답입니다!'){
-          alert(`오답입니다 ㅠㅠ 정답은 ${this.answer}!`)
+          alert(`오답입니다 ㅠㅠ 50포인트를 잃습니다.\n정답은 ${this.answer}!\n이전 화면으로 돌아갑니다.`)
         }else{
-          alert('정답입니다! 100포인트를 얻습니다. 이전 화면으로 돌아갑니다.')}
+          alert('정답입니다! 100포인트를 얻습니다.\n이전 화면으로 돌아갑니다.')}
         this.$router.go(-1)
         console.log(res)
       })
