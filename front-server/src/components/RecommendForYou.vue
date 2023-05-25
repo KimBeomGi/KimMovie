@@ -1,7 +1,6 @@
 <template>
   <div style="background-color: black; position: relative;">
-    <h1 style="text-align: start;">당신을 위한 맞춤 추천😘</h1>
-
+    <h2 class="font_NanumBrush" style="text-align: start;">당신을 위한 맞춤 추천😘</h2>
     <vue-slick-carousel
       v-bind="carouselSettings"
     >
@@ -24,7 +23,7 @@
     </template>
     </vue-slick-carousel>
     <!--  -->
-    <h1 style="text-align: start;">이런 영화는 어때요🤔</h1>
+    <h2 class="font_NanumBrush" style="text-align: start;">이런 영화는 어때요🤔</h2>
     <vue-slick-carousel
       v-bind="carouselSettings"
     >
@@ -111,72 +110,80 @@ export default {
 </script>
 
 <style scoped>
-h1{
-  padding-left: 35px;
-}
-.card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-}
+  @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
+  .font_NanumBrush{
+    font-family: 'Nanum Brush Script', cursive;
+  }
 
-.card-body {
-  background-color: transparent;
-}
-/* .arrow-button {
-  height: 50%;
-  width: auto;
-} */
+  h1{
+    padding-left: 35px;
+  }
+  h2{
+    padding-left: 35px;
+  }
+  .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+  }
 
-.card-container {
-  position: relative;
-  overflow: hidden;
-}
+  .card-body {
+    background-color: transparent;
+  }
+  /* .arrow-button {
+    height: 50%;
+    width: auto;
+  } */
 
-.card-wrapper {
-  display: flex;
-  transition: transform 0.3s;
-  z-index: 1; /* 카드를 화살표 위에 올리기 위해 z-index 설정 */
-}
+  .card-container {
+    position: relative;
+    overflow: hidden;
+  }
 
-.card-row {
-  display: flex;
-  flex-wrap: nowrap;
-}
+  .card-wrapper {
+    display: flex;
+    transition: transform 0.3s;
+    z-index: 1; /* 카드를 화살표 위에 올리기 위해 z-index 설정 */
+  }
 
-.arrow-button {
-  height: 50%;
-  width: auto;
-  position: absolute;
-  top: 45%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-  color: white;
-  background-color: black;
-  z-index: 2;
-  opacity: 0.8; /* 기본적으로 버튼을 투명하게 설정 */
-  transition: opacity 0.3s; /* 마우스 호버 시 투명도 변화를 부드럽게 설정 */
-}
+  .card-row {
+    display: flex;
+    flex-wrap: nowrap;
+  }
 
-.arrow-button:hover {
-  opacity: 1; /* 마우스 호버 시 투명도를 1로 설정하여 버튼이 더욱 뚜렷하게 보이도록 함 */
-  background-color: blue;
-}
+  .arrow-button {
+    height: 50%;
+    width: auto;
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    color: white;
+    background-color: black;
+    z-index: 2;
+    opacity: 0.8; /* 기본적으로 버튼을 투명하게 설정 */
+    transition: opacity 0.3s; /* 마우스 호버 시 투명도 변화를 부드럽게 설정 */
+  }
 
-.left {
-  left: 10px;
-}
+  .arrow-button:hover {
+    opacity: 1; /* 마우스 호버 시 투명도를 1로 설정하여 버튼이 더욱 뚜렷하게 보이도록 함 */
+    background-color: red;
+  }
 
-.right {
-  right: 10px;
-}
+  .left {
+    left: 10px;
+  }
 
-.fa-chevron-left,
-.fa-chevron-right {
-  font-size: 24px;
-}
+  .right {
+    right: 10px;
+  }
+
+  .fa-chevron-left,
+  .fa-chevron-right {
+    font-size: 24px;
+  }
 </style>
