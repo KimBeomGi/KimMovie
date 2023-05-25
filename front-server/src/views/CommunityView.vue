@@ -1,7 +1,11 @@
 <template>
   <div style="background-color: #ffffff; color: #000000;">
+    <div style="background-color: black; color: white; padding-bottom:10px">
     <br>
-    <h1>영화 리뷰 게시판</h1>
+    <h1 style="font-weight: bold;">영화 리뷰 게시판</h1>
+    <p>*게시글 작성은 영화 상세보기에서 가능합니다.</p>
+
+  </div>
     
     <!-- ArticleList 컴포넌트를 보여준다.-->
     <ArticleList/>

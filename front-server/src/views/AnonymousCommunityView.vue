@@ -1,5 +1,6 @@
 <template>
   <div style="background-color: #ffffff; color: #000000;">
+    <br>
     <h1>익명 게시판</h1>
     <button @click="Go_AnonymousCreateView" class="write-button" >글 쓰기</button>
     <AnonymousArticleList/>

@@ -1,5 +1,7 @@
 <template>
   <div>
+    <hr>
+    <div style="margin-left:100px;">
     <div @click="GoAnonymousArticleDetailView()">
     <!-- 하나의 게시글의 username를 출력한다. -->
     <!-- <p>작성자 : {{ article.username }}</p> -->
@@ -14,7 +16,7 @@
       [상세보기]
     </router-link> -->
   </div>
-    <hr>
+  </div>
   </div>
 </template>
 

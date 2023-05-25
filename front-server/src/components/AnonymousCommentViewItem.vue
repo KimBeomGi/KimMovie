@@ -1,7 +1,7 @@
 <template>
     <div class="comment-item">
       <p class="comment-user">[익명]</p>
-      <input v-model="password" rows="1" placeholder="비밀번호를 입력하세요.">
+      <input v-model="password" type="password" rows="1" placeholder="비밀번호를 입력하세요.">
       <!-- <p class="comment-user">작성자: {{ comment.user }}</p> -->
       <p class="comment-date">{{ formatDateTime(comment.created_at) }}</p>
       <p class="comment-content">{{ comment123 }}</p>
@@ -147,38 +147,48 @@
   }
   
   .delete-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ff5a5f;
-    color: #ffffff;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
     margin-left: 10px;
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px; /* 버튼 폰트 크기 */
+  width: 100px; /* 버튼 너비 */
+  height: 40px; /* 버튼 높이 */margin-left: 10px;
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px; /* 버튼 폰트 크기 */
+  width: 100px; /* 버튼 너비 */
+  height: 40px; /* 버튼 높이 */
   }
   
   .delete-button:hover {
-    background-color: #ff4449;
+    background-color: gray;
   }
   
   .put-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: green;
-    color: #ffffff;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    margin-top: 20px;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px; /* 버튼 폰트 크기 */
+  width: 100px; /* 버튼 너비 */
+  height: 40px; /* 버튼 높이 */
   }
   
   .put-button:hover {
-    background-color: green;
+    background-color: gray;
   }
   
   .modal {

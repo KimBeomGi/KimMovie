@@ -5,8 +5,9 @@
     <ArticleListItem 
       v-for="(article) in visibleArticles" :key="article.id" :article="article"
       class="article-list-item"
+      
     />
-    <div class="pagination">
+    <div class="pagination" style="background-color: black;">
       <button v-for="pageNumber in pageCount" :key="pageNumber" @click="goToPage(pageNumber)">{{ pageNumber }}</button>
     </div>
   </div>
@@ -58,25 +59,29 @@ export default {
   text-align: start;
 }
 
-.article-list-item {
+/* .article-list-item {
   margin-bottom: 10px;
-}
+} */
 
 .pagination {
-  margin-top: 20px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
 }
 
 .pagination button {
   display: inline-block;
-  margin-right: 5px;
-  padding: 5px 10px;
-  background-color: #f5f5f5;
+  margin-right: 10px;
+  margin-top: 10px;
+  padding: 5px 13px;
+  background-color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 70px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .pagination button:hover {
-  background-color: #e0e0e0;
+  background-color: #e0e0e06b;
 }
 </style>

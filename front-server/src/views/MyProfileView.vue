@@ -4,9 +4,11 @@
     <div class="profile-info">
       
       <p>{{ isSuperuserText }}</p>
-      <div style="margin-bottom: 10px;">
-      <span style="margin-bottom:">닉네임 : {{ username }}</span>
-      <button @click="put_user" class="edit-button" style="margin-left: 300px;">닉네임 수정</button>
+      <div class="d-flex" style="margin-bottom: 10px;">
+        <div class="box2"><span style="margin-bottom:">닉네임 : {{ username }}</span>
+        </div>
+      <div class="box2"><button @click="put_user" class="edit-button" style="margin-left: 123px">닉네임 수정</button></div>
+      
     </div>
     <div style="margin-bottom: 10px;">
       <span>비밀번호 : ********</span> <button @click="put_password" class="edit-button" style="margin-left: 264px;">비밀번호 변경</button>
@@ -26,7 +28,7 @@
       <p>좋아요 한 영화 : {{ like_movies_name ? like_movies_name.join(', ') : '' }}</p>
       <p>경험치: {{ exp }} EXP</p>
       <p>포인트: {{ point }} P</p>
-      <button @click="put_delete" class="edit-button" style="margin-left: 400px;">회원 탈퇴</button>
+      <button @click="put_delete" class="edit-button" style="margin-left: 410px;">회원 탈퇴</button>
       
 
       
@@ -214,6 +216,11 @@ export default {
 </script>
 
 <style scoped>
+.box2{
+  width: 280px;
+  height: 20px;
+}
+
 .profile-container {
   max-width: 600px;
   margin: 0 auto;

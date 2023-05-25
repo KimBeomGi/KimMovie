@@ -29,8 +29,7 @@
           <div class="d-flex justify-content-center align-items-center flex-wrap">
 
               <div class="nav-item active input-group">
-                <input type="text" placeholder="영화 제목 검색" @keydown.enter.prevent="searchMovies" v-model.trim="search" class="form-control" style="width: 300px;" />
-                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                <input type="text" placeholder="🔍영화 제목 검색" @keydown.enter.prevent="searchMovies" v-model.trim="search" class="form-control" style="width: 300px;" />
               </div>
           </div>
 

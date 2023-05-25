@@ -7,7 +7,7 @@
   align-items: center;">
   <div>
     <label for="title" class="form-label"></label>
-    <input placeholder="비밀번호를 입력하세요." type="text" id="title" v-model.trim="password" class="form-input">
+    <input placeholder="비밀번호를 입력하세요." type="password" id="title" v-model.trim="password" class="form-input">
       
     </div>
     

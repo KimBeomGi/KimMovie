@@ -6,7 +6,7 @@
   <div>
     <form @submit.prevent="createArticle" class="create-form">
       <label for="title" class="form-label">비밀번호 :</label>
-      <input type="text" id="title" v-model.trim="password" class="form-input">
+      <input type="password" id="title" v-model.trim="password" class="form-input">
       <br>
       <label for="title" class="form-label">제목 :</label>
       <input type="text" id="title" v-model.trim="title" class="form-input">
@@ -103,16 +103,19 @@ export default {
 }
 
 .form-button {
-  background-color: #4caf50;
+  margin-top: 20px;
+  background-color: black;
   color: white;
-  border: none;
   padding: 10px 20px;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 16px; /* 버튼 폰트 크기 */
+  width: 100px; /* 버튼 너비 */
+  height: 40px; /* 버튼 높이 */
 }
 
 .form-button:hover {
-  background-color: #45a049;
+  background-color: gray;
 }
 </style>

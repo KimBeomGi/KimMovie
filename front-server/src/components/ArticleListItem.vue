@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div >
+    <!-- <hr> -->
+    <div style="margin-left:100px; margin-top:12px;">
+      <!-- <div class="box"></div> -->
     <div @click="GoArticleDetailView()">
     <!-- 하나의 게시글의 username를 출력한다. -->
     <!-- <p>작성자 : {{ article.username }}</p> -->
@@ -15,7 +18,9 @@
       [상세보기]
     </router-link> -->
   </div>
-    <hr>
+    <!-- <hr> -->
+    </div>
+    <div style="height: 2px; background-color: #000; margin-top: 10px;"></div>
   </div>
 </template>
 
@@ -36,5 +41,8 @@ export default {
 </script>
 
 <style>
-
+.box{
+  width: 100px;
+  height: 93px;
+}
 </style>
