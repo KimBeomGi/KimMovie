@@ -27,7 +27,7 @@
       <p>등급: {{ grade }}</p>
       <p>경험치: {{ exp }} EXP</p>
       <p>포인트: {{ point }} P</p>
-      <p>좋아요 한 영화 : {{ like_movies_name ? like_movies_name.join(', ') : '' }}</p>
+      <p>좋아요 한 영화 : {{ like_movies_name && like_movies_name.length >0 ? like_movies_name.join(', ') : '없음' }}</p>
       <button @click="put_delete" class="edit-button" style="margin-left: 410px;">회원 탈퇴</button>
       
 
