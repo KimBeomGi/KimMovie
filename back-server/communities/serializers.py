@@ -9,13 +9,11 @@ class ReviewListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Review
-        # fields = ('id', 'title', 'content')
         fields = ('id', 'title', 'content', 'user', 'username','movie', 'movie_title',)
 
 # 영화 리뷰의 댓글
 class CommentSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username', read_only=True)
-    # user_id = serializers.CharField(source='user.id', read_only=True)
     class Meta:
         model = Comment
         # fields = '__all__'
@@ -40,11 +38,8 @@ class ReviewSerializer(serializers.ModelSerializer):
 # 익명 게시판
 # 익명게시글 목록
 class AnonyarticleListSerializer(serializers.ModelSerializer):
-    # username = serializers.CharField(source='user.username', read_only=True)
-
     class Meta:
         model = Anonyarticle
-        # fields = ('id', 'title', 'content',)
         fields = '__all__'
 
 # 익명게시글의 댓글
@@ -61,7 +56,6 @@ class AnonyarticleSerializer(serializers.ModelSerializer):
     anonycomment_set = AnonycommentSerializer(many=True, read_only=True)
     anonycomment_count = serializers.IntegerField(source='anonycomment_set.count', read_only=True)
     password = serializers.CharField(write_only=True)   # 작성 시에만 password가 보이게
-    # username = serializers.CharField(source='user.username', read_only=True)
 
     class Meta:
         model = Anonyarticle

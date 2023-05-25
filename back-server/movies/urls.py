@@ -7,7 +7,6 @@ urlpatterns = [
     # 영화 데이터 주소
     # path('api/v1/', include('movies.urls')),
     path('', views.movie_list),                             # 영화 전체 목록
-    # path('genre/<int:genre_pk>/', views.movies_by_genre),              # 장르별 영화 목록 받기
     path('genre_all/', views.movies_by_genre),              # 장르별 영화 목록 받기
     ##### 영화 목록별 정리
     path('vote_average/', views.vote_average_sort),         # 영화 평점 순 목록

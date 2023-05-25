@@ -21,24 +21,6 @@ from django.contrib.auth import get_user_model
 ######################
 # Home에 쓰일 영화 데이터 제공
 # 영화 전체 데이터, 검색기능 구현 완료.
-# @api_view(['GET'])
-# def movie_list(request):
-#     if request.method == 'GET':
-#         # 브라우저에서 검색한 값을 들고옴
-#         # http://127.0.0.1:8000/api/v1/?query={검색내용}
-#         search_query = request.GET.get('query')
-#         # 검색값이 있으면 filter로 걸러냄
-#         if search_query:
-#             movies = list(Movie.objects.filter(title__icontains=search_query))
-#         # query문 자체가 없으면 전체 데이터 불러오기
-#         # http://127.0.0.1:8000/api/v1/
-#         else:
-#             movies = get_list_or_404(Movie)
-#             random.shuffle(movies)
-#         serializer = MovieListSerializer(movies, many=True)
-#         return Response(serializer.data)
-#     return Response(status=status.HTTP_400_BAD_REQUEST)
-
 @api_view(['GET'])
 def movie_list(request):
     if request.method == 'GET':
@@ -133,7 +115,6 @@ def movie_detail(request, movie_pk):
             is_liked = True
         else:
             is_liked = False
-        # print(serializer.data)
         data = serializer.data
         data['is_liked'] = is_liked
         return Response(data)
@@ -142,9 +123,7 @@ def movie_detail(request, movie_pk):
 @api_view(['GET'])
 def get_genre(request):
     if request.method == 'GET':
-        # genre = Genre.objects.get(pk=request.GET.get('genre'))
         genres = get_list_or_404(Genre)
-        # genres = Genre.objects.all()
         serializer = GenreSerializer(genres, many=True)
         return Response(serializer.data)
 
@@ -154,7 +133,6 @@ def get_genre(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def movie_like(request, movie_pk):
-    # movie = get_object_or_404(Movie, pk=request.POST.get('movie_pk'))
     movie = get_object_or_404(Movie, pk=movie_pk)
     user = request.user
     is_liked = movie.like_users.filter(id = user.id).exists()
@@ -171,7 +149,6 @@ def movie_like(request, movie_pk):
         'is_liked': is_liked,
         'movie_title': movie.title
     }
-    # return Response({'status': 'success', 'message': 'Liked status toggled successfully.'})
     return Response(context, status=status.HTTP_200_OK)
 
 ########################
@@ -182,7 +159,6 @@ def recommend(request):
     if request.method == 'GET':
         # 영화 전체 데이터에서 30개 뽑아서 줌
         movies = get_list_or_404(Movie)
-        # movies = list(Movie.objects.all())
         movies_recommend = random.sample(movies, 30)
         serializer = MovieListSerializer(movies_recommend, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -225,8 +201,6 @@ def recommend_custom(request):
                     random.shuffle(movies)
                     movies += sample_movies
                 serializer = MovieSerializer(movies, many=True)
-                # data = serializer.data
-                # data['user_name'] = request.user.username
                 return Response(serializer.data, status=status.HTTP_200_OK)
 
         # 이상영화와 좋아요한 영화가 없거나 로그인이 안되어 있을 경우, 아무 영화나 60개 추천
@@ -239,7 +213,6 @@ def recommend_custom(request):
 ######################
 # 영화 이상형 월드컵 기능
 
-
 # @api_view(['GET'])
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
@@ -248,7 +221,6 @@ def ideal_movie(request):
         # 최초 게임을 위한 64개의 데이터를 던져줌.
         if request.method == 'GET':
             movies = get_list_or_404(Movie)
-            # movies = list(Movie.objects.all())
             ideal_movies = random.sample(movies, 64)
             serializer = IdealMovieSerializer(ideal_movies, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -306,7 +278,6 @@ def quiz1(request):
             
             quiz = get_object_or_404(Quiz1, pk=quiz_id)
             print(quiz.answer)
-            # if solve == serializer.data["answer"]:
             if solve == quiz.answer:
                 # user경험치 및 포인트 증가
                 user.exp += 100
@@ -346,7 +317,6 @@ def quiz2(request):
             
             quiz = get_object_or_404(Quiz2, pk=quiz_id)
             
-            # if solve == serializer.data["answer"]:
             if solve == quiz.answer:
                 # user경험치 및 포인트 증가
                 user.exp += 100

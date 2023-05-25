@@ -1,12 +1,6 @@
 from django.db import models
 from django.conf import settings
 
-# Create your models here.
-# 영화 데이터
-
-# class Ideal(models.Model):
-#     movie_id = models.CharField(max_length=50)
-
 class Genre(models.Model):
     name = models.CharField(max_length=50)
     
@@ -23,21 +17,10 @@ class Movie(models.Model):
     key = models.CharField(null=True, max_length=200)
     genres = models.ManyToManyField(Genre)
 
-
-# class Quiz1(models.Model):
-#     question = models.CharField(max_length=255)
-#     options = models.CharField(max_length=255)
-#     answer = models.CharField(max_length=255)
-
 class Quiz1(models.Model):
     question = models.CharField(max_length=255)
     options = models.JSONField()
     answer = models.CharField(max_length=255)
-
-# class Quiz2(models.Model):
-#     question = models.CharField(max_length=255)
-#     options = models.CharField(max_length=255)
-#     answer = models.CharField(max_length=255)
 
 class Quiz2(models.Model):
     question = models.CharField(max_length=255)

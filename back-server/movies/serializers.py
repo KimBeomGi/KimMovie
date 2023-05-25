@@ -7,25 +7,12 @@ import json
 # 영화 리뷰 게시판
 # 영화 리뷰 목록
 class MovieListSerializer(serializers.ModelSerializer):
-    # user_id = serializers.SerializerMethodField()
-
-    # def get_user_id(self, obj):
-    #     request = self.context.get('request')
-    #     if request and request.user.is_authenticated:
-    #         return request.user.id
-    #     return None
-
     class Meta:
         model = Movie
         fields = ('id', 'title', 'overview','backdrop_path','poster_path', 'key')
-        # fields = ('id', 'title', 'content', 'user', 'username')
-
+        
 class MovieSerializer(serializers.ModelSerializer):
-    # genres = serializers.SerializerMethodField()
     genres_name = serializers.SerializerMethodField()
-
-    # def get_genres(self, movie):
-    #     return [genre.id for genre in movie.genres.all()]
 
     def get_genres_name(self, movie):
         return [genre.name for genre in movie.genres.all()]
@@ -50,19 +37,6 @@ class IdealMovieSerializer(serializers.ModelSerializer):
         model = Movie
         fields = ('id', 'title', 'poster_path',)
 
-
-## 아래 내용 확인해보니 필요없어짐
-# class WinIdealMovieSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Ideal
-#         fields = '__all__'
-
-# class WinIdealMovieSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ('id', 'idealmovie',)
-
-###############################################################
 # 퀴즈를 위한 serializer
 class Quiz1Serializer(serializers.ModelSerializer):
 

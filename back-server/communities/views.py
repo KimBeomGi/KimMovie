@@ -44,7 +44,6 @@ def review_list(request):
 @api_view(['GET', 'DELETE', 'PUT'])
 @permission_classes([IsAuthenticated])
 def review_detail(request, review_pk):
-    # article = Article.objects.get(pk=article_pk)
     review = get_object_or_404(Review, pk=review_pk)
 
     if request.method == 'GET':
@@ -52,24 +51,15 @@ def review_detail(request, review_pk):
         
         user = request.user
         if review.like_users.filter(pk=user.pk).exists():
-            # review.like_users.remove(user)
             is_liked = True
         else:
-            # review.like_users.add(user)
             is_liked = False
         
         if request.user == review.user:
             same_user = True
         else:
             same_user = False
-        # # print(serializer.data)
-        # context = {
-        #     'same_user' : same_user
-        # }
-        # context.update(serializer.data)
-        # return Response(context)
         data = serializer.data
-        # data['same_user'] = request.user == review.user
         data['same_user'] = same_user
         data['is_liked'] = is_liked
         return Response(data)            
@@ -104,7 +94,6 @@ def comment_list(request):
 @api_view(['GET', 'DELETE', 'PUT'])
 @permission_classes([IsAuthenticated])
 def comment_detail(request, comment_pk):
-    # comment = Comment.objects.get(pk=comment_pk)
     comment = get_object_or_404(Comment, pk=comment_pk)
 
     if request.method == 'GET':
@@ -130,7 +119,6 @@ def comment_detail(request, comment_pk):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def comment_create(request, review_pk):
-    # article = Article.objects.get(pk=article_pk)
     review = get_object_or_404(Review, pk=review_pk)
     serializer = CommentSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
@@ -163,34 +151,12 @@ def review_like(request, review_pk):
         'is_liked' : is_liked
     }
     return Response(context, status=status.HTTP_200_OK)
-
-# #######################
-# # review 게시글의 댓글 좋아요 하기
-# @api_view(['POST'])
-# @permission_classes([IsAuthenticated])
-# def comment_like(request, comment_pk):
-#     comment = get_object_or_404(Comment, pk=comment_pk)
-#     user = request.user
-#     if comment.like_users.filter(pk=user.pk).exists():
-#         comment.like_users.remove(user)
-#         # is_liked = False
-#     else:
-#         comment.like_users.add(user)
-#         # is_liked = True
-    
-#     comment.like_users.count()
-    
-#     return Response(status=status.HTTP_200_OK)
-# ########################
-####################################################################################
 # 익명 게시글 및 리뷰
 # 익명 게시글 목록 불러오기 및 생성
 @api_view(['GET', 'POST'])
 # @permission_classes([IsAuthenticated])
 def anonyarticle_list(request):
     if request.method == 'GET':
-        # articles = Article.objects.all()
-        # anonyarticle = get_list_or_404(Anonyarticle)
         anonyarticle = Anonyarticle.objects.all().order_by('-id')
         serializer = AnonyarticleListSerializer(anonyarticle, many=True)
         return Response(serializer.data)
@@ -199,7 +165,6 @@ def anonyarticle_list(request):
         serializer = AnonyarticleSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            # serializer.save(user=request.user)
             if request.user.is_authenticated:
                 # 게시글 생성으로 사용자의 exp 및 point 를 50 증가 시키기
                 user = request.user
@@ -212,17 +177,13 @@ def anonyarticle_list(request):
 # 익명 게시글 상세보기
 @api_view(['GET', 'DELETE', 'PUT'])
 def anonyarticle_detail(request, anonyarticle_pk):
-    # article = Article.objects.get(pk=article_pk)
     anonyarticle = get_object_or_404(Anonyarticle, pk=anonyarticle_pk)
-
     if request.method == 'GET':
         serializer = AnonyarticleSerializer(anonyarticle)
-        # print(serializer.data)
         return Response(serializer.data)
     
     elif request.method == 'DELETE':
         password = request.data.get('password')
-        # if password and anonyarticle.password == password:
         if anonyarticle.check_password(password):
             anonyarticle.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
@@ -231,7 +192,6 @@ def anonyarticle_detail(request, anonyarticle_pk):
     elif request.method == 'PUT':
         # anonyarticle의 비밀번호가 입력하는 비밀번호와 같을때만 작동하게 하기!
         password = request.data.get('password')
-        # if password and anonyarticle.password == password:
         if anonyarticle.check_password(password):
             serializer = AnonyarticleSerializer(anonyarticle, data=request.data)
             if serializer.is_valid(raise_exception=True):
@@ -243,7 +203,6 @@ def anonyarticle_detail(request, anonyarticle_pk):
 @api_view(['GET'])
 def anonycomment_list(request):
     if request.method == 'GET':
-        # comments = Comment.objects.all()
         anonycomments = get_list_or_404(Anonycomment)
         serializer = AnonycommentSerializer(anonycomments, many=True)
         return Response(serializer.data)
@@ -251,7 +210,6 @@ def anonycomment_list(request):
 # 익명 댓글 상세보기
 @api_view(['GET', 'DELETE', 'PUT'])
 def anonycomment_detail(request, anonycomment_pk):
-    # comment = Comment.objects.get(pk=comment_pk)
     anonycomment = get_object_or_404(Anonycomment, pk=anonycomment_pk)
 
     if request.method == 'GET':
@@ -260,7 +218,6 @@ def anonycomment_detail(request, anonycomment_pk):
 
     elif request.method == 'DELETE':
         password = request.data.get('password')
-        # if password and anonycomment.password == password:
         if anonycomment.check_password(password):
             anonycomment.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
@@ -269,7 +226,6 @@ def anonycomment_detail(request, anonycomment_pk):
     elif request.method == 'PUT':
         # anonycomment의 비밀번호가 입력하는 비밀번호와 같을때만 작동하게 하기!
         password = request.data.get('password')
-        # if password and anonycomment.password == password:
         if anonycomment.check_password(password):
             serializer = AnonycommentSerializer(anonycomment, data=request.data)
             if serializer.is_valid(raise_exception=True):
@@ -280,7 +236,6 @@ def anonycomment_detail(request, anonycomment_pk):
 # 익명 댓글 생성
 @api_view(['POST'])
 def anonycomment_create(request, anonyarticle_pk):
-    # article = Article.objects.get(pk=article_pk)    
     anonyarticle = get_object_or_404(Anonyarticle, pk=anonyarticle_pk)
 
     if request.method == 'POST':

@@ -12,7 +12,6 @@ urlpatterns = [
     path('comments/<int:comment_pk>/', views.comment_detail),
     path('<int:review_pk>/comments/', views.comment_create),
     path('<int:review_pk>/like/', views.review_like),
-    # path('comments/<int:comment_pk>/like/', views.comment_like),
     
     # 익명 게시판
     path('anonymous/', views.anonyarticle_list),
@@ -20,9 +19,4 @@ urlpatterns = [
     path('anonymous/anonycomments/', views.anonycomment_list),
     path('anonymous/anonycomments/<int:anonycomment_pk>/', views.anonycomment_detail),
     path('anonymous/<int:anonyarticle_pk>/anonycomments/', views.anonycomment_create),
-    
-    # # 필수 작성
-    # path('schema/', SpectacularAPIView.as_view(), name='schema'),
-    # # optional UI
-    # path('swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
 ]
