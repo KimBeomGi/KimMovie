@@ -297,10 +297,6 @@ def quiz1(request):
             options = quiz.options
             random.shuffle(options)
             serializer = Quiz1Serializer(quiz)
-            # user포인트 차감
-            user.point -= 50
-            user.save()
-            print('포인트 50 감소!')
             return Response(serializer.data, status=status.HTTP_200_OK)
         
         ##### 아래 POST 부분은 손볼 필요성 있음 ####
@@ -318,6 +314,8 @@ def quiz1(request):
                 user.save()
                 return Response({"message": "정답입니다. 100포인트를 얻습니다!"},status=status.HTTP_200_OK)
             else:
+                user.point -= 50
+                user.save()
                 return Response({"message": "오답입니다!"},status=status.HTTP_200_OK)
         return Response(status=status.HTTP_400_BAD_REQUEST)
     return Response(status=status.HTTP_401_UNAUTHORIZED)
@@ -339,9 +337,6 @@ def quiz2(request):
             quiz = random.sample(quizzes, 1)
             serializer = Quiz2Serializer(quiz, many=True)
             # user포인트 차감
-            user.point -= 50
-            user.save()
-            print('포인트 50 감소!')
             return Response(serializer.data, status=status.HTTP_200_OK)
         
         ##### 아래 POST 부분은 손볼 필요성 있음 ####
@@ -350,7 +345,7 @@ def quiz2(request):
             quiz_id = request.data.get('quiz_id')       # post로 받아오게될 quiz2의 id를 받아냄
             
             quiz = get_object_or_404(Quiz2, pk=quiz_id)
-
+            
             # if solve == serializer.data["answer"]:
             if solve == quiz.answer:
                 # user경험치 및 포인트 증가
@@ -359,6 +354,8 @@ def quiz2(request):
                 user.save()
                 return Response({"message": "정답입니다. 100포인트를 얻습니다!"},status=status.HTTP_200_OK)
             else:
+                user.point -= 50
+                user.save()
                 return Response({"message": "오답입니다!"},status=status.HTTP_200_OK)
         return Response(status=status.HTTP_400_BAD_REQUEST)
     return Response(status=status.HTTP_401_UNAUTHORIZED)
