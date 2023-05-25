@@ -5,14 +5,14 @@
 <template>
   <div>
     <form @submit.prevent="createArticle" class="create-form">
-      <label for="title" class="form-label">비밀번호 :</label>
-      <input type="password" id="title" v-model.trim="password" class="form-input">
+      <label for="title" class="form-label"></label>
+      <input placeholder="비밀번호" type="password" id="title" v-model.trim="password" class="form-input">
       <br>
-      <label for="title" class="form-label">제목 :</label>
-      <input type="text" id="title" v-model.trim="title" class="form-input">
+      <label for="title" class="form-label"></label>
+      <input placeholder="제목" type="text" id="title" v-model.trim="title" class="form-input">
       <br>
-      <label for="content" class="form-label">내용 :</label>
-      <textarea id="content" cols="30" rows="10" v-model="content" class="form-textarea"></textarea>
+      <label for="content" class="form-label"></label>
+      <textarea placeholder="내용" id="content" cols="30" rows="10" v-model="content" class="form-textarea"></textarea>
       <br>
       <input type="submit" id="submit" class="form-button" value="작성">
     </form>
@@ -103,19 +103,18 @@ export default {
 }
 
 .form-button {
-  margin-top: 20px;
-  background-color: black;
+  background-color: red;
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px; /* 버튼 폰트 크기 */
-  width: 100px; /* 버튼 너비 */
+  width: 300px; /* 버튼 너비 */
   height: 40px; /* 버튼 높이 */
 }
 
 .form-button:hover {
-  background-color: gray;
+  background-color: rgb(98, 6, 6);
 }
 </style>
