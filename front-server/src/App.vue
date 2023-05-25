@@ -123,12 +123,12 @@ export default {
     }},
     Quiz1View() {
       if (this.$route.name !== 'Quiz1View') {
-        alert('맞추면 50포인트를 얻고 틀리면 50포인트를 잃습니다!')
+        alert('맞추면 100포인트를 얻고 틀리면 50포인트를 잃습니다!')
       this.$router.push({ name: 'Quiz1View' }); // 회원가입 라우터링크로 이동
     }},
     Quiz2View() {
       if (this.$route.name !== 'Quiz2View') {
-        alert('맞추면 50포인트를 얻고 틀리면 50포인트를 잃습니다!')
+        alert('맞추면 100포인트를 얻고 틀리면 50포인트를 잃습니다!')
       this.$router.push({ name: 'Quiz2View' }); // 회원가입 라우터링크로 이동
     }},
     

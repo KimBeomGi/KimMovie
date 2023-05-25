@@ -38,15 +38,19 @@
       <!-- 모달 내용을 추가하고 사용자가 수정할 수 있는 입력 필드를 제공합니다. -->
       <input v-model="updated_username" type="text" placeholder="닉네임을 입력하세요" class="input-field" />
       <!-- <input v-model="updated_email" type="text" placeholder="이메일을 입력하세요(선택)" class="input-field" /> -->
-      <button @click="saveChanges_user" class="save-button">저장</button>
+      <div class="button-container">
+      <button style="margin-right: 5px;" @click="saveChanges_user" class="save-button">저장</button>
       <button @click="cancelEdit_user" class="cancel-button">취소</button>
+    </div>
     </div>
     <div v-if="isEditing_password" class="modal">
       <!-- 모달 내용을 추가하고 사용자가 수정할 수 있는 입력 필드를 제공합니다. -->
       <input v-model="updated_password1" type="text" placeholder="비밀번호를 입력하세요" class="input-field" />
       <input v-model="updated_password2" type="text" placeholder="비밀번호를 다시 입력하세요" class="input-field" />
-      <button @click="saveChanges_password" class="save-button">저장</button>
+      <div class="button-container">
+      <button style="margin-right: 5px;" @click="saveChanges_password" class="save-button">저장</button>
       <button @click="cancelEdit_password" class="cancel-button">취소</button>
+    </div>
     </div>
   </div>
 </template>
@@ -262,38 +266,37 @@ h1 {
 }
 
 .save-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #28a745;
-  color: #ffffff;
+  margin-top: 20px;
+  background-color: black;
+  color: white;
   padding: 10px 20px;
-  font-size: 16px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  margin-right: 10px;
+  font-size: 16px; /* 버튼 폰트 크기 */
+  width: 100px; /* 버튼 너비 */
+  height: 40px; /* 버튼 높이 */
 }
 
 .save-button:hover {
-  background-color: #218838;
+  background-color: gray;
 }
 
 .cancel-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #dc3545;
-  color: #ffffff;
+  margin-top: 20px;
+  background-color: black;
+  color: white;
   padding: 10px 20px;
-  font-size: 16px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 16px; /* 버튼 폰트 크기 */
+  width: 100px; /* 버튼 너비 */
+  height: 40px; /* 버튼 높이 */
 }
 
 .cancel-button:hover {
-  background-color: #c82333;
+  background-color: gray;
 }
 /* 추가적인 스타일링을 원하는 경우 여기에 작성하세요 */
 
@@ -319,4 +322,10 @@ h1 {
 .modal button {
   margin-top: 5px;
 }
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
 </style>
