@@ -1,5 +1,6 @@
 <template>
     <div class="article-list">
+      <div style="margin-left:100px; margin-top:12px;">
       <DetailArticleListItem
         v-for="(article) in displayedArticles"
         :key="article.id"
@@ -17,6 +18,7 @@
           {{ pageNumber }}
         </button>
       </div>
+    </div>
     </div>
 </template>
   
@@ -77,26 +79,31 @@
   }
   
   .pagination {
-    margin-top: 10px;
+    background-color: black;
+  display: flex;
+  justify-content: center;
+  margin-right:90px;
   }
   
   .pagination button {
-    background-color: #f2f2f2;
-    color: #333;
-    border: none;
-    padding: 5px 10px;
-    margin-right: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    display: inline-block;
+  margin-right: 10px;
+  margin-top: 10px;
+  padding: 5px 13px;
+  background-color: white;
+  border: none;
+  border-radius: 70px;
+  cursor: pointer;
+  font-weight: bold;
   }
   
-  .pagination button.active {
+  /* .pagination button.active {
     background-color: #4caf50;
     color: white;
-  }
+  } */
   
   .pagination button:hover {
-    background-color: #ddd;
+    background-color: #e0e0e06b;
   }
   </style>
   

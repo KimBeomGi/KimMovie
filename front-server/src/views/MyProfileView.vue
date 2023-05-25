@@ -20,10 +20,10 @@
       
       <!-- <p>팔로워: {{ followers }}</p> -->
       <p>팔로워 수 : {{ followers_count }}명</p>
-      <p>나를 팔로워 한 사람 : {{ followers_name ? followers_name.join(', ') : '' }}</p>
+      <p>나를 팔로워 한 사람 : {{ followers_name && followers_name.length > 0 ? followers_name.join(', ') : '없음' }}</p>
       <!-- <p>팔로잉: {{ followings }}</p> -->
       <p>팔로잉 수 : {{ followings_count }}명</p>
-      <p>내가 팔로잉 한 사람 : {{ followings_name ? followings_name.join(', ') : '' }}</p>
+      <p>내가 팔로잉 한 사람 : {{ followings_name && followings_name.length > 0 ? followings_name.join(', ') : '없음' }}</p>
       <p>등급: {{ grade }}</p>
       <p>경험치: {{ exp }} EXP</p>
       <p>포인트: {{ point }} P</p>

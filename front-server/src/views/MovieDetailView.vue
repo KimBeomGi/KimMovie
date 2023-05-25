@@ -17,28 +17,24 @@
         <hr>
         <p :class="{ 'overview-truncated': isOverviewTruncated }">
           {{ truncatedOverview }}
-          <button v-if="isOverviewTruncated" @click="showFullOverview = !showFullOverview">
+          <button class="all1" v-if="isOverviewTruncated" @click="showFullOverview = !showFullOverview">
             {{ showFullOverview ? '숨기기' : '전체' }}
           </button>
         </p>
         <p>{{ moviedetail?.genres_name.join(' ') }}</p>
         <p>평점: {{ moviedetail?.vote_average }} / 10.0</p>
-        <p>참여인원: {{ moviedetail?.vote_count }}명</p>
+        <p>평점 참여인원: {{ moviedetail?.vote_count }}명</p>
         <p>출시일자: {{ moviedetail?.release_date }}</p>
-        <button  @click="toggleFavorite" >
+        <button  @click="toggleFavorite" class="like1">
       {{likebt}}
       </button>
       <span class="like-count">{{ like_users_num}}</span>
         <p></p>
-        <router-link :to="{ name: 'HomeView' }" class="back-link">
-          [메인으로]
-        </router-link>
+        <button @click.prevent="Gohome" class="back-link">메인으로</button>
       </div>
     </div>
     <!-- 게시글을 생성하는 뷰인 CreateView로 이동하는 링크 생성-->
-    <span class="action-buttons">
-      <router-link :to="{ name: 'CreateView', params: { movie: movieId, movieTitle: movieTitle }}" class="create-link">글 작성</router-link>
-    </span>
+    <button @click="makewrite1" class="makewrite">글 작성</button>
     
     
     <DetailArticleList :movie_id="moviedetail?.id"/>
@@ -66,7 +62,7 @@ export default {
   computed: {
     likebt(){
       if (this.like){
-        return '취소'
+        return '좋아요 취소'
       }else{
         return '좋아요'
       }
@@ -92,6 +88,12 @@ export default {
 
   },
   methods: {
+    makewrite1(){
+      this.$router.push({name: 'CreateView', params: { movie: this.movieId, movieTitle: this.movieTitle }})
+    },
+    Gohome(){
+this.$router.push({name:'HomeView'})
+    },
     getMovieDetail() {
       axios({
         method: 'get',
@@ -177,13 +179,15 @@ button {
 }
 
 .back-link {
-  color: #ffffff;
-  text-decoration: none;
-  margin-top: 20px;
-  display: inline-block;
-  border: 1px solid #ffffff;
-  padding: 5px 10px;
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  border: none;
   border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px; /* 버튼 폰트 크기 */
+  width: 178px; /* 버튼 너비 */
+  height: 40px; /* 버튼 높이 */
 }
 
 .action-buttons {
@@ -192,16 +196,19 @@ button {
 }
 
 .create-link {
-  color: #ffffff;
-  text-decoration: none;
-  background-color: #4caf50;
+  background-color: red;
+  color: white;
   padding: 10px 20px;
+  border: none;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
+  cursor: pointer;
+  font-size: 16px; /* 버튼 폰트 크기 */
+  width: 150px; /* 버튼 너비 */
+  height: 40px; /* 버튼 높이 */
 }
 
 .create-link:hover {
-  background-color: #45a049;
+  background-color: rgb(98, 6, 6);
 }
 
 .like-button {
@@ -229,5 +236,54 @@ button {
   font-size: 30px;
   font-weight: bold;
   color:white
+}
+
+.like1{
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px; /* 버튼 폰트 크기 */
+  width: 140px; /* 버튼 너비 */
+  height: 40px; /* 버튼 높이 */
+}
+
+.like1:hover {
+  background-color: rgb(98, 6, 6);
+}
+
+.all1{
+  margin-left:10px;
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px; /* 버튼 폰트 크기 */
+  width: 90px; /* 버튼 너비 */
+  height: 40px; /* 버튼 높이 */
+}
+
+.all1:hover {
+  background-color: rgb(98, 6, 6);
+}
+.makewrite{
+  margin-left:10px;
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px; /* 버튼 폰트 크기 */
+  width: 120px; /* 버튼 너비 */
+  height: 40px; /* 버튼 높이 */
+}
+
+.makewrite:hover {
+  background-color: rgb(98, 6, 6);
 }
 </style>
