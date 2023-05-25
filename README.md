@@ -5,6 +5,7 @@
 > 서버 설치 및 실행
 
 ```bash
+※ 반드시 superuser 3개 생성 후 loaddata 실행할 것!!!
 $ git clone (repo주소)
 ---- 하위 폴더 이동
 $ python -m venv venv (가상 환경 생성)
@@ -12,6 +13,8 @@ $ source venv/Scripts/activate (해당 터미널 삭제 및 다시 생성으로 
 ---- 백엔드
 $ pip install -r requirements (장고 및 설치패키지)
 $ python manage.py migrate (데이터베이스에 모델 반영)
+$ python manage.py createsuperuser (슈퍼유저 생성. 반드시 3번 생성할 것!! 
+ex) user1, user2, user3)
 $ python manage.py loaddata genres.json movies_popular.json articles.json comments.json quiz1.json quiz2.json(데이터 불러오기)
 $ python manage.py runserver (서버 실행)
 ---- 프론트엔드
