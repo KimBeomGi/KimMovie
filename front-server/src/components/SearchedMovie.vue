@@ -1,7 +1,7 @@
 <template>
     <div style="background-color: black;">
-      <h1 style="text-align: start;">'{{query}}' 검색 결과</h1>
-      <SearchedMovieCard/>
+      <h1 style="margin-bottom: 40px;">'{{query}}' 검색 결과</h1>
+      <SearchedMovieCard/> 
     </div>
 </template>
 

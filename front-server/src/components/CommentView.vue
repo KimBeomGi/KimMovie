@@ -127,16 +127,20 @@
   
   .pagination {
     margin-top: 20px;
+    margin-right: 0px;
+    background-color: white;
   }
   
   .pagination button {
     display: inline-block;
-    margin-right: 5px;
+    /* margin-right: 10px; */
+    margin-left: 10px;
     padding: 5px 10px;
-    background-color: #f5f5f5;
+    background-color: black;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    color: white;
   }
   
   .pagination button:hover {
