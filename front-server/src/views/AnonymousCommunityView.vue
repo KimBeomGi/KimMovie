@@ -1,10 +1,13 @@
 <template>
   <div style="background-color: #ffffff; color: #000000;">
+    <div style="background-color: black; color: white; padding-bottom:20px">
     <br>
-    <h1>익명 게시판</h1>
-    <button @click="Go_AnonymousCreateView" class="write-button" >글 쓰기</button>
+    <h1 style="font-weight: bold;">익명 게시판</h1>
+ 
+    <button @click="Go_AnonymousCreateView" class="write-button" >글 작성</button>
+    </div>
     <AnonymousArticleList/>
-    
+  
     
   </div>
 </template>
@@ -43,8 +46,8 @@ export default {
 
 <style scoped>
 .write-button {
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;

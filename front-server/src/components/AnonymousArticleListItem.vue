@@ -1,15 +1,14 @@
 <template>
   <div>
-    <hr>
-    <div style="margin-left:100px;">
     <div @click="GoAnonymousArticleDetailView()">
     <!-- 하나의 게시글의 username를 출력한다. -->
     <!-- <p>작성자 : {{ article.username }}</p> -->
     <!-- 하나의 게시글의 제목을 출력한다. -->
+    <div style="margin-left:100px; margin-top:12px;">
     <p style="font-size: 24px; font-weight: bold;">{{ article.title }}</p>
     <p>작성자 : [익명]</p>
     <!-- DetailView로 가는 라우터링크를 만든다. 인자로 그 게시글의 id 를 첨가한다. -->
-    <!-- 버튼이름은 [DETAIL]로 한다. -->
+    <!-- 버튼이름은 [DETAIL]로 한다. -->  
     <!-- <router-link :to="{
       name: 'ArticleDetailView',
       params: {id: article.id }}">
@@ -17,6 +16,7 @@
     </router-link> -->
   </div>
   </div>
+  <div style="height: 2px; background-color: #000; margin-top: 10px;"></div>
   </div>
 </template>
 

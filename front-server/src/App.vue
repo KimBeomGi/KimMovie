@@ -29,7 +29,7 @@
           <div class="d-flex justify-content-center align-items-center flex-wrap">
 
               <div class="nav-item active input-group">
-                <input type="text" placeholder="🔍영화 제목 검색" @keydown.enter.prevent="searchMovies" v-model.trim="search" class="form-control" style="width: 300px;" />
+                <input type="text" placeholder="🔍영화 제목 검색" @keydown.enter.prevent="searchMovies" v-model.trim="search" class="form-control" />
               </div>
           </div>
 
@@ -57,7 +57,7 @@
           </ul>
 
           <a class="navbar-brand ms-3" href=""><img @click.prevent="Home" style="width: 70px; height: 70px;" src="@/assets/stoplogo.png" alt=""></a>
-          <button class="navbar-toggler border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button  class="navbar-toggler border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon "></span>
           </button>
         </div>
@@ -145,6 +145,25 @@ export default {
 </script>
 
 <style scoped>
+
+@media (max-width: 1200px) {
+  .input-group {
+    width: 100px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1300px) {
+  .input-group {
+    width: 300px;
+  }
+}
+
+@media (min-width: 1301px) {
+  .input-group {
+    width: 400px;
+  }
+}
+
 .box{
   height: 80px;
 }
@@ -167,6 +186,9 @@ nav a {
   
 }
 
+.navbar-collapse {
+  background-color: black;
+}
 
 nav a.router-link-exact-active {
   color: #42b983;

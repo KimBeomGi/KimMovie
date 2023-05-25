@@ -2,7 +2,7 @@
   <div class="comment-form">
       <hr>
       <h3 class="comment-heading">댓글</h3>
-    <input v-model="password" rows="1" placeholder="비밀번호를 입력하세요.">
+    <input type="password" v-model="password" rows="1" placeholder="비밀번호를 입력하세요.">
     <textarea v-model="content" rows="4" placeholder="댓글을 입력하세요."></textarea>
     <button @click="submitComment">작성</button>
   </div>
@@ -73,15 +73,16 @@ this.$nextTick(() => {
 
 .comment-form button {
   margin-top: 10px;
-  padding: 5px 10px;
-  background-color: black;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+    padding: 5px 10px;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #ffffff;
 }
 
 .comment-form button:hover {
-  background-color: #e0e0e0;
+  background-color: gray;
 }
 
 .comment-heading {
