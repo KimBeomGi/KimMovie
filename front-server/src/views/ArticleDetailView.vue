@@ -2,7 +2,7 @@
   <div class="article-detail" style="text-align: start;">
     <h1 class="article-title">{{ article?.movie_title }}</h1>
     <hr>
-    <p class="article-title2">{{ article?.title }}</p>
+    <p class="article-title2 font_NanumMyeongjo">{{ article?.title }}</p>
     <button @click="Go_Profile" class=" profile-button">{{ article?.username }}</button>
     <span class="article-info">{{ date }}</span>
     <div class="article-content">
@@ -141,6 +141,9 @@ export default {
 </script>
 
 <style scoped>
+.font_NanumMyeongjo{
+  font-family: 'Nanum Myeongjo', serif;
+}
 
 .article-detail {
   background-color: #ffffff;
