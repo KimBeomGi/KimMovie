@@ -110,7 +110,6 @@ export default {
 </script>
 
 <style scoped>
-  @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
   .font_NanumBrush{
     font-family: 'Nanum Brush Script', cursive;
   }

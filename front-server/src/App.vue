@@ -13,15 +13,15 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <!-- Home 버튼 -->
             <li @click.prevent="Home" class="nav-item active">
-              <a class="nav-link" href="">Home <span class="sr-only"></span></a>
+              <a class="nav-link font_Sunflower" href="">Home <span class="sr-only"></span></a>
             </li>
             <!-- Community 버튼 -->
             <li @click.prevent="Community" class="nav-item active">
-              <a class="nav-link" href="">게시판 <span class="sr-only"></span></a>
+              <a class="nav-link font_Sunflower" href="">게시판 <span class="sr-only"></span></a>
             </li>
             <!-- AnonymousCommunityView 버튼 -->
             <li @click.prevent="AnonymousCommunityView" class="nav-item active">
-              <a class="nav-link" href="">익명게시판 <span class="sr-only"></span></a>
+              <a class="nav-link font_Sunflower" href="">익명게시판 <span class="sr-only"></span></a>
             </li>
           </ul>
 
@@ -36,23 +36,23 @@
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <!-- 퀴즈1 버튼 -->
             <li @click.prevent="Quiz1View" class="nav-item active">
-              <a class="nav-link" href="">퀴즈1 <span class="sr-only"></span></a>
+              <a class="nav-link font_Sunflower" href="">퀴즈1 <span class="sr-only"></span></a>
             </li>
             <!-- 퀴즈2 버튼 -->
             <li @click.prevent="Quiz2View" class="nav-item active">
-              <a class="nav-link" href="">퀴즈2 <span class="sr-only"></span></a>
+              <a class="nav-link font_Sunflower" href="">퀴즈2 <span class="sr-only"></span></a>
             </li>
             <!-- 내 정보 버튼 -->
             <li v-if="islogin" @click.prevent="MyProfileView" class="nav-item active">
-              <a class="nav-link" href="">프로필 <span class="sr-only"></span></a>
+              <a class="nav-link font_Sunflower" href="">프로필 <span class="sr-only"></span></a>
             </li>
             <!-- 로그인 버튼 -->
             <li v-if="!islogin" @click.prevent="login" class="nav-item">
-              <a class="nav-link" href="">로그인 <span class="sr-only"></span></a>
+              <a class="nav-link font_Sunflower" href="">로그인 <span class="sr-only"></span></a>
             </li>
             <!-- 로그아웃 버튼 -->
             <li v-if="islogin" @click.prevent="logout" class="nav-item">
-              <a class="nav-link" href="">로그아웃 <span class="sr-only"></span></a>
+              <a class="nav-link font_Sunflower" href="">로그아웃 <span class="sr-only"></span></a>
             </li>
           </ul>
 
@@ -162,6 +162,11 @@ export default {
   .input-group {
     width: 400px;
   }
+}
+
+
+.font_Sunflower{
+  font-family: 'Sunflower', sans-serif;
 }
 
 .box{

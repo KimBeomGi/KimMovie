@@ -5,17 +5,17 @@
   <div>
     <HeaderMovie/>
     <hr>
-    <h1>당신을 위한 추천</h1>
+    <h1 class="font_Sunflower">당신을 위한 추천</h1>
     <hr>
     <RecommendForYou/>
     <hr>
     <!--  -->
-    <h1>대중의 선택</h1>
+    <h1 class="font_Sunflower">대중의 선택</h1>
     <hr>
     <AdvertiseMovie/>
     <hr>
     <!--  -->
-    <h1>장르별 모아보기</h1>
+    <h1 class="font_Sunflower">장르별 모아보기</h1>
     <hr>
     <GenreMovie/>
     
@@ -42,8 +42,7 @@ export default {
 </script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
-  .font_NanumBrush{
-    font-family: 'Nanum Brush Script', cursive;
-  }
+.font_Sunflower{
+  font-family: 'Sunflower', sans-serif;
+}
 </style>

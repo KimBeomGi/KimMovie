@@ -13,7 +13,7 @@
     
     </div>
     <hr>
-    <p class="article-title2">{{ article?.title }}</p>
+    <p class="article-title2 font_NanumMyeongjo">{{ article?.title }}</p>
     <!-- <span class="article-info">{{ article?.username }} | </span> -->
     <span class="article-info">[익명] | {{ formatDateTime(article?.created_at) }}</span>
     <div class="article-content">
@@ -113,6 +113,9 @@ export default {
 </script>
 
 <style scoped>
+.font_NanumMyeongjo{
+  font-family: 'Nanum Myeongjo', serif;
+}
 .article-detail {
   background-color: #ffffff;
   color: #000000;
